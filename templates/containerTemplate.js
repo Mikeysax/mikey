@@ -16,4 +16,3 @@ export default class name extends React.Component {
       );
   }
 }
-```
