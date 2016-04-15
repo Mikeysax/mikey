@@ -1,0 +1,18 @@
+{
+  "name": "mikey",
+  "version": "0.0.1",
+  "description": "A command-line tool for generating React containers, components, and actions.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Michael Farrell",
+  "license": "ISC",
+  "bin": {
+    "mikey": "./index.js"
+  },
+  "dependencies": {
+    "commander": "^2.9.0",
+    "prepend-file": "^1.3.0"
+  }
+}
