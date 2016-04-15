@@ -1,7 +1,7 @@
 {
   "name": "mikey",
-  "version": "0.0.4",
-  "description": "A command-line tool for generating React containers, components, and actions.",
+  "version": "0.0.5",
+  "description": "A command-line tool for generating React Redux containers, React components, and React actions.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
