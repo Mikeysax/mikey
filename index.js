@@ -19,97 +19,91 @@ program
 
 //Generate Action
 if (program.action) {
-  console.log('Generating Action: ' + program.action);
-
-  var actionFileStream = fs.createWriteStream(__dirname + '/js/actions/' + program.action);
-  var actionName = program.action.toString().slice(0, -3);
-  var actionFileContents = "\n\n\n\n  const " + actionName + " = " + "()" + " => " +
-                           "{ \n\n  };\n\n\n\n\n\n" + "export default " + actionName + ";";
-
-  actionFileStream.write(actionFileContents);
-  actionFileStream.end();
+  console.log('Generating Action File: ' + program.action + '.js');
+  var readActionTemplate = fs.createReadStream('./templates/actionTemplate.js');
+  var writeActionFile = fs.createWriteStream(__dirname + '/js/actions/' + program.action + '.js');
+  readActionTemplate.on('data', function(chunk) {
+    var newData = chunk.toString().replace(/name/g, program.action);
+    writeActionFile.write(newData);
+    writeActionFile.end();
+  });
+  readActionTemplate.on('end', function() {
+    console.log('Action Template Used Successfully')
+  });
 
   if (program.importNpm) {
     program.importNpm.forEach(function(i) {
       console.log('Adding: ' + i);
-
       var importLine = "import " + i + " from " + "'" + i + "';\n"
-      prependFile(__dirname + '/js/actions/' + program.action, importLine, function(err) {
+      prependFile(__dirname + '/js/actions/' + program.action + '.js', importLine, function(err) {
         if (err) {
           console.log(err);
         }
-        console.log('Successfully created ' + program.action);
+        console.log('Successfully created ' + program.action + '.js');
       });
     });
   } else {
-    console.log('Successfuly created ' + program.action);
+    console.log('Successfuly created ' + program.action + '.js');
   }
 }
-
 
 //Generate Component
 if (program.component) {
-  console.log('Generating Component: ' + program.component);
-
-  var componentFileStream = fs.createWriteStream(__dirname + '/js/components/' + program.component);
-  var componentName = program.component.toString().slice(0, -3);
-  var componentFileContents = "placeholder";
-
-  componentFileStream.write(componentFileContents);
-  componentFileStream.end();
+  console.log('Generating Component File: ' + program.component + '.js');
+  var readComponentTemplate = fs.createReadStream('./templates/componentTemplate.js');
+  var writeComponentFile = fs.createWriteStream(__dirname + '/js/components/' + program.component + '.js');
+  readComponentTemplate.on('data', function(chunk) {
+    var newData = chunk.toString().replace(/name/g, program.component);
+    writeComponentFile.write(newData);
+    writeComponentFile.end();
+  });
+  readComponentTemplate.on('end', function() {
+    console.log('Component Template Used Successfully')
+  });
 
   if (program.importNpm) {
     program.importNpm.forEach(function(i) {
       console.log('Adding: ' + i);
-
       var importLine = "import " + i + " from " + "'" + i + "';\n"
-      prependFile(__dirname + '/js/components/' + program.component, importLine, function(err) {
+      prependFile(__dirname + '/js/components/' + program.component + '.js', importLine, function(err) {
         if (err) {
           console.log(err);
         }
-        console.log('Successfully created ' + program.component);
+        console.log('Successfully created ' + program.component + '.js');
       });
     });
   } else {
-    console.log('Successfuly created ' + program.component);
+    console.log('Successfuly created ' + program.component + '.js');
   }
-  prependFile(__dirname + '/js/components/' + program.component, 'import React from ' + 'react' + ';', function(err) {
-    if (err) {
-      console.log(err);
-    }
-  });
 }
-
 
 //Generate Container
 if (program.container) {
-  console.log('Generating Container: ' + program.container);
-
-  var containerFileStream = fs.createWriteStream(__dirname + '/js/containers/' + program.container);
-  var containerName = program.container.toString().slice(0, -3);
-  var containerFileContents = "placeholder";
-
-  containerFileStream.write(containerFileContents);
-  containerFileStream.end();
+  console.log('Generating Container File: ' + program.container + '.js');
+  var readContainerTemplate = fs.createReadStream('./templates/containerTemplate.js');
+  var writeContainerFile = fs.createWriteStream(__dirname + '/js/containers/' + program.container + '.js');
+  readContainerTemplate.on('data', function(chunk) {
+    var newData = chunk.toString().replace(/name/g, program.container);
+    writeContainerFile.write(newData);
+    writeContainerFile.end();
+  });
+  readContainerTemplate.on('end', function() {
+    console.log('Component Template Used Successfully')
+  });
 
   if (program.importNpm) {
     program.importNpm.forEach(function(i) {
       console.log('Adding: ' + i);
 
       var importLine = "import " + i + " from " + "'" + i + "';\n"
-      prependFile(__dirname + '/js/containers/' + program.container, importLine, function(err) {
+      prependFile(__dirname + '/js/containers/' + program.container + '.js', importLine, function(err) {
         if (err) {
           console.log(err);
         }
-        console.log('Successfully created ' + program.container);
+        console.log('Successfully created ' + program.container + '.js');
       });
     });
   } else {
-    console.log('Successfuly created ' + program.container);
+    console.log('Successfuly created ' + program.container + '.js');
   }
-  prependFile(__dirname + '/js/containers/' + program.container, 'import React from ' + 'react' + ';', function(err) {
-    if (err) {
-      console.log(err);
-    }
-  });
 }
