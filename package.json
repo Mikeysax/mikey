@@ -1,6 +1,6 @@
 {
   "name": "mikey",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A command-line tool for generating React containers, components, and actions.",
   "main": "index.js",
   "scripts": {
