@@ -3,7 +3,8 @@ var prependFile = require('prepend-file');
 
 var generateContainer = function(container, inpm) {
   var readContainerTemplate = fs.createReadStream('./templates/containerTemplate.js');
-  var writeContainerFile = fs.createWriteStream('./js/containers/' + container + '.js');
+  var containerPath = '../src/js/containers/' + container + '.js';
+  var writeContainerFile = fs.createWriteStream(containerPath);
   readContainerTemplate.on('data', function(chunk) {
     var newData = chunk.toString().replace(/name/g, container);
     writeContainerFile.write(newData);
@@ -20,7 +21,7 @@ var generateContainer = function(container, inpm) {
       console.log('Adding: ' + i);
 
       var importLine = "import " + i + " from " + "'" + i + "';\n"
-      prependFile('./js/containers/' + container + '.js', importLine, function(err) {
+      prependFile(containerPath, importLine, function(err) {
         if (err) {
           console.log(err);
         }

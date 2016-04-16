@@ -3,7 +3,8 @@ var prependFile = require('prepend-file');
 
 var generateComponent = function(component, inpm) {
   var readComponentTemplate = fs.createReadStream('./templates/componentTemplate.js');
-  var writeComponentFile = fs.createWriteStream('./js/components/' + component + '.js');
+  var componentPath = '../src/js/components/' + component + '.js';
+  var writeComponentFile = fs.createWriteStream(componentPath);
   readComponentTemplate.on('data', function(chunk) {
     var newData = chunk.toString().replace(/name/g, component);
     writeComponentFile.write(newData);
@@ -19,7 +20,7 @@ var generateComponent = function(component, inpm) {
     inpm.forEach(function(i) {
       console.log('Adding: ' + i);
       var importLine = "import " + i + " from " + "'" + i + "';\n"
-      prependFile('./js/components/' + component + '.js', importLine, function(err) {
+      prependFile(componentPath, importLine, function(err) {
         if (err) {
           console.log(err);
         }

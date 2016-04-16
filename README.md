@@ -1,10 +1,13 @@
 # mikey
 Mikey is a node command-line tool for generating React Redux containers, React components, and React actions.
 
-Inspired by Rails; React and other JS frameworks could use more organization and structure so this was created in response.
+Inspired by Rails generate; React and other JS frameworks could use more organization and structure so this was created in response.
 
 It is my belief that with organization and structure, applications can be built quicker with more efficiency.
+___
+To Install:
 
+```$ npm install mikey -g```
 ___
 To generate a new react file:
 

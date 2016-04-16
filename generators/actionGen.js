@@ -3,7 +3,8 @@ var prependFile = require('prepend-file');
 
 var generateAction = function(action, inpm) {
   var readActionTemplate = fs.createReadStream('./templates/actionTemplate.js');
-  var writeActionFile = fs.createWriteStream('./js/actions/' + action + '.js');
+  var actionPath = '../src/js/actions/' + action + '.js';
+  var writeActionFile = fs.createWriteStream(actionPath);
   readActionTemplate.on('data', function(chunk) {
     var newData = chunk.toString().replace(/name/g, action);
     writeActionFile.write(newData);
@@ -19,7 +20,7 @@ var generateAction = function(action, inpm) {
     inpm.forEach(function(i) {
       console.log('Adding: ' + i);
       var importLine = "import " + i + " from " + "'" + i + "';\n"
-      prependFile('./js/actions/' + action + '.js', importLine, function(err) {
+      prependFile(actionPath, importLine, function(err) {
         if (err) {
           console.log(err);
         }
