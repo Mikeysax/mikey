@@ -8,6 +8,8 @@ ___
 To Install:
 
 ```$ npm install mikey -g```
+
+Currently files are created in ./src/js/<actions, containers, components> folder.
 ___
 To generate a new react file:
 

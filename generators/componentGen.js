@@ -1,9 +1,9 @@
 var fs = require('fs');
 var prependFile = require('prepend-file');
 
-var generateComponent = function(component, inpm) {
-  var readComponentTemplate = fs.createReadStream('./templates/componentTemplate.js');
-  var componentPath = '../src/js/components/' + component + '.js';
+var generateComponent = function(component, inpm, directory) {
+  var readComponentTemplate = fs.createReadStream(directory + '/templates/componentTemplate.js');
+  var componentPath = './src/js/components/' + component + '.js';
   var writeComponentFile = fs.createWriteStream(componentPath);
   readComponentTemplate.on('data', function(chunk) {
     var newData = chunk.toString().replace(/name/g, component);

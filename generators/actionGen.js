@@ -1,9 +1,9 @@
 var fs = require('fs');
 var prependFile = require('prepend-file');
 
-var generateAction = function(action, inpm) {
-  var readActionTemplate = fs.createReadStream('./templates/actionTemplate.js');
-  var actionPath = '../src/js/actions/' + action + '.js';
+var generateAction = function(action, inpm, directory) {
+  var readActionTemplate = fs.createReadStream(directory + '/templates/actionTemplate.js');
+  var actionPath = './src/js/actions/' + action + '.js';
   var writeActionFile = fs.createWriteStream(actionPath);
   readActionTemplate.on('data', function(chunk) {
     var newData = chunk.toString().replace(/name/g, action);

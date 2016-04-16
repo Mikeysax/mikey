@@ -1,9 +1,9 @@
 var fs = require('fs');
 var prependFile = require('prepend-file');
 
-var generateContainer = function(container, inpm) {
-  var readContainerTemplate = fs.createReadStream('./templates/containerTemplate.js');
-  var containerPath = '../src/js/containers/' + container + '.js';
+var generateContainer = function(container, inpm, directory) {
+  var readContainerTemplate = fs.createReadStream(directory + '/templates/containerTemplate.js');
+  var containerPath = './src/js/containers/' + container + '.js';
   var writeContainerFile = fs.createWriteStream(containerPath);
   readContainerTemplate.on('data', function(chunk) {
     var newData = chunk.toString().replace(/name/g, container);
