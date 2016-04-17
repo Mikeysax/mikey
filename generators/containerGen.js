@@ -23,8 +23,13 @@ var generateContainer = function(container, inpm, directory) {
   if (inpm) {
     var importArray = [];
     inpm.forEach(function(i) {
-      importArray.push("import " + i + " from " + "'" + i + "';\n");
       console.log('Adding: ' + i);
+      if (i.match(/{|}/g)) {
+        var removedCurl = i.replace(/{|}/g, '');
+        importArray.push("import " + i + " from " + "'" + removedCurl + "';");
+      } else {
+        importArray.push("import " + i + " from " + "'" + i + "';");
+      }
     });
     var importLines = importArray.join('');
     prependFile(containerPath, importLines, function(err) {

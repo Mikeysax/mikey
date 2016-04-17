@@ -10,11 +10,11 @@ function collect(val, memo) {
 }
 
 program
-  .version('0.1.9')
+  .version('0.1.11')
   .option('component <component>', 'Generate React component js file.')
   .option('container <container>', 'Generate React Redux container js file.')
   .option('action <action>', 'Generate React action js file.')
-  .option('-i, importNpm [importNpm]', '(Optional) Import npm packages into file.', collect, [])
+  .option('-i, importNpm [importNpm]', '(Optional) Import npm packages into file. Enter with { } if needed.', collect, [])
   .parse(process.argv);
 
 var directory = __dirname;

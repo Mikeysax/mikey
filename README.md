@@ -15,15 +15,25 @@ To generate a new react file:
 
 ```$ mikey action fileName```  
 ___
-To generate a new file and import one or multiple dependencies:
+To generate a new file and import one or multiple dependencies to top of file:
 
 ```$ mikey container fileName -i depName```  
 
-or to import multiple dependencies:
+or to import multiple dependencies to top of file:
 
-```$ mikey component fileName -i depName -i depName -i depName -i depName```
+```$ mikey component fileName -i depName -i depName -i depName```
+___
+If you import a dependency with curly brackets it will remove them like this:
+
+```import {thisThing} from 'thisThing'```
 ___
 
 For help and more commands:
 
 ```$ mikey -h```
+___
+If you would like to contribute, it would be greatly appreciated.
+
+Looking to add much more to this such as :
+
+More Templates, Dynamic Folder Finding, Authentication Generation, Auto dependency installation, and more...

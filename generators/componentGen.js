@@ -23,8 +23,13 @@ var generateComponent = function(component, inpm, directory) {
   if (inpm) {
     var importArray = [];
     inpm.forEach(function(i) {
-      importArray.push("import " + i + " from " + "'" + i + "';");
       console.log('Adding: ' + i);
+      if (i.match(/{|}/g)) {
+        var removedCurl = i.replace(/{|}/g, '');
+        importArray.push("import " + i + " from " + "'" + removedCurl + "';");
+      } else {
+        importArray.push("import " + i + " from " + "'" + i + "';");
+      }
     });
     var importLines = importArray.join('\n');
     prependFile(componentPath, importLines, function(err) {
