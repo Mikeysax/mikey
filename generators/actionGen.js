@@ -26,12 +26,12 @@ var generateAction = function(action, inpm, directory) {
       console.log('Adding: ' + i);
       if (i.match(/{|}/g)) {
         var removedCurl = i.replace(/{|}/g, '');
-        importArray.push("import " + i + " from " + "'" + removedCurl + "';");
+        importArray.push("import " + i + " from " + "'" + removedCurl + "';\n");
       } else {
-        importArray.push("import " + i + " from " + "'" + i + "';");
+        importArray.push("import " + i + " from " + "'" + i + "';\n");
       }
     });
-    var importLines = importArray.join('\n');
+    var importLines = importArray.join('');
     prependFile(actionPath, importLines, function(err) {
       if (err) {
         console.log(err);

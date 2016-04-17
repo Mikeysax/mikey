@@ -26,9 +26,9 @@ var generateContainer = function(container, inpm, directory) {
       console.log('Adding: ' + i);
       if (i.match(/{|}/g)) {
         var removedCurl = i.replace(/{|}/g, '');
-        importArray.push("import " + i + " from " + "'" + removedCurl + "';");
+        importArray.push("import " + i + " from " + "'" + removedCurl + "';\n");
       } else {
-        importArray.push("import " + i + " from " + "'" + i + "';");
+        importArray.push("import " + i + " from " + "'" + i + "';\n");
       }
     });
     var importLines = importArray.join('');
