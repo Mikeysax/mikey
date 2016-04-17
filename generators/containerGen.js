@@ -23,10 +23,10 @@ var generateContainer = function(container, inpm, directory) {
   if (inpm) {
     var importArray = [];
     inpm.forEach(function(i) {
-      importArray.push("import " + i + " from " + "'" + i + "';");
+      importArray.push("import " + i + " from " + "'" + i + "';\n");
       console.log('Adding: ' + i);
     });
-    var importLines = importArray.join('\n');
+    var importLines = importArray.join('');
     prependFile(containerPath, importLines, function(err) {
       if (err) {
         console.log(err);
