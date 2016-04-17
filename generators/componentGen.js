@@ -8,7 +8,7 @@ var generateComponent = function(component, inpm, directory) {
   var writeComponentFile = fs.createWriteStream(componentPath);
 
   readComponentTemplate.on('data', function(chunk) {
-    var newData = chunk.toString().replace(/name/g, component);
+    var newData = chunk.toString().replace(/CnameC/g, component);
     writeComponentFile.write(newData);
     writeComponentFile.end();
   });
@@ -33,7 +33,7 @@ var generateComponent = function(component, inpm, directory) {
       }
     });
   }
-  console.log('Successfuly created ' + action + '.js');
+  console.log('Successfuly created ' + component + '.js');
 };
 
 module.exports.generateComponent = generateComponent;

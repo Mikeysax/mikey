@@ -1,8 +1,8 @@
 
 
-  const name = () => {
+  const CnameC = () => {
 
   };
 
 
-export default name;
+export default CnameC;

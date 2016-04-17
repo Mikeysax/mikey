@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import { bindActionCreators } from 'redux';
+import {bindActionCreators} from 'redux';
+import * as Actions from './actions/CnameC';
 
 const mapStateToProps = (state) => {
     return {}
@@ -10,7 +11,7 @@ const mapStateToProps = (state) => {
   mapStateToProps
 )
 
-export default class name extends React.Component {
+export default class CnameC extends React.Component {
   render() {
       return (
            <div></div>

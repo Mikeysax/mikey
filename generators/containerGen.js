@@ -8,7 +8,7 @@ var generateContainer = function(container, inpm, directory) {
   var writeContainerFile = fs.createWriteStream(containerPath);
 
   readContainerTemplate.on('data', function(chunk) {
-    var newData = chunk.toString().replace(/name/g, container);
+    var newData = chunk.toString().replace(/CnameC/g, container);
     writeContainerFile.write(newData);
     writeContainerFile.end();
   });
@@ -33,7 +33,7 @@ var generateContainer = function(container, inpm, directory) {
       }
     });
   }
-  console.log('Successfuly created ' + action + '.js');
+  console.log('Successfuly created ' + container + '.js');
 };
 
 module.exports.generateContainer = generateContainer;

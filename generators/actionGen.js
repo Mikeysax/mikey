@@ -8,7 +8,7 @@ var generateAction = function(action, inpm, directory) {
   var writeActionFile = fs.createWriteStream(actionPath);
 
   readActionTemplate.on('data', function(chunk) {
-    var newData = chunk.toString().replace(/name/g, action);
+    var newData = chunk.toString().replace(/CnameC/g, action);
     writeActionFile.write(newData);
     writeActionFile.end();
   });

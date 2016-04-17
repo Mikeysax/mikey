@@ -1,13 +1,25 @@
 {
   "name": "mikey",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "A command-line tool for generating React Redux containers, React components, and React actions.",
+  "author": "Michael Farrell",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Mikeysax/mikey"
+  },
+  "keywords": [
+    "mikey",
+    "generator",
+    "react",
+    "react-redux",
+    "webpack"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Michael Farrell",
-  "license": "ISC",
+  "license": "MIT",
   "bin": {
     "mikey": "./index.js"
   },
