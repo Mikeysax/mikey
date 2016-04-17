@@ -1,6 +1,6 @@
 {
   "name": "mikey",
-  "version": "0.1.3",
+  "version": "0.1.5",
   "description": "A command-line tool for generating React Redux containers, React components, and React actions.",
   "main": "index.js",
   "scripts": {
