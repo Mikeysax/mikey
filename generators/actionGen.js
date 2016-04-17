@@ -23,12 +23,20 @@ var generateAction = function(action, inpm, directory) {
   if (inpm) {
     var importArray = [];
     inpm.forEach(function(i) {
-      console.log('Adding: ' + i);
-      if (i.match(/{|}/g)) {
+      if (i.match(/,/)) {
+        var splitDep = i.split(',');
+        var impSplit = "import " + splitDep[0] + " from " + "'" + splitDep[1] + "';";
+        importArray.push(impSplit + "\n");
+        console.log("Adding: " + impSplit);
+      } else if (i.match(/{|}/g)) {
         var removedCurl = i.replace(/{|}/g, '');
-        importArray.push("import " + i + " from " + "'" + removedCurl + "';\n");
+        var impMatch = "import " + i + " from " + "'" + removedCurl + "';";
+        importArray.push(impMatch + "\n");
+        console.log("Adding: " + impMatch);
       } else {
-        importArray.push("import " + i + " from " + "'" + i + "';\n");
+        var imp = "import " + i + " from " + "'" + i + "';";
+        importArray.push(imp + "\n");
+        console.log("Adding: " + imp);
       }
     });
     var importLines = importArray.join('');

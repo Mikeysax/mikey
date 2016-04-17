@@ -26,6 +26,14 @@ ___
 If you import a dependency with curly brackets it will remove them like this:
 
 ```import {thisThing} from 'thisThing'```
+
+If you import a dependency from something titled differently like this:
+
+```import {connect} from 'react-redux';```
+
+You can import it with a comma and it will split it correctly:
+
+```$ mikey action thisActionFile -i {connect},react-redux```
 ___
 
 For help and more commands:
