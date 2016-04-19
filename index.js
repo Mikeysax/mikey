@@ -1,37 +1,41 @@
 #!/usr/bin/env node
 var program = require('commander');
-var gComponent = require('./generators/componentGen.js');
-var gContainer = require('./generators/containerGen.js');
-var gAction = require('./generators/actionGen.js');
+var gFile = require('./generators/fileGen.js');
+var eDefaults = require('./defaults/eraseDefaults.js');
 
 function collect(val, memo) {
   memo.push(val);
   return memo;
 }
-
 program
-  .version('0.2.1')
-  .option('component <component>', 'Generate React component js file.')
-  .option('container <container>', 'Generate React Redux container js file.')
-  .option('action <action>', 'Generate React action js file.')
-  .option('-i, importNpm [importNpm]', '(Optional) Import npm packages into file. Enter with { } if needed.', collect, [])
+  .version('0.3.0')
+  .option('componentCreator <componentCreator>', 'Generate React component js file.')
+  .option('containerCreator <containerCreator>', 'Generate React Redux container js file.')
+  .option('actionCreator <actionCreator>', 'Generate React action js file.')
+  .option('-i, --importNpm [importNpm]', '(Optional) Import npm packages into file. Enter with {} if needed.', collect, [])
+  .option('-d, --defaults [defaults]', 'Import previous dependencies for file type. No if blank.(No, Yes)', /^(yes|no)$/i, 'no')
+  .option('-e, --erase [erase]', 'Erase defaults: actions/containers/components/all', /^(actions|components|containers|all)$/i, 'nothing')
   .parse(process.argv);
 
 var directory = __dirname;
 var inpm = program.importNpm;
+var defaults = program.defaults;
 
-if (program.component) {
-  var component = program.component;
-  console.log('Generating Component File: ' + component + '.js');
-  gComponent.generateComponent(component, inpm, directory);
-
-} else if (program.container) {
-  var container = program.container;
-  console.log('Generating Container File: ' + container + '.js');
-  gContainer.generateContainer(container, inpm, directory);
-
-} else if (program.action) {
-  var action = program.action;
-  console.log('Generating Action File: ' + action + '.js');
-  gAction.generateAction(action, inpm, directory);
+if (typeof program.componentCreator != 'undefined') {
+  var componentType = 'component';
+  var componentName = program.componentCreator;
+  console.log('Generating Component File: ' + componentName + '.js');
+  gFile.generateFile(componentType, componentName, inpm, directory, defaults);
+} else if (typeof program.containerCreator != 'undefined') {
+  var containerType = 'container';
+  var containerName = program.containerCreator;
+  console.log('Generating Container File: ' + containerName + '.js');
+  gFile.generateFile(containerType, containerName, inpm, directory, defaults);
+} else if (typeof program.actionCreator != 'undefined') {
+  var actionType = 'action';
+  var actionName = program.actionCreator;
+  console.log('Generating Action File: ' + actionName + '.js');
+  gFile.generateFile(actionType, actionName, inpm, directory, defaults);
+} else if (typeof program.erase != 'undefined') {
+  eDefaults.eraseDefaults(program.erase, directory);
 }
