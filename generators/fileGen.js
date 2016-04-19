@@ -3,9 +3,9 @@ var _ = require('lodash');
 var gImport = require('./importGen.js');
 var gDefaults = require('./defaultGen.js');
 
-var generateFile = function(fileType, fileName, inpm, directory, defaults) {
+var generateFile = function(foundPath, fileType, fileName, inpm, directory, defaults) {
   var readTemplate = fs.createReadStream(directory + '/templates/' + fileType + 'Template.js');
-  var filePath = './src/js/' + fileType + 's/' + fileName + '.js';
+  var filePath = './' + foundPath + '/' + fileName + '.js';
   var writeFile = fs.createWriteStream(filePath);
 
   readTemplate.on('data', function(chunk) {

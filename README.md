@@ -9,7 +9,7 @@ To Install:
 
 ```$ npm install mikey -g```
 
-Currently files are created in ./src/js/<actions, containers, components> folder.
+Mikey will look through your working directory for actions/components/containers folders and create the corresponding file type. If none of these folders exsist, mikey will create them in the root of where you ran the command.
 ___
 To generate a new react file:
 
@@ -27,19 +27,27 @@ If you import a dependency with curly brackets it will remove them like this:
 
 ```import {thisThing} from 'thisThing'```
 
-If you import a dependency from something titled like this: ```import {connect} from 'react-redux';```
+If you import a dependency from something titled like this:
 
-You can import it with a comma and it will split it correctly: ```$ mikey actionCreator thisActionFile -i {connect},react-redux```
+```import {connect} from 'react-redux';```
+
+You can import it with a comma and it will split it correctly:
+
+```$ mikey actionCreator thisActionFile -i {connect},react-redux```
 ___
-Mikey remembers the things you've imported and stores them as defaults for each file type. This way, you will never have to import the same file over and over again for each action, container, or component.
+Mikey will remember the things you've imported and store them as defaults for each file type. This way, you will never have to import the same file over and over again for each action, container, or component. Also stored imports, are only stored once.
 
 You can include defaults by typing ```-d yes``` at the end of the generation command:
 
 ```$ mikey componentCreator JimmyBob -i {gravy},train-attack -d yes```
 
-To erase defaults, it is as simple as: ```$ mikey erase actions```
+To erase defaults, it is as simple as:
 
-Or if you want to erase all defaults: ```$ mikey erase all``` | ```$ mikey -e all```
+```$ mikey erase actions``` | ```$ mikey -e components``` | ```$ mikey erase containers```
+
+Or if you want to erase all defaults:
+
+```$ mikey erase all```    |    ```$ mikey -e all```
 
 ___
 For help and more commands:
