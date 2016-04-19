@@ -4,7 +4,7 @@ var gImport = require('./importGen.js');
 var gDefaults = require('./defaultGen.js');
 
 var generateFile = function(foundPath, fileType, fileName, inpm, directory, defaults) {
-  var readTemplate = fs.createReadStream(directory + '/templates/' + fileType + 'Template.js');
+  var readTemplate = fs.createReadStream(directory + '/file_templates/' + fileType + 'Template.js');
   var filePath = './' + foundPath + '/' + fileName + '.js';
   var writeFile = fs.createWriteStream(filePath);
 

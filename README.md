@@ -1,19 +1,27 @@
 # mikey
-Mikey is a node command-line tool for generating React Redux containers, React components, and React actions.
+Mikey is a node command-line tool for generating React-Redux projects,  React-Redux containers, React components, and React actions.
 
 Inspired by Rails generate; React and other JS frameworks could use more organization and structure so this was created in response.
 
 It is my belief that with organization and structure, applications can be built quicker with more efficiency.
+
+To Read More: http://mikeysax.com/mikey-react-generator
 ___
 To Install:
 
 ```$ npm install mikey -g```
+___
+To Generate a new project:
 
-Mikey will look through your working directory for actions/components/containers folders and create the corresponding file type. If none of these folders exist, mikey will create them in the root of where you ran the command.
+```$ mikey new projectName```
+
+Once you generate the project, cd to the folder and npm install.
 ___
 To generate a new react file:
 
 ```$ mikey actionCreator fileName```  
+
+Mikey will look through your working directory for actions/components/containers folders and create the corresponding file type. If none of these folders exist, mikey will create them in the root of where you ran the command.
 ___
 To generate a new file and import one or multiple dependencies to top of file:
 
