@@ -1,7 +1,7 @@
 {
   "name": "mikey",
-  "version": "0.5.0",
-  "description": "A command-line tool for generating React Redux containers, React components, and React actions.",
+  "version": "0.5.1",
+  "description": "A command-line tool for generating React-Redux projects, React-Redux containers, React components, and React actions.",
   "author": "Michael Farrell",
   "main": "index.js",
   "repository": {
