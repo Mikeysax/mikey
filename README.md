@@ -9,7 +9,7 @@ To Install:
 
 ```$ npm install mikey -g```
 
-Mikey will look through your working directory for actions/components/containers folders and create the corresponding file type. If none of these folders exsist, mikey will create them in the root of where you ran the command.
+Mikey will look through your working directory for actions/components/containers folders and create the corresponding file type. If none of these folders exist, mikey will create them in the root of where you ran the command.
 ___
 To generate a new react file:
 

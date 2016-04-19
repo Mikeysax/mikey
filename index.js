@@ -9,7 +9,7 @@ function collect(val, memo) {
   return memo;
 }
 program
-  .version('0.4.0')
+  .version('0.4.1')
   .option('componentCreator <componentCreator>', 'Generate React component js file.')
   .option('containerCreator <containerCreator>', 'Generate React Redux container js file.')
   .option('actionCreator <actionCreator>', 'Generate React action js file.')
