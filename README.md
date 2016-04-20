@@ -15,7 +15,7 @@ To Generate a new project:
 
 ```$ mikey new projectName```
 
-Once you generate the project, cd to the folder and npm install.
+When you generate a new project, it will run npm install automatically. All you have to do is be patient. Once it is done, you can start the server.
 ___
 To generate a new react file:
 

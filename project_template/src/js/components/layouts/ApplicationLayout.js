@@ -10,12 +10,14 @@ export default class ApplicationLayout extends React.Component {
             <a href="javascript:void(0);">
               Mikey
             </a>
-
             was built by
-
             <a href="http://mikeysax.com">
               Mikeysax
             </a>
+            <p>
+              Made with :heart: for the
+              <a href="http://theFirehoseProject.com">Firehose Project</a>
+            </p>
           </nav>
 
           {this.props.children}
