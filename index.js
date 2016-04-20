@@ -10,7 +10,7 @@ function collect(val, memo) {
   return memo;
 }
 program
-  .version('0.5.2')
+  .version('0.5.3')
   .option('new <new>', 'Generate New React-Redux Project.')
   .option('componentCreator <componentCreator>', 'Generate React component js file.')
   .option('containerCreator <containerCreator>', 'Generate React-Redux container js file.')

@@ -8,16 +8,13 @@ export default class ApplicationLayout extends React.Component {
         <div className="main-container">
           <nav className="navbar navbar-default text-center" role="navigation">
             <a href="javascript:void(0);">
-              Mikey
+              \\Mikey\\
             </a>
             was built by
             <a href="http://mikeysax.com">
-              Mikeysax
+              \\Mikeysax\\
             </a>
-            <p>
-              Made with :heart: for the
-              <a href="http://theFirehoseProject.com">Firehose Project</a>
-            </p>
+              Made with love for the <a href="http://theFirehoseProject.com">Firehose Project</a>
           </nav>
 
           {this.props.children}
