@@ -65,11 +65,11 @@ Mikey will remember the things you've imported and store them as defaults for ea
 
 You can include defaults by typing ```-d Y``` (Yes) for using defaults, at the end of the generation command:
 
-```$ mikey componentCreator JimmyBob -i {gravy},train-attack -d```
+```$ mikey componentCreator JimmyBob -i {gravy},train-attack -d Y```
 
 To erase defaults, it is as simple as:
 
-```$ mikey erase actions``` | ```$ mikey -e components``` | ```$ mikey erase containers``` | ```$ mikey -e helpers``` | ```$ mikey erase reducers`
+```$ mikey erase actions``` | ```$ mikey -e components``` | ```$ mikey erase containers``` | ```$ mikey -e helpers``` | ```$ mikey erase reducers```
 
 If you want to erase all stored defaults:
 
