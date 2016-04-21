@@ -3,10 +3,10 @@ var _ = require('lodash');
 var prependFile = require('prepend-file');
 
 var importDefaults = function(defaults, filePath, fileType, directory) {
-  if (defaults.match(/no/)) {
+  if (defaults.match(/n/)) {
     console.log('Defaults: No');
   }
-  if (defaults.match(/yes/)) {
+  if (defaults.match(/Y/)) {
     console.log('Defaults: Yes');
     var defaultPath = directory + '/defaults/' + fileType + 'Default.js';
     var loadedFileDefaults = fs.readFileSync(defaultPath, 'utf8', function(err) {

@@ -63,13 +63,13 @@ You can import it with a comma and it will split it correctly:
 ___
 Mikey will remember the things you've imported and store them as defaults for each file type. This way, you will never have to import the same file over and over again for each action, container, or component. Also stored imports, are only stored once.
 
-You can include defaults by typing ```-d yes``` at the end of the generation command:
+You can include defaults by typing ```-d Y``` (Yes) for using defaults, at the end of the generation command:
 
-```$ mikey componentCreator JimmyBob -i {gravy},train-attack -d yes```
+```$ mikey componentCreator JimmyBob -i {gravy},train-attack -d```
 
 To erase defaults, it is as simple as:
 
-```$ mikey erase actions``` | ```$ mikey -e components``` | ```$ mikey erase containers```
+```$ mikey erase actions``` | ```$ mikey -e components``` | ```$ mikey erase containers``` | ```$ mikey -e helpers``` | ```$ mikey erase reducers`
 
 If you want to erase all stored defaults:
 

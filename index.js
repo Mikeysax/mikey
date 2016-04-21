@@ -10,7 +10,7 @@ function collect(val, memo) {
   return memo;
 }
 program
-  .version('0.5.6')
+  .version('0.5.7')
   .option('new <new>', 'Generate New React-Redux Project.')
   .option('componentCreator <componentCreator>', 'Generate React component js file.')
   .option('containerCreator <containerCreator>', 'Generate React-Redux container js file.')
@@ -18,8 +18,8 @@ program
   .option('reducerCreator <reducerCreator>', 'Generate React reducer js file.')
   .option('helperCreator <helperCreator>', 'Generate React helper js file.')
   .option('-i, importNpm [importNpm]', '(Optional) Import npm packages into file. Enter with {} if needed.', collect, [])
-  .option('-d, defaults [defaults]', 'Import previous dependencies for file type. No if blank.(No, Yes)', /^(yes|no)$/i, 'no')
-  .option('-e, erase [erase]', 'Erase defaults: actions/containers/components/all', /^(actions|components|containers|all)$/i, 'nothing')
+  .option('-d, defaults [defaults]', 'Import previous dependencies for file type. No if blank.(n, Y)', /^(Y|n)$/i, 'n')
+  .option('-e, erase [erase]', 'Erase defaults: actions/containers/components/reducers/helpers/all', /^(actions|components|containers|reducers|helpers|all)$/i, 'nothing')
   .parse(process.argv);
 
 var directory = __dirname;
