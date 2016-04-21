@@ -15,7 +15,9 @@ To Generate a new project:
 
 ```$ mikey new projectName```
 
-When you generate a new project, it will run npm install automatically. All you have to do is be patient. Once it is done, you can start the server with:
+When you generate a new project, it will run npm install automatically in the created project directory. All you have to do is be patient, it is not frozen.
+
+Once it is done, you can start the server with:
 
 ```webpack-dev-server --inline --hot --watch-poll```
 
@@ -37,7 +39,7 @@ To generate a new react file:
 
 ```$ mikey helperCreator fileName```  
 
-Mikey will look through your working directory for actions/components/containers folders and create the corresponding file type. If none of these folders exist, mikey will create them in the root of where you ran the command.
+Mikey will look through your working directory for actions/components/containers/reducers/helpers folder and create the corresponding file type. If none of these folders exist, mikey will create them in the root of where you ran the command.
 ___
 To generate a new file and import one or multiple dependencies to top of file:
 
@@ -69,7 +71,7 @@ To erase defaults, it is as simple as:
 
 ```$ mikey erase actions``` | ```$ mikey -e components``` | ```$ mikey erase containers```
 
-Or if you want to erase all defaults:
+If you want to erase all stored defaults:
 
 ```$ mikey erase all```    |    ```$ mikey -e all```
 
