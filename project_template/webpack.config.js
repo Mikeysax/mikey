@@ -48,6 +48,6 @@ function getEntrySources(sources) {
   //    sources.push('webpack-dev-server/client?http://localhost:8080');
   //    sources.push('webpack/hot/only-dev-server');
   //}
-  
+
   return sources;
 }
