@@ -1,6 +1,5 @@
 var fs = require('fs-extra');
 var exec = require('child_process').exec;
-var _ = require('lodash');
 
 var generateProject = function(projectName, currentWDir, directory) {
   var projectDestination = currentWDir + '/' + projectName;

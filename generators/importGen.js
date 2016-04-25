@@ -1,5 +1,4 @@
 var fs = require('fs-extra');
-var _ = require('lodash');
 var prependFile = require('prepend-file');
 
 var importGen = function(fileType, filePath, inpm, directory) {

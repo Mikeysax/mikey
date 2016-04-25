@@ -39,7 +39,11 @@ To generate a new react file:
 
 ```$ mikey helperCreator fileName```  
 
-Mikey will look through your working directory for actions/components/containers/reducers/helpers folder and create the corresponding file type. If none of these folders exist, mikey will create them in the root of where you ran the command.
+Mikey will look through your working directory for actions/components/containers/reducers/helpers folder and create the corresponding file type. If none of these folders exist, Mikey will create them in the root of where you ran the command.
+
+Mikey also creates ```.mikeyPath``` folder in your project and saves the path of the file type generated. This is to optimize the speed of creation afterwards so Mikey does not have to dynamically find the folder again after each generated file.
+
+If your project directory changes at all, delete ```.mikeyPath``` folder to recache folder paths.
 ___
 To generate a new file and import one or multiple dependencies to top of file:
 
