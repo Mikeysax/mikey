@@ -2,8 +2,8 @@ var fs = require('fs-extra');
 var ff = require('node-find-folder');
 var prependFile = require('prepend-file');
 
-var generatePath = function(fileType, directory) {
-  var mikeyPathFile = directory + '/.mikeyPath/.' + fileType;
+var generatePath = function(fileType, currentWDir) {
+  var mikeyPathFile = currentWDir + '/.mikeyPath/.' + fileType;
   fs.ensureFileSync(mikeyPathFile, function(error) {
     if (error) { console.log(error); }
   });

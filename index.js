@@ -10,7 +10,7 @@ function collect(val, memo) {
   return memo;
 }
 program
-  .version('0.6.2')
+  .version('0.6.3')
   .option('new <new>', 'Generate New React-Redux Project.')
   .option('componentCreator <componentCreator>', 'Generate React component js file.')
   .option('containerCreator <containerCreator>', 'Generate React-Redux container js file.')
@@ -25,45 +25,45 @@ program
 var directory = __dirname;
 var inpm = program.importNpm;
 var defaults = program.defaults;
+var currentWDir = process.cwd();
 
 if (typeof program.new != 'undefined') {
   var projectName = program.new;
-  var currentWDir = process.cwd();
   console.log('Generating New Project: ' + projectName + ' in ' + currentWDir);
   gProject.generateProject(projectName, currentWDir, directory);
 }
 if (typeof program.componentCreator != 'undefined') {
   var componentType = 'component';
   var componentName = program.componentCreator;
-  var componentFolderPath = gPath.generatePath('components', directory);
+  var componentFolderPath = gPath.generatePath('components', currentWDir);
   console.log('Generating Component File: ' + componentName + '.js');
   gFile.generateFile(componentFolderPath, componentType, componentName, inpm, directory, defaults);
 }
 if (typeof program.containerCreator != 'undefined') {
   var containerType = 'container';
   var containerName = program.containerCreator;
-  var containerFolderPath = gPath.generatePath('containers', directory);
+  var containerFolderPath = gPath.generatePath('containers', currentWDir);
   console.log('Generating Container File: ' + containerName + '.js');
   gFile.generateFile(containerFolderPath, containerType, containerName, inpm, directory, defaults);
 }
 if (typeof program.actionCreator != 'undefined') {
   var actionType = 'action';
   var actionName = program.actionCreator;
-  var actionsFolderPath = gPath.generatePath('actions', directory);
+  var actionsFolderPath = gPath.generatePath('actions', currentWDir);
   console.log('Generating Action File: ' + actionName + '.js');
   gFile.generateFile(actionsFolderPath, actionType, actionName, inpm, directory, defaults);
 }
 if (typeof program.reducerCreator != 'undefined') {
   var reducerType = 'reducer';
   var reducerName = program.reducerCreator;
-  var reducersFolderPath = gPath.generatePath('reducers', directory);
+  var reducersFolderPath = gPath.generatePath('reducers', currentWDir);
   console.log('Generating Reducer File: ' + reducerName + '.js');
   gFile.generateFile(reducersFolderPath, reducerType, reducerName, inpm, directory, defaults);
 }
 if (typeof program.helperCreator != 'undefined') {
   var helperType = 'helper';
   var helperName = program.helperCreator;
-  var helpersFolderPath = gPath.generatePath('helpers', directory);
+  var helpersFolderPath = gPath.generatePath('helpers', currentWDir);
   console.log('Generating Helper File: ' + helperName + '.js');
   gFile.generateFile(helpersFolderPath, helperType, helperName, inpm, directory, defaults);
 }
