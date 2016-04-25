@@ -21,6 +21,21 @@ var generatePath = function(fileType, currentWDir) {
       if (err) { console.log(err); }
     });
   }
+
+  var gitIgnorePath = currentWDir + '/.gitignore';
+  fs.access(gitIgnorePath, fs.F_OK, function(error) {
+    if (error) {
+      console.log('Tried Adding .mikeyPath to .gitignore but does not exist.');
+    } else {
+      var gitIgnoreFile = fs.readFileSync(gitIgnorePath, 'utf8');
+      if (gitIgnoreFile.match(/\.mikeyPath/g) != true) {
+        fs.writeFileSync(gitIgnorePath, '.mikeyPath', 'utf8', function(error) {
+          if (error) { console.log(error); }
+        });
+      }
+    }
+  });
+
   return(folderPath);
 };
 
