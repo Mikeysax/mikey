@@ -19,11 +19,15 @@ When you generate a new project, it will run npm install automatically in the cr
 
 Once it is done, you can start the server with:
 
-```webpack-dev-server --inline --hot --watch-poll```
+```npm run serve```
+
+which will run ```webpack-dev-server --inline --hot --watch-poll```
 
 or for vagrant:
 
-```webpack-dev-server --inline --hot --host 0.0.0.0 --watch-poll```
+```npm run vagrant```
+
+which will run ```webpack-dev-server --inline --hot --host 0.0.0.0 --watch-poll```
 
 Projects generated with Mikey are Heroku compatible.
 ___

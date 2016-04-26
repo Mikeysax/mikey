@@ -23,9 +23,9 @@ var generateProject = function(projectName, currentWDir, directory) {
         exec(npm, { cwd: projectDestination }, function(error, stdout, stderr) {
           if (error) { console.log(error); }
           console.log('Done! cd to ' + projectName + ' and launch server:');
-          console.log('webpack-dev-server --inline --hot --watch-poll');
+          console.log('npm run serve');
           console.log('or for vagrant:');
-          console.log('webpack-dev-server --inline --hot --host 0.0.0.0 --watch-poll');
+          console.log('npm run vagrant');
         });
       });
     }

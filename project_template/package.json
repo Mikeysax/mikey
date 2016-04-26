@@ -9,7 +9,9 @@
     "webpack-server": "webpack-dev-server --hot --progress --colors",
     "web-server": "http-server -p 3000 .",
     "postinstall": "webpack --config ./webpack-production.config.js --progress --colors",
-    "start": "node server.js"
+    "start": "node server.js",
+    "serve": "webpack-dev-server --inline --hot --watch-poll",
+    "vagrant": "webpack-dev-server --inline --hot --host 0.0.0.0 --watch-poll"
   },
   "repository": "",
   "keywords": [],
