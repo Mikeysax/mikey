@@ -28,8 +28,10 @@ var generatePath = function(fileType, currentWDir) {
       console.log('Adding: .mikeyPath to .gitignore but file does not exist.');
     } else {
       var gitIgnoreFile = fs.readFileSync(gitIgnorePath, 'utf8');
-      if (gitIgnoreFile.match(/\.mikeyPath/g) != true) {
-        prependFile(gitIgnorePath, '.mikeyPath', function(error) {
+      console.log(gitIgnoreFile);
+      if (!gitIgnoreFile.match(/\.mikeyPath/)) {
+        console.log('This is the value: ' + gitIgnoreFile.match(/\.mikeyPath/g));
+        prependFile(gitIgnorePath, '.mikeyPath\n', function(error) {
           if (error) { console.log(error); }
         });
       }
