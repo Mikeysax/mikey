@@ -30,7 +30,6 @@ var generatePath = function(fileType, currentWDir) {
       var gitIgnoreFile = fs.readFileSync(gitIgnorePath, 'utf8');
       console.log(gitIgnoreFile);
       if (!gitIgnoreFile.match(/\.mikeyPath/)) {
-        console.log('This is the value: ' + gitIgnoreFile.match(/\.mikeyPath/g));
         prependFile(gitIgnorePath, '.mikeyPath\n', function(error) {
           if (error) { console.log(error); }
         });
