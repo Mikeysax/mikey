@@ -4,7 +4,7 @@ import {bindActionCreators} from 'redux';
 import * as Actions from './actions/CnameC.js';
 
 const mapStateToProps = (state) => {
-    return {}
+  return {}
 };
 
 @connect(
@@ -14,7 +14,7 @@ const mapStateToProps = (state) => {
 export default class CnameC extends React.Component {
   render() {
       return (
-           <div></div>
+        <div></div>
       );
   }
 }

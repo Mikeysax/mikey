@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 var program = require('commander');
-var gPath = require('./generators/pathGen.js')
-var gProject = require('./generators/projectGen.js')
+var gPath = require('./generators/pathGen.js');
+var gProject = require('./generators/projectGen.js');
 var gFile = require('./generators/fileGen.js');
 var eDefaults = require('./defaults/eraseDefaults.js');
 
@@ -10,7 +10,7 @@ function collect(val, memo) {
   return memo;
 }
 program
-  .version('0.6.7')
+  .version('0.6.8')
   .option('new <new>', 'Generate New React-Redux Project.')
   .option('componentCreator <componentCreator>', 'Generate React component js file.')
   .option('containerCreator <containerCreator>', 'Generate React-Redux container js file.')
