@@ -25,7 +25,7 @@ var generatePath = function(fileType, currentWDir) {
   var gitIgnorePath = currentWDir + '/.gitignore';
   fs.access(gitIgnorePath, fs.F_OK, function(error) {
     if (error) {
-      console.log('Tried Adding .mikeyPath to .gitignore but does not exist.');
+      console.log('Adding: .mikeyPath to .gitignore but file does not exist.');
     } else {
       var gitIgnoreFile = fs.readFileSync(gitIgnorePath, 'utf8');
       if (gitIgnoreFile.match(/\.mikeyPath/g) != true) {

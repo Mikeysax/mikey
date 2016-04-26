@@ -3,11 +3,10 @@ var exec = require('child_process').exec;
 
 var generateProject = function(projectName, currentWDir, directory) {
   var projectDestination = currentWDir + '/' + projectName;
-  fs.mkdirs(currentWDir + '/' + projectName, function(err) {
+  fs.mkdirs(projectDestination, function(err) {
     if (err) { console.log(err); }
   });
-  var projectPath = './' + projectName;
-  fs.copy(directory + '/project_template', projectPath, function(err) {
+  fs.copy(directory + '/project_template', projectDestination, function(err) {
     if (err) { console.log(err); }
   })
 
