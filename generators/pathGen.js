@@ -29,7 +29,7 @@ var generatePath = function(fileType, currentWDir) {
     } else {
       var gitIgnoreFile = fs.readFileSync(gitIgnorePath, 'utf8');
       if (gitIgnoreFile.match(/\.mikeyPath/g) != true) {
-        fs.writeFileSync(gitIgnorePath, '.mikeyPath', 'utf8', function(error) {
+        prependFile(gitIgnorePath, '.mikeyPath', function(error) {
           if (error) { console.log(error); }
         });
       }
