@@ -16,7 +16,7 @@ var generatePath = function(fileType, currentWDir) {
     folderPath = readMikeyPath;
   } else {
     console.log('Saving Path To: ' + mikeyPathFile);
-    folderPath = new ff(fileType, {nottraversal: ['test', 'project_template', 'node_modules']});
+    folderPath = new ff(fileType, {nottraversal: ['test', 'project_template', 'node_modules', 'user_auth_template']});
     prependFile(mikeyPathFile, folderPath, function(err) {
       if (err) { console.log(err); }
     });
