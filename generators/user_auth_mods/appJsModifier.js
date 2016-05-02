@@ -1,10 +1,9 @@
 var fs = require('fs-extra');
 var gPath = require('../pathGen.js');
 
-var appJsModifier = function(currentWDir, directory) {
-  var appJSPath = gPath.generatePath('App.js', currentWDir);
-  var projectReducerPath = gPath.generatePath('reducers', currentWDir);
-  var projectHelperPath = gPath.generatePath('helpers', currentWDir);
+var appJsModifier = function(currentWDir, directory, entry) {
+  //appJSPath is the entry file for the react redux app.
+  var appJSPath = gPath.generatePath(entry + '.js', currentWDir).toString();
 
   var readProjectAppJSFile = fs.readFileSync(appJSPath, 'utf8');
   //Check if User Auth was already added.
@@ -13,21 +12,14 @@ var appJsModifier = function(currentWDir, directory) {
 
     var readAppImportTemplate = fs.readFileSync(directory + '/user_auth_template/app/appImports.js', 'utf8');
     var appImportTemplateArray = readAppImportTemplate.match(/import.+?;/g);
-    //Changes import url to directory url and pushes to one array.
+    //Pushes to one array.
     appImportTemplateArray.forEach(function(i) {
-      var newImp = undefined;
-      if (i.match(/CreducerC/g)) {
-        newImp = i.replace(/CreducerC/g, projectReducerPath);
-      }
-      if (i.match(/ChelperC/g)) {
-        newImp = i.replace(/ChelperC/g, projectHelperPath);
-      }
-      projectAppFileImportArray.push(newImp);
+      projectAppFileImportArray.push(i);
     });
     var newAppImportData = projectAppFileImportArray.join('\n');
     var appRemoveData = readProjectAppJSFile.replace(/import.+?;\n/g, '');
     //Joins new import data and the rest of the App.JS File
-    var newAppJsData = [newAppImportData, appRemoveData].join();
+    var newAppJsData = [newAppImportData, appRemoveData].join('\n');
     fs.writeFile(appJSPath, newAppJsData, function(err) {
       if (err) { console.log(err); }
     });

@@ -1,3 +1,3 @@
-import SignUp from  './CnameC/SignUp';
-import EntryPoint from './CnameC/EntryPoint';
-import SignIn from './CnameC/SignIn';
+import SignUp from  '../containers/SignUp';
+import EntryPoint from '../containers/EntryPoint';
+import SignIn from '../containers/SignIn';

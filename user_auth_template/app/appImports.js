@@ -1,3 +1,3 @@
-import currentUser from './CreducerC/currentUser';
-import createUserSubscriber from './ChelperC/createUserSubscriber';
-import syncCurrentUserFromLocalStorage from './ChelperC/syncCurrentUserFromLocalStorage';
+import currentUser from './reducers/currentUser';
+import createUserSubscriber from './helpers/createUserSubscriber';
+import syncCurrentUserFromLocalStorage from './helpers/syncCurrentUserFromLocalStorage';

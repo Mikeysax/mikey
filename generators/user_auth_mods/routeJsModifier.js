@@ -11,12 +11,11 @@ var routeJsModifier = function(currentWDir, directory) {
 
     var readRouteImportTemplate = fs.readFileSync(directory + '/user_auth_template/config/routeImports.js', 'utf8');
     var routeImportTemplateArray = readRouteImportTemplate.match(/import.+?;/g);
-    var projectContainerPath = gPath.generatePath('containers', currentWDir);
 
     routeImportTemplateArray.forEach(function(i) {
-      var newImp = i.replace(/CnameC/g, projectContainerPath);
-      projectRouteFileImportArray.push(newImp);
+      projectRouteFileImportArray.push(i);
     });
+
     var projectRouteFileJoined = projectRouteFileImportArray.join('\n');
     var removeProjectRouteImports = projectRouteJsFile.replace(/import.+?;\n/g, '');
     //Join new imports to Project Route Body.
@@ -28,7 +27,7 @@ var routeJsModifier = function(currentWDir, directory) {
     //Combine project routes with auth routes
     var innerProjectRouteArray = projectRouteJsFile.match(/<Route path=.+?}>/g);
     var readAuthRoutes = fs.readFileSync(directory + '/user_auth_template/config/routes.js', 'utf8');
-    var authRoutesArray = readAuthRoutes.match(/  <Route path=.+?\/>/g);
+    var authRoutesArray = readAuthRoutes.match(/    <Route path=.+?\/>/g);
     authRoutesArray.forEach(function(i) {
       innerProjectRouteArray.push(i);
     });

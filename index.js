@@ -11,9 +11,9 @@ function collect(val, memo) {
   return memo;
 }
 program
-  .version('0.7.3')
+  .version('0.8.0')
   .option('new <new>', 'Generate New React-Redux Project.')
-  .option('authCreator <authCreator>', 'Add API User Auth and Files. Input API Key')
+  .option('authCreator <authCreator>', 'Add API User Auth and Files. Input entry file name without extension')
   .option('componentCreator <componentCreator>', 'Generate React component js file.')
   .option('containerCreator <containerCreator>', 'Generate React-Redux container js file.')
   .option('actionCreator <actionCreator>', 'Generate React action js file.')
@@ -35,8 +35,9 @@ if (typeof program.new != 'undefined') {
   gProject.generateProject(projectName, currentWDir, directory);
 }
 if (typeof program.authCreator != 'undefined') {
+  var entry = program.authCreator;
   console.log('Generating User Authentication Files');
-  gAuth.generateUserAuth(currentWDir, directory);
+  gAuth.generateUserAuth(currentWDir, directory, entry);
 }
 if (typeof program.componentCreator != 'undefined') {
   var componentType = 'component';

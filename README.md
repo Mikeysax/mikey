@@ -1,7 +1,7 @@
 # mikey
-Mikey is a node command-line tool for generating React-Redux projects,  React-Redux containers, React components, React actions, React reducers, and React helpers.
+Mikey is a node command-line tool for generating React-Redux projects,  React-Redux containers, React components, React actions, React reducers, React helpers, and API User Authentication.
 
-Inspired by Rails generate; React and other JS frameworks could use more organization and structure so this was created in response.
+Inspired by Rails generate and Devise; React and other JS frameworks could use more organization and structure so this was created in response.
 
 It is my belief that with organization and structure, applications can be built quicker with more efficiency.
 
@@ -82,7 +82,24 @@ To erase defaults, it is as simple as:
 If you want to erase all stored defaults:
 
 ```$ mikey erase all```    |    ```$ mikey -e all```
+___
+Adding API User Authentication:
 
+If you would like to add user authentication:
+
+```$ mikey authCreator entryFileName```
+
+The entryFileName in a Mikey generated project is App.js:
+
+```$ mikey authCreator App```
+
+When you generate user authentication files, Mikey will modify your ```routes.js``` and ```entryFileName``` file with proper imports, and other various text. A EntryPoint container will be created, and is where SignIn and SignUp direct to.
+
+After User Auth is done, you will need to add the API url to ```urlFor.js``` file in helpers, add your API public key to the ```publicKey.js``` file in helpers, and in the three action files that were generated, you can change the end of the URL to match your API routes for user authentication. Each file with necessary API or URL change will have commented code needed to be changed.
+
+Do not forget to change the ```routes.js``` route order to your apps liking.
+
+Adding API User Authentication outside a Mikey generated project might have edge cases that were not accounted for yet. Please report any bugs or issues.
 ___
 For help and more commands:
 

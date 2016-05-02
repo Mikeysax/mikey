@@ -1,5 +1,5 @@
 const publicKey = () => {
-  return "PUBLIC KEY GOES HERE"
+  return //"PUBLIC API KEY GOES HERE"
 }
 
 export default publicKey;
