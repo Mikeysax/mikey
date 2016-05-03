@@ -7,7 +7,6 @@ var mRouteJs = require('./user_auth_mods/routeJsModifier.js');
 var generateUserAuth = function(currentWDir, directory, entry) {
   var containersPath = gPath.generatePath('containers', currentWDir);
   fs.stat(containersPath + '/SignUp.js', function(err, stats) {
-
     if (stats === undefined) {
       var folderArray = ['actions', 'components', 'containers', 'helpers', 'reducers'];
       folderArray.forEach(function(folder) {
@@ -16,7 +15,6 @@ var generateUserAuth = function(currentWDir, directory, entry) {
           if (err) { console.log(err); }
         })
       });
-
       // Insert import App.js information
       mAppJs.appJsModifier(currentWDir, directory, entry);
       // Insert import Route.js information

@@ -6,25 +6,31 @@ var gDefaults = require('./defaultGen.js');
 var generateFile = function(foundPath, fileType, fileName, inpm, directory, defaults) {
   var readTemplate = fs.createReadStream(directory + '/file_templates/' + fileType + 'Template.js');
   var filePath = './' + foundPath + '/' + fileName + '.js';
-  var writeFile = fs.createWriteStream(filePath);
+  fs.stat(filePath, function(err, stats) {
+    if (stats === undefined) {
+      var writeFile = fs.createWriteStream(filePath);
 
-  readTemplate.on('data', function(chunk) {
-    var newData = chunk.toString().replace(/CnameC/g, fileName);
-    writeFile.write(newData);
-    writeFile.end();
-  });
+      readTemplate.on('data', function(chunk) {
+        var newData = chunk.toString().replace(/CnameC/g, fileName);
+        writeFile.write(newData);
+        writeFile.end();
+      });
 
-  readTemplate.on('end', function(error) {
-    if (error) {
-      console.log(error);
+      readTemplate.on('end', function(error) {
+        if (error) {
+          console.log(error);
+        }
+        console.log(_.capitalize(fileType) + ' Template Used Successfully')
+      });
+
+      gImport.importGen(fileType, filePath, inpm, directory);
+      gDefaults.importDefaults(defaults, filePath, fileType, directory);
+
+      console.log('Successfuly created ' + fileName + '.js in ' + filePath);
+    } else {
+      console.log(fileName + ' already exists in this project.');
     }
-    console.log(_.capitalize(fileType) + ' Template Used Successfully')
   });
-
-  gImport.importGen(fileType, filePath, inpm, directory);
-  gDefaults.importDefaults(defaults, filePath, fileType, directory);
-
-  console.log('Successfuly created ' + fileName + '.js in ' + filePath);
 };
 
 module.exports.generateFile = generateFile;
