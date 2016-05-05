@@ -5,13 +5,14 @@ var gProject = require('./generators/projectGen.js');
 var gAuth = require('./generators/userAuthGen.js')
 var gFile = require('./generators/fileGen.js');
 var eDefaults = require('./defaults/eraseDefaults.js');
+var lDefaults = require('./defaults/listDefaults.js');
 
 function collect(val, memo) {
   memo.push(val);
   return memo;
 }
 program
-  .version('0.8.1')
+  .version('0.8.2')
   .option('new <new>', 'Generate New React-Redux Project.')
   .option('authCreator <authCreator>', 'Add API User Auth and Files. Input entry file name without extension')
   .option('componentCreator <componentCreator>', 'Generate React component js file.')
@@ -22,6 +23,7 @@ program
   .option('-i, importNpm [importNpm]', '(Optional) Import npm packages into file. Enter with {} if needed.', collect, [])
   .option('-d, defaults [defaults]', 'Import previous dependencies for file type. No if blank.(n, Y)', /^(Y|n)$/i, 'n')
   .option('-e, erase [erase]', 'Erase defaults: actions/containers/components/reducers/helpers/all', /^(actions|components|containers|reducers|helpers|all)$/i, 'undefined')
+  .option('-l, list [list]', 'List defaults: actions/containers/components/reducers/helpers/all', /^(actions|components|containers|reducers|helpers|all)$/i, 'undefined')
   .parse(process.argv);
 
 var directory = __dirname;
@@ -76,4 +78,7 @@ if (typeof program.helperCreator != 'undefined') {
 }
 if (typeof program.erase != 'undefined') {
   eDefaults.eraseDefaults(program.erase, directory);
+}
+if (typeof program.list != 'undefined') {
+  lDefaults.listDefaults(program.list, directory);
 }

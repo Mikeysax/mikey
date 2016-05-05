@@ -4,8 +4,8 @@ var gPath = require('../pathGen.js');
 var appJsModifier = function(currentWDir, directory, entry) {
   //appJSPath is the entry file for the react redux app.
   var appJSPath = gPath.generatePath(entry + '.js', currentWDir).toString();
-
   var readProjectAppJSFile = fs.readFileSync(appJSPath, 'utf8');
+
   //Check if User Auth was already added.
   if (readProjectAppJSFile.match(/currentUser|syncCurrentUserFromLocalStorage|createUserSubscriber/g) === null) {
     var projectAppFileImportArray = readProjectAppJSFile.match(/import.+?;/g);
@@ -31,6 +31,7 @@ var appJsModifier = function(currentWDir, directory, entry) {
     var readStoreRender = readProjectAppJSFile.match(/store.subscribe.+?\n/g);
     var localStorage = fs.readFileSync(directory + '/user_auth_template/app/App.js', 'utf8');
     var addLocalStorage = readStoreRender.join('\n') + localStorage;
+
     //Adds Current User data to reduxApp
     fs.readFile(appJSPath, 'utf8', function (err, data) {
       if (err) { return console.log(err); }

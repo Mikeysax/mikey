@@ -5,6 +5,7 @@ var routeJsModifier = function(currentWDir, directory) {
   var configFolderPath = gPath.generatePath('config', currentWDir);
   var projectRouteJsPath = configFolderPath + '/routes.js';
   var projectRouteJsFile = fs.readFileSync(projectRouteJsPath, 'utf8');
+  
   //Check if User Auth was already added.
   if (projectRouteJsFile.match(/SignUp|SignIn/g) === null) {
     var projectRouteFileImportArray = projectRouteJsFile.match(/import.+?;/g);
@@ -15,7 +16,6 @@ var routeJsModifier = function(currentWDir, directory) {
     routeImportTemplateArray.forEach(function(i) {
       projectRouteFileImportArray.push(i);
     });
-
     var projectRouteFileJoined = projectRouteFileImportArray.join('\n');
     var removeProjectRouteImports = projectRouteJsFile.replace(/import.+?;\n/g, '');
     //Join new imports to Project Route Body.
@@ -24,6 +24,7 @@ var routeJsModifier = function(currentWDir, directory) {
     fs.writeFile(projectRouteJsPath, newProjectRouteImportFile, function(err) {
       if (err) { console.log(err); }
     });
+
     //Combine project routes with auth routes
     var innerProjectRouteArray = projectRouteJsFile.match(/<Route path=.+?}>/g);
     var readAuthRoutes = fs.readFileSync(directory + '/user_auth_template/config/routes.js', 'utf8');
@@ -32,6 +33,7 @@ var routeJsModifier = function(currentWDir, directory) {
       innerProjectRouteArray.push(i);
     });
     var newRouteData = innerProjectRouteArray.join('\n');
+
     //Read route.js file again and write routes
     fs.readFile(projectRouteJsPath, 'utf8', function (err, data) {
       if (err) { return console.log(err); }
