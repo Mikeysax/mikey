@@ -18,6 +18,8 @@
   "author": "",
   "email": "",
   "devDependencies": {
+    "babel-eslint": "^6.0.4",
+    "eslint-loader": "^1.3.0",
     "http-server": "^0.8.0",
     "react-hot-loader": "^1.2.8",
     "source-map-loader": "^0.1.5",
