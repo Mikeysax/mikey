@@ -8,15 +8,11 @@ class SignUpForm extends React.Component {
     const {fields: {email, nickname, password}, submit} = this.props;
     const errors = this.props.currentUser.errors || {};
 
-
-
     return (
       <div className="card col-xs-6 col-xs-offset-3">
         <h1 className="text-center">Sign up for Slackr</h1>
         <form className="sign-up-form text-center" onSubmit={submit}>
           <div className="col-xs-6 col-xs-offset-3">
-
-
             <InputField
               type="text"
               placeholder="Nickname"
@@ -50,7 +46,6 @@ class SignUpForm extends React.Component {
       </div>
     );
   }
-
 }
 
 SignUpForm = reduxForm({

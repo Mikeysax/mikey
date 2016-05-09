@@ -42,11 +42,11 @@ export default class SignIn extends React.Component {
   }
 
   render() {
-      return (
-        <SignInForm
-          submit={ (e) => {this.submit(e); }}
-          currentUser={this.props.currentUser}
-        />
-      );
+    return (
+      <SignInForm
+        submit={ (e) => {this.submit(e); }}
+        currentUser={this.props.currentUser}
+      />
+    );
   }
 }
