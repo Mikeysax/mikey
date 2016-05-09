@@ -6,7 +6,7 @@ const signUp = (userAttributes) => {
   const result = axios.post(url, userAttributes);
 
   return {
-    type: "LOAD_CURRENT_USER",
+    type: 'LOAD_CURRENT_USER',
     payload: result
   };
 };

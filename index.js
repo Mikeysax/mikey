@@ -12,7 +12,7 @@ function collect(val, memo) {
   return memo;
 }
 program
-  .version('0.8.5')
+  .version('0.8.6')
   .option('new <new>', 'Generate New React-Redux Project.')
   .option('authCreator <authCreator>', 'Add API User Auth and Files. Input entry file name without extension')
   .option('componentCreator <componentCreator>', 'Generate React component js file.')

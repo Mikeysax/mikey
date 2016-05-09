@@ -1,5 +1,4 @@
 import React from 'react';
-import {reduxForm} from 'redux-form';
 import {connect} from 'react-redux';
 import history from '../helpers/history';
 import SignUpForm from '../components/SignUpForm';

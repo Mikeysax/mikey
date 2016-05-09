@@ -40,7 +40,7 @@ class SignUpForm extends React.Component {
           <br className="clear" />
 
           <div className="text-center orSignIn">
-            <Link to='sign-in'>Sign In</Link>
+            <Link to="sign-in">Sign In</Link>
           </div>
         </form>
       </div>

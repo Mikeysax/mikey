@@ -45,10 +45,6 @@ module.exports = {
         exclude: /node_modules/
       }
     ]
-  },
-  eslint: {
-    failOnWarning: false,
-    failOnError: false
   }
 };
 
