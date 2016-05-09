@@ -1,6 +1,6 @@
 {
   "name": "mikey",
-  "version": "0.8.6",
+  "version": "0.8.7",
   "description": "A command-line tool for generating React-Redux projects, React-Redux files, and simple API User Authentication",
   "author": "Michael Farrell",
   "main": "index.js",

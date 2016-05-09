@@ -48,9 +48,7 @@ class SignUpForm extends React.Component {
   }
 }
 
-SignUpForm = reduxForm({
+export default reduxForm({
   form: 'signup',
   fields: ['nickname', 'email', 'password']
 })(SignUpForm);
-
-export default SignUpForm;
