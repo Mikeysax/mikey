@@ -27,7 +27,7 @@ const dispatch = (action) => {
 const render = () => {
   ReactDOM.render(
     <Provider store={store}><Router history={history}>{routes}</Router></Provider>,
-    document.getElementById("app")
+    document.getElementById('app')
   );
 };
 

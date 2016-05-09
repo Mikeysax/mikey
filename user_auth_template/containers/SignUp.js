@@ -10,8 +10,8 @@ import _ from 'lodash';
 
 const mapStateToProps = (state) => {
   return {
-    "signup" : getParams(state.form.signup, ['nickname', 'email', 'password']),
-    "currentUser": state.currentUser
+    'signup' : getParams(state.form.signup, ['nickname', 'email', 'password']),
+    'currentUser': state.currentUser
   };
 }
 
