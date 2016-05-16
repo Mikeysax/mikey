@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import history from '../helpers/history';
+import browserHistory from 'react-router';
 import SignUpForm from '../components/SignUpForm';
 import signUp from '../actions/signUp';
 import { bindActionCreators } from 'redux';
@@ -39,7 +39,7 @@ export default class SignUp extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if(_.isNumber(nextProps.currentUser.id)) {
-      history.push('entry-point');
+      browserHistory.push('entry-point');
     }
   }
 

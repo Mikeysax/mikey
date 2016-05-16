@@ -34,10 +34,11 @@ module.exports = {
       {
         test: /\.jsx?$/,
         exclude: /(node_modules|bower_components)/,
-        loaders: [
-          'react-hot',
-          'babel?stage=0'
-        ]
+        loader: 'babel',
+        query: {
+          presets: ['es2015'],
+          plugins: ['transform-runtime']
+        }
       },
       {
         test: /\.js$/,

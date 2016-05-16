@@ -1,7 +1,7 @@
 import '../css/application.scss';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Router} from 'react-router';
+import {Router, browserHistory} from 'react-router';
 import routes from './config/routes';
 import $ from 'jquery';
 import {combineReducers, createStore, applyMiddleware} from 'redux';
@@ -19,7 +19,7 @@ const store = createStoreWithMiddleware(reduxApp);
 
 const render = () => {
   ReactDOM.render(
-    <Provider store={store}><Router history={history}>{routes}</Router></Provider>,
+    <Provider store={store}><Router history={browserHistory}>{routes}</Router></Provider>,
     document.getElementById('app')
   );
 };

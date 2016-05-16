@@ -5,11 +5,11 @@ import InputField from './InputField';
 class SignInForm extends React.Component {
   render() {
     const {fields: {email, password} } = this.props;
-    const errors = this.props.currentUser.errors || {};
+    const errors = {} || this.props.currentUser.errors;
 
     return (
       <div className="card col-xs-6 col-xs-offset-3">
-        <h1 className="text-center">Sign In to Slackr</h1>
+        <h1 className="text-center">Sign In</h1>
         <form className="sign-up-form" onSubmit={this.props.submit}>
           <div className="form-group text-center col-sm-6 col-sm-offset-3">
             <InputField

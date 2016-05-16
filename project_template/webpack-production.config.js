@@ -27,14 +27,16 @@ module.exports = {
       {
         test: /\.jsx?$/,
         exclude: /(node_modules|bower_components)/,
-        loaders: [
-          'babel?stage=0'
-        ]
+        loader: 'babel',
+        query: {
+          presets: ['es2015'],
+          plugins: ['transform-runtime']
+        }
       }
     ]
   }
 };
 
-function getEntrySources(sources) {  
+function getEntrySources(sources) {
   return sources;
 }

@@ -6,11 +6,11 @@ import {Link} from 'react-router';
 class SignUpForm extends React.Component {
   render() {
     const {fields: {email, nickname, password}, submit} = this.props;
-    const errors = this.props.currentUser.errors || {};
+    const errors = {} || this.props.currentUser.errors;
 
     return (
       <div className="card col-xs-6 col-xs-offset-3">
-        <h1 className="text-center">Sign up for Slackr</h1>
+        <h1 className="text-center">Sign Up</h1>
         <form className="sign-up-form text-center" onSubmit={submit}>
           <div className="col-xs-6 col-xs-offset-3">
             <InputField
@@ -37,9 +37,9 @@ class SignUpForm extends React.Component {
             <button type="submit" className="btn btn-block btn-primary">Create Account</button>
 
           </div>
-          <br className="clear" />
+          <br />
 
-          <div className="text-center orSignIn">
+          <div className="text-center">
             <Link to="sign-in">Sign In</Link>
           </div>
         </form>
