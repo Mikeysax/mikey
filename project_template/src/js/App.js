@@ -7,7 +7,6 @@ import $ from 'jquery';
 import {combineReducers, createStore, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
 import {reducer as formReducer} from 'redux-form';
-import history from './helpers/history';
 import ReduxPromise from 'redux-promise';
 
 const reduxApp = combineReducers({
