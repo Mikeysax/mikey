@@ -8,3 +8,4 @@ bundle.js
 public/*.jpg
 public/*.js
 public/*.map
+npm-debug.log

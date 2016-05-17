@@ -10,10 +10,11 @@
   },
   "env": {
     "browser": true,
-    "node": true
+    "node": true,
+    "mocha": true
   },
   "plugins": [
-    "react"
+    "react", "import"
   ],
   "rules": {
     "no-console": 0,
@@ -26,6 +27,6 @@
     "jsx-quotes": 1,
     "react/jsx-no-undef": 1,
     "react/jsx-uses-react": 1,
-    "react/jsx-uses-vars": 1
+    "react/jsx-uses-vars": 1,
   }
 }
