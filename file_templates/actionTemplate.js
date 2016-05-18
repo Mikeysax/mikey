@@ -1,8 +1,8 @@
 
 
-  const CnameC = () => {
+const CnameC = () => {
 
-  };
+};
 
 
 export default CnameC;
