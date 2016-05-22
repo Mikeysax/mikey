@@ -6,4 +6,4 @@ export default class CnameC extends React.Component {
       <div></div>
     );
   }
-}
+};

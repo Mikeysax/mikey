@@ -1,7 +1,7 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import signOut from '../actions/signOut';
-import {bindActionCreators} from 'redux';
+import { bindActionCreators } from 'redux';
 import _ from 'lodash';
 import browserHistory from 'react-router';
 

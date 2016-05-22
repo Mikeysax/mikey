@@ -1,7 +1,7 @@
 import React from 'react';
-import {reduxForm} from 'redux-form';
+import { reduxForm } from 'redux-form';
 import InputField from './InputField';
-import {Link} from 'react-router';
+import { Link } from 'react-router';
 
 class SignUpForm extends React.Component {
   render() {

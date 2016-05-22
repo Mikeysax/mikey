@@ -1,5 +1,5 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import browserHistory from 'react-router';
 import SignUpForm from '../components/SignUpForm';
 import signUp from '../actions/signUp';

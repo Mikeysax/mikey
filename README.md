@@ -1,9 +1,11 @@
 # mikey
-Mikey is a node command-line tool for generating React-Redux projects,  React-Redux containers, components, actions, reducers, helpers, and API User Authentication.
+Mikey is a node command-line tool for generating React-Redux projects,  React-Redux containers, components, actions, reducers, and helpers.
 
-Inspired by Rails generate and Devise; React and other JS frameworks could use more organization and structure so this was created in response.
+Inspired by Rails Generate; React and other JS frameworks could use more organization and structure so this was created in response.
 
 It is my belief that with organization and structure, applications can be built quicker with more efficiency.
+
+The basic API User Authentication was removed temporarily due to the new project generation boiler plate and will be re added in the near future.
 
 To Read More: http://mikeysax.com/mikey-react-generator
 ___
@@ -19,17 +21,12 @@ When you generate a new project, it will run npm install automatically in the cr
 
 Once it is done, you can start the server with:
 
-```npm run serve```
+```npm start```
 
-which will run ```webpack-dev-server --inline --hot --watch-poll```
+The boiler plate has been changed significantly and laid out in accordance with
+Wes Bos's React-Redux boiler plate. Mikey generated projects are compatible with
+React / Redux Dev Chrome Extensions and also have hot reloading enabled. Mikey projects dependencies are as minimal as possible containing ES6, SCSS/CSS Loading, Testing, Production Config, and are Source Mapped.
 
-or for vagrant:
-
-```npm run vagrant```
-
-which will run ```webpack-dev-server --inline --hot --host 0.0.0.0 --watch-poll```
-
-Projects generated with Mikey are Heroku compatible.
 ___
 <strong>To generate a new react file:</strong>
 
@@ -92,26 +89,6 @@ ___
 If you want to erase all stored defaults:
 
 ```$ mikey erase all```    |    ```$ mikey -e all```
-___
-<strong>Adding API User Authentication:</strong>
-
-If you would like to add user authentication:
-
-```$ mikey authCreator entryFileName```
-
-The entryFileName in a Mikey generated project is App.js:
-
-```$ mikey authCreator App```
-
-When you generate user authentication files, Mikey will modify your ```routes.js``` and ```entryFile``` file with proper imports, and other various text. A EntryPoint container will be created, and is where SignIn and SignUp direct to.
-
-After User Auth is done, you will need to add the API url to ```urlFor.js``` file in helpers, add your API public key to the ```publicKey.js``` file in helpers, and in the three action files that were generated, you can change the end of the URL to match your API routes for user authentication.
-
-Each file with necessary API or URL change will have commented code needed to be changed.
-
-Do not forget to change the ```routes.js``` route order to your apps liking.
-
-<Strong>Caution</Strong>: Adding API User Authentication outside a Mikey generated project might have edge cases that were not accounted for yet. Please report any bugs or issues.
 ___
 <strong>For help and more commands:</strong>
 

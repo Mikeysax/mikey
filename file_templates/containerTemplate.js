@@ -1,6 +1,6 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 const mapStateToProps = (state) => {
   return {}
@@ -16,4 +16,4 @@ export default class CnameC extends React.Component {
         <div></div>
       );
   }
-}
+};

@@ -1,9 +1,9 @@
 import React from 'react';
 import SignInForm from '../components/SignInForm';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import getParams from '../helpers/getParams';
 import signIn from '../actions/signIn';
-import {bindActionCreators} from 'redux';
+import { bindActionCreators } from 'redux';
 import _ from 'lodash';
 import browserHistory from 'react-router';
 
