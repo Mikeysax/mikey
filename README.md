@@ -57,11 +57,11 @@ You cannot create files that already exist.
 ___
 #### <strong>To generate a new file and import one or multiple dependencies to top of file:</strong>
 
-```$ mikey g container fileName -i depName```  
+```$ mikey g_container fileName -i depName```  
 
 or to import multiple dependencies to top of file:
 
-```$ mikey g component fileName -i depName -i depName -i depName```
+```$ mikey g_component fileName -i depName -i depName -i depName```
 
 If you import a dependency with curly brackets it will remove them like this:
 
@@ -73,7 +73,7 @@ If you import a dependency from something titled like this:
 
 You can import it with a comma and it will split it correctly:
 
-```$ mikey g action thisActionFile -i {connect},react-redux```
+```$ mikey g_action thisActionFile -i {connect},react-redux```
 ___
 <strong>Mikey will remember</strong> the things you've imported and store them as defaults for each file type. This way, you will never have to import the same file over and over again for each file type. Also, stored imports are only stored once.
 
@@ -109,6 +109,6 @@ More Templates, Auto dependency installation, and more?...
 
 #### <strong>Version History:</strong>
 
-<strong>Current 1.1.6</strong>: New CLI Commands which are direct and logical, testing integrated in Project Creation Template. README reflects all changes for New CLI Commands and movement towards Mikey as a Framework.
+<strong>Current 1.1.7</strong>: New CLI Commands which are direct and logical, testing integrated in Project Creation Template. README reflects all changes for New CLI Commands and movement towards Mikey as a Framework.
 
 <strong>1.0.0</strong>: New Project Creation Template with More Concise Documentation.
