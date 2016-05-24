@@ -23,15 +23,15 @@ Mikey projects are compatible with React / Redux Dev Chrome Extensions and also 
 ___
 #### <strong>To generate a new react file:</strong>
 
-```$ mikey g action fileName```
+```$ mikey g_action fileName```
 
-```$ mikey g component fileName```   
+```$ mikey g_component fileName```   
 
-```$ mikey g container fileName```  
+```$ mikey g_container fileName```  
 
-```$ mikey g reducer fileName```  
+```$ mikey g_reducer fileName```  
 
-```$ mikey g helper fileName```
+```$ mikey g_helper fileName```
 
 #### <strong>Mikey classification and description of file type:</strong>
 
@@ -109,6 +109,6 @@ More Templates, Auto dependency installation, and more?...
 
 #### <strong>Version History:</strong>
 
-<strong>Current 1.1.3</strong>: New CLI Commands which are direct and logical, testing integrated in Project Creation Template. README reflects all changes for New CLI Commands and movement towards Mikey as a Framework.
+<strong>Current 1.1.4</strong>: New CLI Commands which are direct and logical, testing integrated in Project Creation Template. README reflects all changes for New CLI Commands and movement towards Mikey as a Framework.
 
 <strong>1.0.0</strong>: New Project Creation Template with More Concise Documentation.
