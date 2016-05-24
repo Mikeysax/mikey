@@ -1,5 +1,5 @@
 {
-  "name": "otis-frontend",
+  "name": "MikeyGeneratedApp",
   "version": "0.0.1",
   "description": "An application using WebPack, ReactJS, Redux, and ES6.",
   "scripts": {
