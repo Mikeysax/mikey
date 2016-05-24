@@ -1,3 +1,4 @@
+// store dependencies
 import { createStore, compose, applyMiddleware } from 'redux';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { browserHistory } from 'react-router';
@@ -22,10 +23,12 @@ const enhancers = compose(
   window.devToolsExtension ? window.devToolsExtension() : f => f
 );
 
+// the redux store
 const store = createStore(rootReducer, initialState, enhancers);
 
 export const history = syncHistoryWithStore(browserHistory, store);
 
+// for reducer hot reloading
 if(module.hot) {
   module.hot.accept('./js/reducers/', () => {
     const nextRootReducer = require('./js/reducers/index').default;

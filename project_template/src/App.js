@@ -1,9 +1,9 @@
-// Import Dependencies
+// Import Project Dependencies
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
 
-// Import CSS
+// Import CSS/SCSS
 import './css/application.scss';
 
 // Import Components for Routing

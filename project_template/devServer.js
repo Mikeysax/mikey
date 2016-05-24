@@ -15,15 +15,16 @@ app.use(require('webpack-hot-middleware')(compiler));
 
 app.get('*', function(req, res) {
   res.sendFile(path.join(__dirname, 'index.html'));
+  res.status(200).send('ok');
 });
 
-var server = app.listen(8080, 'localhost', function(err) {
+var devServer = app.listen(8080, 'localhost', function(err) {
   if (err) {
     console.log(err);
     return;
   }
-  var port = server.address().port;
+  var port = devServer.address().port;
   console.log('Listening at localhost:' + port);
 });
 
-module.exports = server;
+module.exports = devServer;

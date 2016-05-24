@@ -22,14 +22,14 @@ module.exports = {
   ],
   module: {
     loaders: [
-    // js
+    // JS Loaders
     {
       test: /\.js$/,
       loaders: ['babel'],
       include: path.join(__dirname, 'src'),
       exclude: /(node_modules|bower_components)/
     },
-    // CSS
+    // CSS Loaders
     {
       test: /\.scss$/,
       include: path.join(__dirname, 'src'),

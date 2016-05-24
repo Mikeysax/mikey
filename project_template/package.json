@@ -1,10 +1,11 @@
 {
-  "name": "A Mikey Generated App",
+  "name": "otis-frontend",
   "version": "0.0.1",
   "description": "An application using WebPack, ReactJS, Redux, and ES6.",
   "scripts": {
     "build": "NODE_ENV=production webpack --config webpack.config.prod.js",
-    "test": "NODE_ENV=production mocha './tests/**/*.spec.js' --compilers js:babel-core/register",
+    "test": "NODE_ENV=production mocha './tests/**/*.spec.js' --compilers js:babel-core/register --require ./tests/testHelpers.js 'tests/**/*.@(js|jsx)'",
+    "test:watch": "npm run test -- --watch",
     "start": "node devServer.js"
   },
   "repository": {
@@ -29,6 +30,7 @@
     "eslint-plugin-babel": "^3.2.0",
     "eslint-plugin-react": "^5.0.1",
     "express": "^4.13.4",
+    "immutable": "^3.8.1",
     "jquery": "^2.2.4",
     "node-sass": "^3.7.0",
     "react": "^15.0.2",
@@ -49,10 +51,12 @@
     "webpack-hot-middleware": "^2.10.0"
   },
   "devDependencies": {
-    "expect": "^1.18.0",
-    "expect-jsx": "^2.5.1",
-    "mocha": "^2.4.5",
+    "chai": "^3.5.0",
+    "chai-immutable": "^1.5.4",
+    "jsdom": "^9.1.0",
+    "mocha": "^2.5.1",
     "npm-install-webpack-plugin": "^3.1.4",
-    "react-addons-test-utils": "^15.0.2"
+    "react-addons-test-utils": "^15.0.2",
+    "supertest": "^1.2.0"
   }
 }

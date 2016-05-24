@@ -5,6 +5,6 @@ import { routerReducer } from 'react-router-redux';
 
 
 // combine reducers
-const rootReducer = combineReducers({/*Reducers Go Here*/ routing: routerReducer });
+const rootReducer = combineReducers({/*Imported Reducers Go Here*/ routing: routerReducer });
 
 export default rootReducer;
