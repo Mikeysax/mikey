@@ -109,6 +109,8 @@ More Templates, Auto dependency installation, and more?...
 
 #### <strong>Version History:</strong>
 
+<strong>Current 1.2.0</strong>: New CLI Commands which are direct and logical, testing integrated in Project Creation Template. README reflects all changes for New CLI Commands and movement towards Mikey as a Framework.
+
 <strong>Current 1.1.8</strong>: New CLI Commands which are direct and logical, testing integrated in Project Creation Template. README reflects all changes for New CLI Commands and movement towards Mikey as a Framework.
 
 <strong>1.0.0</strong>: New Project Creation Template with More Concise Documentation.

@@ -36,5 +36,11 @@ module.exports = {
       loaders: ['style', 'css', 'sass']
     }
     ]
+  },
+  // For enzyme testing
+  externals: {
+    'react/addons': true,
+    'react/lib/ExecutionEnvironment': true,
+    'react/lib/ReactContext': true
   }
 };
