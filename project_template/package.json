@@ -31,7 +31,6 @@
     "eslint-plugin-react": "^5.0.1",
     "express": "^4.13.4",
     "immutable": "^3.8.1",
-    "jquery": "^2.2.4",
     "node-sass": "^3.7.0",
     "react": "^15.0.2",
     "react-addons-css-transition-group": "^15.0.2",
