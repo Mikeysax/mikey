@@ -8,7 +8,7 @@ import './css/application.scss';
 
 // Import Components for Routing
 import ApplicationLayout from './js/components/ApplicationLayout';
-import Welcome from'./js/components/Welcome';
+import Welcome from './js/components/Welcome';
 
 // Router
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
