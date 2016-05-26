@@ -5,7 +5,7 @@ export default class Navbar extends React.Component {
     return (
       <div>
         <nav className="navbar navbar-default text-center" role="navigation">
-          <a href="javascript:void(0);">
+          <a href="https://www.npmjs.com/package/mikey">
             Mikey
           </a>
           &nbsp;

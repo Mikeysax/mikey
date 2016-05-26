@@ -109,7 +109,7 @@ More Templates, Auto dependency installation, and more?...
 
 #### <strong>Version History:</strong>
 
-<strong>Current 1.2.3</strong>: Project Template uses enzyme for testing.
+<strong>Current 1.2.4</strong>: Project Template uses enzyme for testing.
 
 <strong>1.1.8</strong>: New CLI Commands which are direct and logical, testing integrated in Project Creation Template. README reflects all changes for New CLI Commands and movement towards Mikey as a Framework.
 
