@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { expect } from 'chai';
-import Navbar from '../../src/js/components/NotFound';
+import NotFound from '../../src/js/components/NotFound';
 
 describe('NotFound Component', () => {
 
