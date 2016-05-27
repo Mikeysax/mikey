@@ -1,19 +1,24 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+// Import Action
 
-const mapStateToProps = (state) => {
+function mapStateToProps(state) {
   return {}
-};
+}
 
-@connect(
-  mapStateToProps
-)
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(/*Imported Action*/, dispatch);
+}
 
-export default class CnameC extends React.Component {
+class __Name__Container extends React.Component {
   render() {
-      return (
-        <div></div>
-      );
+    return (
+      <div></div>
+    );
   }
 };
+
+const __Name__ = connect(mapStateToProps, mapDispatchToProps)(__Name__Container);
+
+export default __Name__;

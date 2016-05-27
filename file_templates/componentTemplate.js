@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class CnameC extends React.Component {
+export default class __Name__ extends React.Component {
   render() {
     return (
       <div></div>

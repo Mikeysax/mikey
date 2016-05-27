@@ -17,9 +17,15 @@ When you create a new project, Mikey will run ```npm install``` automatically in
 
 Once it is done, you can start the server with:
 
-```npm start```
+```$ npm start```
 
 Mikey projects are compatible with React / Redux Dev Chrome Extensions and also have hot reloading enabled. Dependencies are kept as minimal as possible. Mikey also contains ES6, SCSS/CSS Loading, Testing Setup, Production/Dev Config, and are Source Mapped.
+
+To build for production type:
+
+```$ npm run build```
+
+You will see a build file inside of your project directory which can you upload.
 ___
 #### <strong>To generate a new react file:</strong>
 
@@ -79,11 +85,15 @@ ___
 
 You can include defaults by typing ```-d Y``` (Yes) for using defaults, at the end of the generation command:
 
-```$ mikey g component JimmyBob -i {gravy},train-attack -d Y```
+```$ mikey g_component JimmyBob -i {gravy},train-attack -d Y```
 ___
 #### <strong>To list defaults:</strong>
 
-```$ mikey list actions``` | ```$ mikey -l components``` | ```$ mikey list containers``` | ```$ mikey -l helpers``` | ```$ mikey list reducers```
+```$ mikey list actions``` | ```$ mikey list components``` | ```$ mikey list containers``` | ```$ mikey list helpers``` | ```$ mikey list reducers```
+
+Or:
+
+```$ mikey -l actions``` | ```$ mikey -l components``` | ```$ mikey -l containers``` | ```$ mikey -l helpers``` | ```$ mikey -l reducers```
 
 If you want to list all stored defaults:
 
@@ -91,7 +101,11 @@ If you want to list all stored defaults:
 ___
 #### <strong>To erase defaults:</strong>
 
-```$ mikey erase actions``` | ```$ mikey -e components``` | ```$ mikey erase containers``` | ```$ mikey -e helpers``` | ```$ mikey erase reducers```
+```$ mikey erase actions``` | ```$ mikey erase components``` | ```$ mikey erase containers``` | ```$ mikey erase helpers``` | ```$ mikey erase reducers```
+
+Or:
+
+```$ mikey -e actions``` | ```$ mikey -e components``` | ```$ mikey -e containers``` | ```$ mikey -e helpers``` | ```$ mikey -e reducers```
 
 If you want to erase all stored defaults:
 
@@ -99,7 +113,7 @@ If you want to erase all stored defaults:
 ___
 #### <strong>For help and more commands:</strong>
 
-```$ mikey -h```
+```$ mikey -h``` | ```$ mikey -V```
 ___
 <strong>If you would like to contribute, it would be greatly appreciated.</strong>
 
@@ -109,7 +123,9 @@ More Templates, Auto dependency installation, and more?...
 
 #### <strong>Version History:</strong>
 
-<strong>Current 1.2.4</strong>: Project Template uses enzyme for testing.
+<strong>Current 1.3.0</strong>: Generating files also generate corresponding tests. Switched testing files to .test.js to keep with consistency of other aspects of mikey. Previous generated projects will need to switch test script in package.json to be compatible with newly generated tests. Added new container template.
+
+<strong>1.2.4</strong>: Project Template uses enzyme for testing.
 
 <strong>1.1.8</strong>: New CLI Commands which are direct and logical, testing integrated in Project Creation Template. README reflects all changes for New CLI Commands and movement towards Mikey as a Framework.
 

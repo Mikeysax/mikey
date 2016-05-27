@@ -1,7 +1,7 @@
 
 
-const CnameC = () => {
+const __Name__ = () => {
 
 };
 
-export default CnameC;
+export default __Name__;

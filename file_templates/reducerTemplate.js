@@ -1,6 +1,6 @@
 
-const CnameC = (state = undefined, action) => {
+const __Name__ = (state = undefined, action) => {
   return state;
 };
 
-export default CnameC;
+export default __Name__;

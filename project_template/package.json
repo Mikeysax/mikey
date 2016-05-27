@@ -4,7 +4,7 @@
   "description": "An application using WebPack, ReactJS, Redux, and ES6.",
   "scripts": {
     "build": "NODE_ENV=production webpack --config webpack.config.prod.js",
-    "test": "NODE_ENV=production mocha './tests/**/*.spec.js' --compilers js:babel-core/register --require ./tests/testHelpers.js 'tests/**/*.@(js|jsx)'",
+    "test": "NODE_ENV=production mocha './tests/**/*.test.@(js|jsx)' --compilers js:babel-core/register --require ./tests/testHelpers.js 'tests/**/*.@(js|jsx)'",
     "test:watch": "npm run test -- --watch",
     "start": "node devServer.js"
   },
