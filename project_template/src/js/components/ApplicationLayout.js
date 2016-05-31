@@ -7,7 +7,7 @@ export default class ApplicationLayout extends React.Component {
       <div>
         <div className="main-container">
           <Navbar />
-          {React.cloneElement(this.props.children, this.props)}
+          {this.props.children}
         </div>
       </div>
     );

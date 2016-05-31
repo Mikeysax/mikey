@@ -3,22 +3,22 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 // Import Action
 
-function mapStateToProps(state) {
+const mapStateToProps = (state) => {
   return {}
-}
+};
 
-function mapDispatchToProps(dispatch) {
+const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(/*Imported Action*/, dispatch);
-}
+};
 
-class __Name__Container extends React.Component {
+class __Name__ extends React.Component {
   render() {
     return (
-      <div></div>
+      <div>
+        
+      </div>
     );
   }
 };
 
-const __Name__ = connect(mapStateToProps, mapDispatchToProps)(__Name__Container);
-
-export default __Name__;
+export default connect(mapStateToProps, mapDispatchToProps)(__Name__);
