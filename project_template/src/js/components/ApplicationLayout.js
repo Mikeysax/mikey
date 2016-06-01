@@ -12,4 +12,4 @@ export default class ApplicationLayout extends React.Component {
       </div>
     );
   }
-};
+}

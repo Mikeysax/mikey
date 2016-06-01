@@ -11,7 +11,7 @@ import Welcome from './js/components/Welcome';
 import NotFound from './js/components/NotFound';
 
 // Router
-import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import { Router, Route, IndexRoute } from 'react-router';
 import { Provider } from 'react-redux';
 import store, { history } from './store';
 
@@ -20,8 +20,8 @@ const router = (
     <Router history={history}>
       <Route path="/" component={ApplicationLayout}>
         <IndexRoute component={Welcome} />
-        <Route path="*" component={NotFound} />
       </Route>
+      <Route path="*" component={NotFound} />
     </Router>
   </Provider>
 );

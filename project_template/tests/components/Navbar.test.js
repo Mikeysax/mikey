@@ -4,11 +4,22 @@ import { expect } from 'chai';
 import Navbar from '../../src/js/components/Navbar';
 
 describe('Navbar Component', () => {
+  var navbarComponent;
 
-  it('renders 3 anchor tags', () => {
-    const navbarComponent = shallow(<Navbar />);
+  beforeEach(() => {
+    navbarComponent = shallow(<Navbar />);
+  });
 
+  it('Renders 3 anchor Tags', () => {
     expect(navbarComponent.find('a')).to.have.length(3);
+  });
+
+  it('Renders div Tag', () => {
+    expect(navbarComponent.find('div')).to.have.length(1);
+  });
+
+  it('Renders nav Tag', () => {
+    expect(navbarComponent.find('nav')).to.have.length(1);
   });
 
 });

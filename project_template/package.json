@@ -6,6 +6,7 @@
     "build": "NODE_ENV=production webpack --config webpack.config.prod.js",
     "test": "NODE_ENV=production mocha './tests/**/*.test.@(js|jsx)' --compilers js:babel-core/register --require ./tests/testHelpers.js 'tests/**/*.@(js|jsx)'",
     "test:watch": "npm run test -- --watch",
+    "lint": "eslint src",
     "start": "node devServer.js"
   },
   "repository": {

@@ -17,9 +17,10 @@ const initialState = {
     Trucks*/
 };
 
-// for redux dev tools, thunk, and other enhancers
+// for redux dev tools, thunk/saga/promise, and other enhancers
 const enhancers = compose(
   applyMiddleware(thunk),
+  // eslint-disable-next-line no-use-before-define
   window.devToolsExtension ? window.devToolsExtension() : f => f
 );
 
