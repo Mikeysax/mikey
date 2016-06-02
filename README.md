@@ -1,33 +1,38 @@
 # mikey
-### Mikey is a React-Redux framework for generating React-Redux projects and React-Redux files.
+### *Mikey* is a React-Redux framework for generating React-Redux projects and React-Redux files.
 
-Inspired by Rails generate; React and other JS frameworks could use more organization and structure so this was created in response. With organization and structure, applications can be built quicker with more efficiency.
+Inspired by Rails generate; *Mikey* is a CLI / Framework for React/Redux applications. *Mikey* was designed to be simple, intuitive to use, and increase development speed and productivity of React/Redux applications. *Mikey* can generate React/Redux projects and files, saving the developer valuable time that can be spent building features. *Mikey* can also be used in any React/Redux project and is intended to be a broad solution.
 
-To Read More: http://mikeysax.com/mikey-react-generator
 ___
-#### <strong>To Install Mikey:</strong>
+### Installation
+
+<strong>To Install *Mikey*:</strong>
 
 ```$ npm install mikey -g```
 ___
-#### <strong>To Generate a new project:</strong>
+### Project Generation
+
+<strong>To Generate a new project:</strong>
 
 ```$ mikey new projectName```
 
-When you create a new project, Mikey will run ```npm install``` automatically in the created project directory. All you have to do is be patient, it is not frozen.
+When you create a new project, *Mikey* will run ```npm install``` automatically in the created project directory. All you have to do is be patient, it is not frozen.
 
 Once it is done, you can start the server with:
 
 ```$ npm start```
 
-Mikey projects are compatible with React / Redux Dev Chrome Extensions and also have hot reloading enabled. Dependencies are kept as minimal as possible. Mikey also contains ES6, SCSS/CSS Loading, Testing Setup, Production/Dev Config, and are Source Mapped.
+*Mikey* projects are compatible with React / Redux Dev Chrome Extensions and also have hot reloading enabled. Dependencies are kept as minimal as possible. *Mikey* also contains ES6, SCSS/CSS Loading, Testing Setup, Production/Dev Config, and are Source Mapped.
 
-To build for production type:
+To build for production:
 
 ```$ npm run build```
 
 You will see a build file inside of your project directory which can you upload.
 ___
-#### <strong>To generate a new react file:</strong>
+### File Generation
+
+<strong>To generate a new react file:</strong>
 
 ```$ mikey g_action fileName```
 
@@ -39,7 +44,7 @@ ___
 
 ```$ mikey g_helper fileName```
 
-#### <strong>Mikey classification and description of file type:</strong>
+#### <strong>*Mikey* classification and description of file type:</strong>
 
 <strong>[Containers](http://redux.js.org/docs/basics/UsageWithReact.html)</strong> are components which hold logic such as mapping state to props, lifecycle methods, dispatching, and random methods. Containers act as further separation of logic and view.
 
@@ -53,15 +58,19 @@ ___
 
 ##### <strong>On File Creation Specifics:</strong>
 
-Mikey will look through your working directory for actions/components/containers/reducers/helpers folders and create the corresponding file type. If none of these folders exist, Mikey will create them in the root of where you ran the command.
+On file creation, *Mikey* will look through your working project directory for actions/components/containers/reducers/helpers folders and create the corresponding file type. If none of these folders exist, *Mikey* will create them in the root of your project.
 
-Mikey also creates ```.mikeyPath``` folder in your project and saves the path of the file type generated. This is to optimize the speed of creation afterwards so Mikey does not have to dynamically find the folder again after each generated file.
+*Mikey* also creates ```.mikeyPath``` folder in your project and saves the path of the file type generated. This is to optimize the speed of creation afterwards so *Mikey* does not have to dynamically find the folder again after each generated file.
+
+A Test file is also generated when you generate a file.
 
 If your project directory changes at all, delete ```.mikeyPath``` folder to recache folder paths. ```.mikeyPath``` folder is added to ```.gitignore``` also.
 
 You cannot create files that already exist.
 ___
-#### <strong>To generate a new file and import one or multiple dependencies to top of file:</strong>
+### Adding Imports on File Generation
+
+<strong>To generate a new file and import one or multiple dependencies to top of file:</strong>
 
 ```$ mikey g_container fileName -i depName```  
 
@@ -81,7 +90,8 @@ You can import it with a comma and it will split it correctly:
 
 ```$ mikey g_action thisActionFile -i {connect},react-redux```
 ___
-<strong>Mikey will remember</strong> the things you've imported and store them as defaults for each file type. This way, you will never have to import the same file over and over again for each file type. Also, stored imports are only stored once.
+### Defaults
+<strong>*Mikey* will remember</strong> the things you've imported and store them as defaults for each file type. This way, you will never have to import the same file over and over again for each file type. Also, stored imports are only stored once.
 
 You can include defaults by typing ```-d Y``` (Yes) for using defaults, at the end of the generation command:
 
@@ -115,6 +125,7 @@ ___
 
 ```$ mikey -h``` | ```$ mikey -V```
 ___
+### Contribute
 <strong>If you would like to contribute, it would be greatly appreciated.</strong>
 
 Looking to add much more to this such as :
@@ -123,10 +134,10 @@ More Templates, Auto dependency installation, and more?...
 
 #### <strong>Version History:</strong>
 
-<strong>Current 1.3.3</strong>: Generating files also generate corresponding tests. Switched testing files to .test.js to keep with consistency of other aspects of mikey. Previous generated projects will need to switch test script in package.json to be compatible with newly generated tests. Added new container template.
+<strong>Current 1.3.4</strong>: Generating files also generate corresponding tests. Switched testing files to .test.js to keep with consistency of other aspects of mikey. Previous generated projects will need to switch test script in package.json to be compatible with newly generated tests. Added new container template.
 
 <strong>1.2.4</strong>: Project Template uses enzyme for testing.
 
-<strong>1.1.8</strong>: New CLI Commands which are direct and logical, testing integrated in Project Creation Template. README reflects all changes for New CLI Commands and movement towards Mikey as a Framework.
+<strong>1.1.8</strong>: New CLI Commands which are direct and logical, testing integrated in Project Creation Template. README reflects all changes for New CLI Commands and movement towards *Mikey* as a Framework.
 
 <strong>1.0.0</strong>: New Project Creation Template with More Concise Documentation.

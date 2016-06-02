@@ -22,13 +22,11 @@ var generateProject = function(projectName, currentWDir, directory) {
         console.log('Almost, I promise! <3')
         exec(npm, { cwd: projectDestination }, function(error, stdout, stderr) {
           if (error) { console.log(error); }
-          console.log('Done! cd to ' + projectName + ' and launch server:');
-          console.log('npm run serve');
-          console.log('or for vagrant:');
-          console.log('npm run vagrant');
         });
       });
     }
+    console.log('Done! cd to ' + projectName + ' and launch server:');
+    console.log('npm start');
   });
 };
 
