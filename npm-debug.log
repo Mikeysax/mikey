@@ -1,0 +1,130 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/home/mikeysax/.nvm/versions/node/v6.2.1/bin/node',
+1 verbose cli   '/home/mikeysax/.nvm/versions/node/v6.2.1/bin/npm',
+1 verbose cli   'publish' ]
+2 info using npm@3.9.3
+3 info using node@v6.2.1
+4 verbose publish [ '.' ]
+5 silly cache add args [ '.', null ]
+6 verbose cache add spec .
+7 silly cache add parsed spec Result {
+7 silly cache add   raw: '.',
+7 silly cache add   scope: null,
+7 silly cache add   name: null,
+7 silly cache add   rawSpec: '.',
+7 silly cache add   spec: '/home/mikeysax/Desktop/mikey',
+7 silly cache add   type: 'directory' }
+8 verbose addLocalDirectory /home/mikeysax/.npm/mikey/1.3.6/package.tgz not in flight; packing
+9 verbose correctMkdir /home/mikeysax/.npm correctMkdir not in flight; initializing
+10 info lifecycle mikey@1.3.6~prepublish: mikey@1.3.6
+11 silly lifecycle mikey@1.3.6~prepublish: no script for prepublish, continuing
+12 verbose tar pack [ '/home/mikeysax/.npm/mikey/1.3.6/package.tgz',
+12 verbose tar pack   '/home/mikeysax/Desktop/mikey' ]
+13 verbose tarball /home/mikeysax/.npm/mikey/1.3.6/package.tgz
+14 verbose folder /home/mikeysax/Desktop/mikey
+15 verbose addLocalTarball adding from inside cache /home/mikeysax/.npm/mikey/1.3.6/package.tgz
+16 verbose correctMkdir /home/mikeysax/.npm correctMkdir not in flight; initializing
+17 silly cache afterAdd mikey@1.3.6
+18 verbose afterAdd /home/mikeysax/.npm/mikey/1.3.6/package/package.json not in flight; writing
+19 verbose correctMkdir /home/mikeysax/.npm correctMkdir not in flight; initializing
+20 verbose afterAdd /home/mikeysax/.npm/mikey/1.3.6/package/package.json written
+21 silly publish { name: 'mikey',
+21 silly publish   version: '1.3.6',
+21 silly publish   description: 'Mikey is a React-Redux framework for generating React-Redux projects and React-Redux files.',
+21 silly publish   author: { name: 'Michael Farrell' },
+21 silly publish   main: 'index.js',
+21 silly publish   repository:
+21 silly publish    { type: 'git',
+21 silly publish      url: 'git+https://github.com/Mikeysax/mikey.git' },
+21 silly publish   keywords:
+21 silly publish    [ 'mikey',
+21 silly publish      'framework',
+21 silly publish      'generator',
+21 silly publish      'generate',
+21 silly publish      'cli',
+21 silly publish      'react',
+21 silly publish      'react-redux',
+21 silly publish      'redux',
+21 silly publish      'webpack',
+21 silly publish      'development',
+21 silly publish      'tool',
+21 silly publish      'build',
+21 silly publish      'dev',
+21 silly publish      'app',
+21 silly publish      'hotreload' ],
+21 silly publish   scripts: { test: 'echo "Error: no test specified" && exit 1' },
+21 silly publish   license: 'MIT',
+21 silly publish   bin: { mikey: './index.js' },
+21 silly publish   dependencies:
+21 silly publish    { commander: '^2.9.0',
+21 silly publish      'fs-extra': '^0.28.0',
+21 silly publish      lodash: '^4.11.1',
+21 silly publish      'prepend-file': '^1.3.0',
+21 silly publish      'node-find-folder': '^0.1.25' },
+21 silly publish   devDependencies: { mocha: '^2.4.5' },
+21 silly publish   readme: '# mikey\n### *Mikey* is a React-Redux framework for generating React-Redux projects and React-Redux files.\n\nInspired by Rails generate; *Mikey* is a CLI / Framework for React/Redux applications. *Mikey* was designed to be simple, intuitive to use, and increase development speed and productivity of React/Redux applications. *Mikey* can generate React/Redux projects and files, saving the developer valuable time that can be spent building features. *Mikey* can also be used in any React/Redux project and is intended to be a broad solution.\n\n___\n### Installation\n\n<strong>To Install *Mikey*:</strong>\n\n```$ npm install mikey -g```\n\nTo see a list of commands:\n\n```$ mikey```\n___\n### Project Generation\n\n<strong>To Generate a new project:</strong>\n\n```$ mikey new projectName```\n\nWhen you create a new project, *Mikey* will run ```npm install``` automatically in the created project directory. All you have to do is be patient, it is not frozen.\n\nOnce it is done, you can start the server with:\n\n```$ npm start```\n\n*Mikey* projects are compatible with React / Redux Dev Chrome Extensions and also have hot reloading enabled. Dependencies are kept as minimal as possible. *Mikey* also contains ES6, SCSS/CSS Loading, Testing Setup, Production/Dev Config, and are Source Mapped.\n\nTo build for production:\n\n```$ npm run build```\n\nYou will see a build file inside of your project directory which can you upload.\n___\n### File Generation\n\n<strong>To generate a new react file:</strong>\n\n```$ mikey g_action fileName```\n\n```$ mikey g_component fileName```   \n\n```$ mikey g_container fileName```  \n\n```$ mikey g_reducer fileName```  \n\n```$ mikey g_helper fileName```\n\n#### <strong>*Mikey* classification and description of file type:</strong>\n\n<strong>[Containers](http://redux.js.org/docs/basics/UsageWithReact.html)</strong> are components which hold logic such as mapping state to props, lifecycle methods, dispatching, and random methods. Containers act as further separation of logic and view.\n\n<strong>[Components](http://redux.js.org/docs/basics/UsageWithReact.html)</strong> are primarily the view layer and rendered inside of Containers.\n\n<strong>[Reducers](http://redux.js.org/docs/basics/Reducers.html)</strong> are responsible for updating the state of your application. Reducers are pure functions, meaning they do not mutate the state. Reducers take the current state and return a new state object.\n\n<strong>[Actions](http://redux.js.org/docs/basics/Actions.html)</strong> are dispatched with a type and payload. Actions work with Reducers in updating the application store. Actions can contain Ajax requests or new information generated by a User.\n\n<strong>Helpers</strong> are used for organizing random methods which can clutter your Containers and Components.\n\n##### <strong>On File Creation Specifics:</strong>\n\nOn file creation, *Mikey* will look through your working project directory for actions/components/containers/reducers/helpers folders and create the corresponding file type. If none of these folders exist, *Mikey* will create them in the root of your project.\n\n*Mikey* also creates ```.mikeyPath``` folder in your project and saves the path of the file type generated. This is to optimize the speed of creation afterwards so *Mikey* does not have to dynamically find the folder again after each generated file.\n\nA Test file is also generated when you generate a file.\n\nIf your project directory changes at all, delete ```.mikeyPath``` folder to recache folder paths. ```.mikeyPath``` folder is added to ```.gitignore``` also.\n\nYou cannot create files that already exist.\n___\n### Adding Imports on File Generation\n\n<strong>To generate a new file and import one or multiple dependencies to top of file:</strong>\n\n```$ mikey g_container fileName -i depName```  \n\nor to import multiple dependencies to top of file:\n\n```$ mikey g_component fileName -i depName -i depName -i depName```\n\nIf you import a dependency with curly brackets it will remove them like this:\n\n```import {thisThing} from \'thisThing\'```\n\nIf you import a dependency from something titled like this:\n\n```import {connect} from \'react-redux\';```\n\nYou can import it with a comma and it will split it correctly:\n\n```$ mikey g_action thisActionFile -i {connect},react-redux```\n___\n### Defaults\n<strong>*Mikey* will remember</strong> the things you\'ve imported and store them as defaults for each file type. This way, you will never have to import the same file over and over again for each file type. Also, stored imports are only stored once.\n\nYou can include defaults by typing ```-d Y``` (Yes) for using defaults, at the end of the generation command:\n\n```$ mikey g_component JimmyBob -i {gravy},train-attack -d Y```\n___\n#### <strong>To list defaults:</strong>\n\n```$ mikey list actions``` | ```$ mikey list components``` | ```$ mikey list containers``` | ```$ mikey list helpers``` | ```$ mikey list reducers```\n\nOr:\n\n```$ mikey -l actions``` | ```$ mikey -l components``` | ```$ mikey -l containers``` | ```$ mikey -l helpers``` | ```$ mikey -l reducers```\n\nIf you want to list all stored defaults:\n\n```$ mikey list all```    |    ```$ mikey -l all```\n___\n#### <strong>To erase defaults:</strong>\n\n```$ mikey erase actions``` | ```$ mikey erase components``` | ```$ mikey erase containers``` | ```$ mikey erase helpers``` | ```$ mikey erase reducers```\n\nOr:\n\n```$ mikey -e actions``` | ```$ mikey -e components``` | ```$ mikey -e containers``` | ```$ mikey -e helpers``` | ```$ mikey -e reducers```\n\nIf you want to erase all stored defaults:\n\n```$ mikey erase all```    |    ```$ mikey -e all```\n___\n#### <strong>For help and more commands:</strong>\n\n```$ mikey -h``` | ```$ mikey -V``` | ```$ mikey```\n___\n### Contribute\n<strong>If you would like to contribute, it would be greatly appreciated.</strong>\n\nLooking to add much more to this such as :\n\nMore Templates, Auto dependency installation, and more?...\n\n#### <strong>Version History:</strong>\n\n<strong>1.4.0</strong>: Mikey displays help when just typing ```mikey```. Modified Project Template App.js and store.js file to be more logical. \n\n<strong>1.3.6</strong>: Generating files also generate corresponding tests. Switched testing files to .test.js to keep with consistency of other aspects of mikey. Previous generated projects will need to switch test script in package.json to be compatible with newly generated tests. Added new container template.\n\n<strong>1.2.4</strong>: Project Template uses enzyme for testing.\n\n<strong>1.1.8</strong>: New CLI Commands which are direct and logical, testing integrated in Project Creation Template. README reflects all changes for New CLI Commands and movement towards *Mikey* as a Framework.\n\n<strong>1.0.0</strong>: New Project Creation Template with More Concise Documentation.\n',
+21 silly publish   readmeFilename: 'README.md',
+21 silly publish   gitHead: '8df4daf0e913f1a2c17d45f543e1abd5285c4d65',
+21 silly publish   bugs: { url: 'https://github.com/Mikeysax/mikey/issues' },
+21 silly publish   homepage: 'https://github.com/Mikeysax/mikey#readme',
+21 silly publish   _id: 'mikey@1.3.6',
+21 silly publish   _shasum: '858d74ad43aac4846e0a4b512e67aedb3142f6f8',
+21 silly publish   _from: '.' }
+22 verbose getPublishConfig undefined
+23 silly mapToRegistry name mikey
+24 silly mapToRegistry using default registry
+25 silly mapToRegistry registry https://registry.npmjs.org/
+26 silly mapToRegistry data Result {
+26 silly mapToRegistry   raw: 'mikey',
+26 silly mapToRegistry   scope: null,
+26 silly mapToRegistry   name: 'mikey',
+26 silly mapToRegistry   rawSpec: '',
+26 silly mapToRegistry   spec: 'latest',
+26 silly mapToRegistry   type: 'tag' }
+27 silly mapToRegistry uri https://registry.npmjs.org/mikey
+28 verbose publish registryBase https://registry.npmjs.org/
+29 silly publish uploading /home/mikeysax/.npm/mikey/1.3.6/package.tgz
+30 verbose request uri https://registry.npmjs.org/mikey
+31 verbose request sending authorization for write operation
+32 info attempt registry request try #1 at 5:23:44 PM
+33 verbose request using bearer token for auth
+34 verbose request id b22c36df8e009914
+35 http request PUT https://registry.npmjs.org/mikey
+36 http 403 https://registry.npmjs.org/mikey
+37 verbose headers { 'content-type': 'application/json',
+37 verbose headers   'cache-control': 'max-age=300',
+37 verbose headers   'content-length': '95',
+37 verbose headers   'accept-ranges': 'bytes',
+37 verbose headers   date: 'Fri, 10 Jun 2016 21:23:45 GMT',
+37 verbose headers   via: '1.1 varnish',
+37 verbose headers   connection: 'keep-alive',
+37 verbose headers   'x-served-by': 'cache-jfk1020-JFK',
+37 verbose headers   'x-cache': 'MISS',
+37 verbose headers   'x-cache-hits': '0',
+37 verbose headers   'x-timer': 'S1465593824.762232,VS0,VE1015',
+37 verbose headers   vary: 'Accept-Encoding' }
+38 verbose request invalidating /home/mikeysax/.npm/registry.npmjs.org/mikey on PUT
+39 error publish Failed PUT 403
+40 verbose stack Error: "You cannot publish over the previously published version 1.3.6." : mikey
+40 verbose stack     at makeError (/home/mikeysax/.nvm/versions/node/v6.2.1/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:264:12)
+40 verbose stack     at CachingRegistryClient.<anonymous> (/home/mikeysax/.nvm/versions/node/v6.2.1/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:252:14)
+40 verbose stack     at Request._callback (/home/mikeysax/.nvm/versions/node/v6.2.1/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:172:14)
+40 verbose stack     at Request.self.callback (/home/mikeysax/.nvm/versions/node/v6.2.1/lib/node_modules/npm/node_modules/request/request.js:200:22)
+40 verbose stack     at emitTwo (events.js:106:13)
+40 verbose stack     at Request.emit (events.js:191:7)
+40 verbose stack     at Request.<anonymous> (/home/mikeysax/.nvm/versions/node/v6.2.1/lib/node_modules/npm/node_modules/request/request.js:1067:10)
+40 verbose stack     at emitOne (events.js:101:20)
+40 verbose stack     at Request.emit (events.js:188:7)
+40 verbose stack     at IncomingMessage.<anonymous> (/home/mikeysax/.nvm/versions/node/v6.2.1/lib/node_modules/npm/node_modules/request/request.js:988:12)
+41 verbose statusCode 403
+42 verbose pkgid mikey
+43 verbose cwd /home/mikeysax/Desktop/mikey
+44 error Linux 4.4.0-22-generic
+45 error argv "/home/mikeysax/.nvm/versions/node/v6.2.1/bin/node" "/home/mikeysax/.nvm/versions/node/v6.2.1/bin/npm" "publish"
+46 error node v6.2.1
+47 error npm  v3.9.3
+48 error code E403
+49 error "You cannot publish over the previously published version 1.3.6." : mikey
+50 error If you need help, you may report this error at:
+50 error     <https://github.com/npm/npm/issues>
+51 verbose exit [ 1, true ]
