@@ -138,7 +138,9 @@ More Templates, Auto dependency installation, and more?...
 
 #### <strong>Version History:</strong>
 
-<strong>Current 1.3.6</strong>: Generating files also generate corresponding tests. Switched testing files to .test.js to keep with consistency of other aspects of mikey. Previous generated projects will need to switch test script in package.json to be compatible with newly generated tests. Added new container template.
+<strong>1.4.0</strong>: Mikey displays help when just typing ```mikey```. Modified Project Template App.js and store.js file to be more logical. 
+
+<strong>1.3.6</strong>: Generating files also generate corresponding tests. Switched testing files to .test.js to keep with consistency of other aspects of mikey. Previous generated projects will need to switch test script in package.json to be compatible with newly generated tests. Added new container template.
 
 <strong>1.2.4</strong>: Project Template uses enzyme for testing.
 
