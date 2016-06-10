@@ -1,40 +1,50 @@
-// store dependencies
+// Store Dependencies
 import { createStore, compose, applyMiddleware } from 'redux';
-import { syncHistoryWithStore } from 'react-router-redux';
+import { routerMiddleware, syncHistoryWithStore } from 'react-router-redux';
 import { browserHistory } from 'react-router';
-import thunk from 'redux-thunk';
+import thunkMiddleware from 'redux-thunk';
 
-// import the root reducer
+// Import Root Reducer
 import rootReducer from './js/reducers/index';
 
-// import data
+// Import data/dummy data
 
 
-// object for the initial data
+// Object for Initial Data
 const initialState = {
   /*Cars,
     Bikes,
     Trucks*/
 };
 
-// for redux dev tools, thunk/saga/promise, and other enhancers
-const enhancers = compose(
-  applyMiddleware(thunk),
-  // eslint-disable-next-line no-use-before-define
-  window.devToolsExtension ? window.devToolsExtension() : f => f
-);
+const configureStore = () => {
 
-// the redux store
-const store = createStore(rootReducer, initialState, enhancers);
+  // For Dev Tools
+  const enhancers = compose(
+    // eslint-disable-next-line no-use-before-define
+    window.devToolsExtension ? window.devToolsExtension() : f => f
+  );
 
-export const history = syncHistoryWithStore(browserHistory, store);
+  const reduxRouterMiddleware = routerMiddleware(browserHistory);
 
-// for reducer hot reloading
-if(module.hot) {
-  module.hot.accept('./js/reducers/', () => {
-    const nextRootReducer = require('./js/reducers/index').default;
-    store.replaceReducer(nextRootReducer);
-  });
-}
+  // Middle Ware Location
+  let createStoreWithMiddleware = applyMiddleware(
+    thunkMiddleware,
+    reduxRouterMiddleware,
+  )(createStore);
 
-export default store;
+  // Store
+  const store = createStoreWithMiddleware(rootReducer, defaultState, enhancers);
+
+  // Reducer Hot Reloading
+  if(module.hot) {
+    module.hot.accept('./js/reducers/', () => {
+      const nextRootReducer = require('./js/reducers/index').default;
+      store.replaceReducer(nextRootReducer);
+    });
+  }
+
+  return store;
+};
+
+export default configureStore;

@@ -10,11 +10,18 @@ import ApplicationLayout from './js/components/ApplicationLayout';
 import Welcome from './js/components/Welcome';
 import NotFound from './js/components/NotFound';
 
-// Router
-import { Router, Route, IndexRoute } from 'react-router';
+// Router Dependencies
+import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import { Provider } from 'react-redux';
-import store, { history } from './store';
+import { syncHistoryWithStore } from 'react-router-redux';
 
+// Store Dependencies
+import configureStore from './store';
+
+const store = configureStore();
+const history = syncHistoryWithStore(browserHistory, store);
+
+// Router
 const router = (
   <Provider store={store}>
     <Router history={history}>
@@ -26,6 +33,7 @@ const router = (
   </Provider>
 );
 
+// Render to HTML element
 ReactDOM.render(
   router, document.getElementById('app')
 );
