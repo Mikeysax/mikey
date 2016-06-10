@@ -9,6 +9,10 @@ ___
 <strong>To Install *Mikey*:</strong>
 
 ```$ npm install mikey -g```
+
+To see a list of commands:
+
+```$ mikey```
 ___
 ### Project Generation
 
@@ -123,7 +127,7 @@ If you want to erase all stored defaults:
 ___
 #### <strong>For help and more commands:</strong>
 
-```$ mikey -h``` | ```$ mikey -V```
+```$ mikey -h``` | ```$ mikey -V``` | ```$ mikey```
 ___
 ### Contribute
 <strong>If you would like to contribute, it would be greatly appreciated.</strong>
