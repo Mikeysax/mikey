@@ -3,7 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 // Import CSS/SCSS
-import './css/*';
+import './css/application.scss';
 
 // Import Container / Components for Routing
 import ApplicationLayout from './js/components/ApplicationLayout';

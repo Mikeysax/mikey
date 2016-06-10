@@ -30,7 +30,7 @@ const configureStore = () => {
   // Middle Ware Location
   let createStoreWithMiddleware = applyMiddleware(
     thunkMiddleware,
-    reduxRouterMiddleware,
+    reduxRouterMiddleware
   )(createStore);
 
   // Store
