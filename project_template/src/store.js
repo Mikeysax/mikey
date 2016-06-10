@@ -34,7 +34,7 @@ const configureStore = () => {
   )(createStore);
 
   // Store
-  const store = createStoreWithMiddleware(rootReducer, defaultState, enhancers);
+  const store = createStoreWithMiddleware(rootReducer, initialState, enhancers);
 
   // Reducer Hot Reloading
   if(module.hot) {
