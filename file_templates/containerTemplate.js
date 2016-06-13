@@ -15,10 +15,10 @@ class __Name__ extends React.Component {
   render() {
     return (
       <div>
-        
+
       </div>
     );
   }
-};
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(__Name__);

@@ -21,8 +21,9 @@ const configureStore = () => {
 
   // For Dev Tools
   const enhancers = compose(
-    // eslint-disable-next-line no-use-before-define
+    /* eslint-disable */
     window.devToolsExtension ? window.devToolsExtension() : f => f
+    /* eslint-enable */
   );
 
   const reduxRouterMiddleware = routerMiddleware(browserHistory);

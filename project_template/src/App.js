@@ -17,7 +17,6 @@ import { syncHistoryWithStore } from 'react-router-redux';
 
 // Store Dependencies
 import configureStore from './store';
-
 const store = configureStore();
 const history = syncHistoryWithStore(browserHistory, store);
 
@@ -33,7 +32,7 @@ const router = (
   </Provider>
 );
 
-// Render to HTML element
+// Render to index.html HTML element
 ReactDOM.render(
   router, document.getElementById('app')
 );
