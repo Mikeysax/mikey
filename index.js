@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 var program = require('commander');
+var colors = require('colors');
 var gPath = require('./generators/pathGen.js');
 var gProject = require('./generators/projectGen.js');
 var gFile = require('./generators/fileGen.js');
@@ -11,7 +12,7 @@ function collect(val, memo) {
   return memo;
 }
 program
-  .version('1.4.4')
+  .version('1.5.0')
   .option('new <projectName>', 'Generate New React-Redux Project.')
   .option('g_container <containerName>', 'Generate Container file.')
   .option('g_component <componentName>', 'Generate Component file.')
@@ -34,42 +35,42 @@ if (!process.argv.slice(2).length) {
 }
 if (typeof program.new != 'undefined') {
   var projectName = program.new;
-  console.log('Generating New Project: ' + projectName + ' in ' + currentWDir);
+  console.log(colors.bold('Generating New Project: ') + colors.yellow(projectName.toString()) + colors.bold(' in ') + colors.yellow(currentWDir.toString()));
   gProject.generateProject(projectName, currentWDir, directory);
 }
 if (typeof program.g_component != 'undefined') {
   var componentType = 'component';
   var componentName = program.g_component;
   var componentFolderPath = gPath.generatePath('components', currentWDir);
-  console.log('Generating Component File: ' + componentName + '.js');
+  console.log(colors.bold('Generating Component File: ') + colors.yellow(componentName + '.js'));
   gFile.generateFile(componentFolderPath, componentType, componentName, inpm, directory, defaults);
 }
 if (typeof program.g_container != 'undefined') {
   var containerType = 'container';
   var containerName = program.g_container;
   var containerFolderPath = gPath.generatePath('containers', currentWDir);
-  console.log('Generating Container File: ' + containerName + '.js');
+  console.log(colors.bold('Generating Container File: ') + colors.yellow(containerName + '.js'));
   gFile.generateFile(containerFolderPath, containerType, containerName, inpm, directory, defaults);
 }
 if (typeof program.g_action != 'undefined') {
   var actionType = 'action';
   var actionName = program.g_action;
   var actionsFolderPath = gPath.generatePath('actions', currentWDir);
-  console.log('Generating Action File: ' + actionName + '.js');
+  console.log(colors.bold('Generating Action File: ') + colors.yellow(actionName + '.js'));
   gFile.generateFile(actionsFolderPath, actionType, actionName, inpm, directory, defaults);
 }
 if (typeof program.g_reducer != 'undefined') {
   var reducerType = 'reducer';
   var reducerName = program.g_reducer;
   var reducersFolderPath = gPath.generatePath('reducers', currentWDir);
-  console.log('Generating Reducer File: ' + reducerName + '.js');
+  console.log(colors.bold('Generating Reducer File: ') + colors.yellow(reducerName + '.js'));
   gFile.generateFile(reducersFolderPath, reducerType, reducerName, inpm, directory, defaults);
 }
 if (typeof program.g_helper != 'undefined') {
   var helperType = 'helper';
   var helperName = program.g_helper;
   var helpersFolderPath = gPath.generatePath('helpers', currentWDir);
-  console.log('Generating Helper File: ' + helperName + '.js');
+  console.log(colors.bold('Generating Helper File: ') + colors.yellow(helperName + '.js'));
   gFile.generateFile(helpersFolderPath, helperType, helperName, inpm, directory, defaults);
 }
 if (typeof program.erase != 'undefined') {

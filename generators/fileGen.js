@@ -3,6 +3,7 @@ var _ = require('lodash');
 var gImport = require('./importGen.js');
 var gDefaults = require('./defaultGen.js');
 var tGen = require('./testGen.js');
+var colors = require('colors');
 
 var generateFile = function(foundPath, fileType, fileName, inpm, directory, defaults) {
   var readTemplate = fs.createReadStream(directory + '/file_templates/' + fileType + 'Template.js');
@@ -19,18 +20,18 @@ var generateFile = function(foundPath, fileType, fileName, inpm, directory, defa
 
       readTemplate.on('end', function(error) {
         if (error) {
-          console.log(error);
+          console.log(colors.red(error.toString()));
         }
-        console.log(_.capitalize(fileType) + ' Template Used Successfully')
+        console.log(colors.yellow(_.capitalize(fileType).toString()) + ' Template Used Successfully');
       });
 
       gImport.importGen(fileType, filePath, inpm, directory);
       gDefaults.importDefaults(defaults, filePath, fileType, directory);
       tGen.generateTest(filePath, fileType, fileName, directory);
 
-      console.log('Successfuly created ' + fileName + '.js in ' + filePath);
+      console.log('Successfuly created ' + colors.yellow(fileName + '.js') + ' in ' + colors.yellow(filePath.toString()));
     } else {
-      console.log(fileName + ' already exists in this project.');
+      console.log(colors.yellow(fileName + '.js') + colors.red(' already exists in this project.'));
     }
   });
 };

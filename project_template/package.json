@@ -52,14 +52,14 @@
   },
   "devDependencies": {
     "chai": "^3.5.0",
-    "chai-enzyme": "^0.4.2",
+    "chai-enzyme": "^0.5.0",
     "chai-immutable": "^1.5.4",
     "enzyme": "^2.3.0",
     "jsdom": "9.2.1",
     "jsdom-global": "2.0.0",
     "localStorage": "^1.0.3",
     "mocha": "^2.5.1",
-    "npm-install-webpack-plugin": "^3.1.4",
+    "npm-install-webpack-plugin": "^4.0.3",
     "react-addons-test-utils": "^15.0.2",
     "supertest": "^1.2.0"
   }
