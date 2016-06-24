@@ -1,11 +1,12 @@
 var fs = require('fs-extra');
 var ff = require('node-find-folder');
 var _ = require('lodash');
+var colors = require('colors');
 
 var generateTest = function(filePath, fileType, fileName, directory) {
   // Find Testing Folder and Correct Folder with File Type
   var pluralFileType = fileType + 's';
-  var foundTestPath = new ff(pluralFileType, {nottraversal: ['src', 'js', 'project_template', 'node_modules', 'user_auth_template']});
+  var foundTestPath = new ff(pluralFileType, {nottraversal: ['src', 'js', 'project_template', 'node_modules', 'user_auth_template', 'script', 'source']});
   // Read Test Template
   var readTemplate = fs.createReadStream(directory + '/file_templates/testTemplate.js');
   // Test Path with File Type
@@ -33,11 +34,11 @@ var generateTest = function(filePath, fileType, fileName, directory) {
         if (error) {
           console.log(error);
         }
-        console.log('Test Created')
+        console.log('Test Created in ' + colors.yellow(testPath.toString()));
       });
 
     } else {
-      console.log('Test Already Exists');
+      console.log('Test Already Exists in ' + colors.yellow(testPath.toString()));
     }
   });
 };

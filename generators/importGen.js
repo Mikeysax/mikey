@@ -1,5 +1,6 @@
 var fs = require('fs-extra');
 var prependFile = require('prepend-file');
+var colors = require('colors');
 
 var importGen = function(fileType, filePath, inpm, directory) {
   if (inpm) {
@@ -19,18 +20,18 @@ var importGen = function(fileType, filePath, inpm, directory) {
         var splitDep = i.split(',');
         var impSplit = "import " + splitDep[0] + " from " + "'" + splitDep[1] + "';";
         importArray.push(impSplit + "\n");
-        console.log("Adding: " + impSplit);
+        console.log(colors.green("Adding: ") + impSplit);
         checkIfDefault(impSplit);
       } else if (i.match(/{|}/g)) {
         var removedCurl = i.replace(/{|}/g, '');
         var impRemovedCurl = "import " + i + " from " + "'" + removedCurl + "';";
         importArray.push(impRemovedCurl + "\n");
-        console.log("Adding: " + impRemovedCurl);
+        console.log(colors.green("Adding: ") + impRemovedCurl);
         checkIfDefault(impRemovedCurl);
       } else {
         var imp = "import " + i + " from " + "'" + i + "';";
         importArray.push(imp + "\n");
-        console.log("Adding: " + imp);
+        console.log(colors.green("Adding: ") + imp);
         checkIfDefault(imp);
       }
     });

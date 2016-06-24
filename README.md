@@ -129,6 +129,35 @@ ___
 
 ```$ mikey -h``` | ```$ mikey -V``` | ```$ mikey```
 ___
+### Custom Templates
+
+#### Saving Custom Templates:
+<strong>*Mikey*</strong> will allow you to save files as templates in your current project. Create a file in containers / components / reducers / actions / helpers folder and use the:
+
+`$ mikey save_template fileType`
+
+command to copy into Custom Template directory in *Mikey*. File selection is <strong>without the .js extension</strong>
+
+#### Generating Custom Files from Custom Templates:
+Once you've saved a template, you can reuse it.
+
+`$ mikey g_custom fileType`
+
+A list of custom templates of that file type will be displayed. A prompt will be displayed in the console for template name and desired file name on completion. File selection is <strong>without the .js extension</strong> 
+
+#### Deleting Custom Files from Custom Templates:
+If you want to delete a custom template:
+
+`$ mikey delete_template fileType`
+
+A list of custom templates of that file type will be displayed. The prompt will then ask which file you would like to delete. File selection is <strong>without the .js extension</strong>
+
+#### List Custom Files from Custom Templates:
+If you would like to look at saved custom templates:
+
+`$ mikey list_templates fileType`
+
+This will display all custom templates for current file type
 ### Contribute
 <strong>If you would like to contribute, it would be greatly appreciated.</strong>
 
@@ -138,7 +167,9 @@ More Templates, Auto dependency installation, and more?...
 
 #### <strong>Version History:</strong>
 
-<strong>Current: 1.5.0</strong>: Changed Project generation to `spawn` instead of `exec`. Added some fun tidbits like colors and art to project generation. Refactored project generation to be cleaner and output more helpful information. Updated project template dependencies.
+<strong>Current: 1.6.0</strong>: Added Custom Template generation/saving/deletion/listing. Refactored file generation to be DRY'er. When you deal with custom templates, prompts will be given to obtain more details about files. List is displayed on template deletion command. Ability to save a file in current project to reuse.
+
+<strong>1.5.0</strong>: Changed Project generation to `spawn` instead of `exec`. Added some fun tidbits like colors and art to project generation. Refactored project generation to be cleaner and output more helpful information. Updated project template dependencies.
 
 <strong>1.4.4</strong>: Mikey displays help when just typing ```mikey```. Modified Project Template App.js and store.js file to be more logical. Added actions index to import all actions to.
 

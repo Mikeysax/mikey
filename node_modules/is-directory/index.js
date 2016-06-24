@@ -10,28 +10,29 @@
 var fs = require('fs');
 
 /**
- * Expose `isDir`
- */
-
-module.exports = isDir;
-
-/**
  * async
  */
 
-function isDir(fp, cb) {
-  if (typeof fp !== 'string') {
-    throw new Error('is-directory async expects filepath to be a string.');
-  }
-
+function isDirectory(filepath, cb) {
   if (typeof cb !== 'function') {
-    throw new Error('is-directory async expects a callback function.');
+    throw new Error('expected a callback function');
   }
 
-  fs.stat(fp, function(err, stats) {
-    if (err) return cb(err);
-    cb(null, stats.isDirectory());
+  if (typeof filepath !== 'string') {
+    cb(new Error('expected filepath to be a string'));
     return;
+  }
+
+  fs.stat(filepath, function(err, stats) {
+    if (err) {
+      if (err.code === 'ENOENT') {
+        cb(null, false);
+        return;
+      }
+      cb(err);
+      return;
+    }
+    cb(null, stats.isDirectory());
   });
 }
 
@@ -39,12 +40,26 @@ function isDir(fp, cb) {
  * sync
  */
 
-isDir.sync = function isDirSync(fp) {
-  if (typeof fp !== 'string') {
-    throw new Error('is-directory sync expects filepath to be a string.');
+isDirectory.sync = function isDirectorySync(filepath) {
+  if (typeof filepath !== 'string') {
+    throw new Error('expected filepath to be a string');
   }
+
   try {
-    return fs.statSync(fp).isDirectory();
-  } catch(err) {}
+    var stat = fs.statSync(filepath);
+    return stat.isDirectory();
+  } catch (err) {
+    if (err.code === 'ENOENT') {
+      return false;
+    } else {
+      throw err;
+    }
+  }
   return false;
 };
+
+/**
+ * Expose `isDirectory`
+ */
+
+module.exports = isDirectory;

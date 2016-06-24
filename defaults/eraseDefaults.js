@@ -1,4 +1,5 @@
 var fs = require('fs');
+var colors = require('colors');
 
 var eraseDefaults = function(defaults, directory) {
   var actionDefaults = directory + '/defaults/actionDefault.js';
@@ -11,31 +12,31 @@ var eraseDefaults = function(defaults, directory) {
     console.log('Defaults: Erasing Action Defaults');
     fs.writeFile(actionDefaults, '', function(err) {
       if (err) { console.log(err); }
-      console.log('Action Defaults Erased.');
+      console.log(colors.red('Action Defaults Erased.'));
     });
   } else if (defaults.match(/components/)) {
     console.log('Defaults: Erasing Component Defaults');
     fs.writeFile(componentDefaults, '', function(err) {
       if (err) { console.log(err); }
-      console.log('Component Defaults Erased.');
+      console.log(colors.red('Component Defaults Erased.'));
     });
   } else if (defaults.match(/containers/)) {
     console.log('Defaults: Erasing Container Defaults');
     fs.writeFile(containerDefaults, '', function(err) {
       if (err) { console.log(err); }
-      console.log('Container Defaults Erased.');
+      console.log(colors.red('Container Defaults Erased.'));
     });
   } else if (defaults.match(/reducers/)) {
     console.log('Defaults: Erasing Reducer Defaults');
     fs.writeFile(reducerDefaults, '', function(err) {
       if (err) { console.log(err); }
-      console.log('Reducer Defaults Erased.');
+      console.log(colors.red('Reducer Defaults Erased.'));
     });
   } else if (defaults.match(/helpers/)) {
       console.log('Defaults: Erasing Helper Defaults');
       fs.writeFile(helperDefaults, '', function(err) {
         if (err) { console.log(err); }
-        console.log('Helper Defaults Erased.');
+        console.log(colors.red('Helper Defaults Erased.'));
       });
   } else if (defaults.match(/all/)) {
     console.log('Defaults: Erasing All Defaults');
@@ -46,7 +47,7 @@ var eraseDefaults = function(defaults, directory) {
         if (err) { console.log(err); }
       });
     });
-    console.log('All Defaults Erased.');
+    console.log(colors.red('All Defaults Erased.'));
   }
 };
 

@@ -15,8 +15,8 @@ var generatePath = function(fileType, currentWDir) {
   if (readMikeyPath.match(fileRExp)) {
     folderPath = readMikeyPath;
   } else {
-    console.log('Saving Path To: ' + mikeyPathFile);
-    folderPath = new ff(fileType, {nottraversal: ['test', 'tests', 'project_template', 'node_modules', 'user_auth_template']});
+    console.log('Saving Path To: ' + mikeyPathFile.match(/\/.mikeyPath.+/g));
+    folderPath = new ff(fileType, {nottraversal: ['spec', 'test', 'tests', 'project_template', 'node_modules', 'user_auth_template']});
     prependFile(mikeyPathFile, folderPath, function(err) {
       if (err) { console.log(err); }
     });
