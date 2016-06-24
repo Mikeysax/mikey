@@ -8,7 +8,7 @@ var colors = require('colors');
 var generateCustomFile = function(foundPath, fileType, templateName, fileName, inpm, directory) {
   var readTemplate = fs.createReadStream(directory + '/custom_templates/' + fileType + '/' + templateName + '.js');
   var filePath = './' + foundPath + '/' + fileName + '.js';
-  console.log('Inside ThisFile');
+
   fs.stat(filePath, function(err, stats) {
     if (stats === undefined) {
       var writeFile = fs.createWriteStream(filePath);

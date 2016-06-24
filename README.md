@@ -143,7 +143,7 @@ Once you've saved a template, you can reuse it.
 
 `$ mikey g_custom fileType`
 
-A list of custom templates of that file type will be displayed. A prompt will be displayed in the console for template name and desired file name on completion. File selection is <strong>without the .js extension</strong> 
+A list of custom templates of that file type will be displayed. A prompt will be displayed in the console for template name and desired file name on completion. File selection is <strong>without the .js extension</strong>
 
 #### Deleting Custom Files from Custom Templates:
 If you want to delete a custom template:
@@ -167,7 +167,7 @@ More Templates, Auto dependency installation, and more?...
 
 #### <strong>Version History:</strong>
 
-<strong>Current: 1.6.0</strong>: Added Custom Template generation/saving/deletion/listing. Refactored file generation to be DRY'er. When you deal with custom templates, prompts will be given to obtain more details about files. List is displayed on template deletion command. Ability to save a file in current project to reuse.
+<strong>Current: 1.6.1</strong>: Added Custom Template generation/saving/deletion/listing. Refactored file generation to be DRY'er. When you deal with custom templates, prompts will be given to obtain more details about files. List is displayed on template deletion command. Ability to save a file in current project to reuse.
 
 <strong>1.5.0</strong>: Changed Project generation to `spawn` instead of `exec`. Added some fun tidbits like colors and art to project generation. Refactored project generation to be cleaner and output more helpful information. Updated project template dependencies.
 
