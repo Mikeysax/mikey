@@ -9,12 +9,19 @@ var generateCustomFile = function(foundPath, fileType, templateName, fileName, i
   var readTemplate = fs.createReadStream(directory + '/custom_templates/' + fileType + '/' + templateName + '.js');
   var filePath = './' + foundPath + '/' + fileName + '.js';
 
+  // Use template name if filename is not defined.
+  if (fileName.length < 2) {
+    fileName = templateName;
+  }
+
   fs.stat(filePath, function(err, stats) {
     if (stats === undefined) {
       var writeFile = fs.createWriteStream(filePath);
+      var regExTemplateName = new RegExp(templateName, 'g');
 
       readTemplate.on('data', function(chunk) {
-        writeFile.write(chunk);
+        var newData = chunk.toString().replace(regExTemplateName, fileName);
+        writeFile.write(newData);
         writeFile.end();
       });
 

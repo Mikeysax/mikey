@@ -23,7 +23,7 @@ function collect(val, memo) {
 }
 
 program
-  .version('1.6.1')
+  .version('1.6.2')
   .option('new <projectName>', 'Generate New React-Redux Project.')
   .option('g_container <ContainerName>', 'Generate Container file.')
   .option('g_component <ComponentName>', 'Generate Component file.')
@@ -117,7 +117,7 @@ if (typeof program.g_custom !== 'undefined') {
       {
         type: 'input',
         name: 'fileNameAnswer',
-        message: 'Enter Desired File Name(no extension):'
+        message: 'Enter Desired File Name(no extension / default: Template Name):'
       }];
     inquirer.prompt(questions).then(function (answer) {
       var templateName = answer.templateName;
