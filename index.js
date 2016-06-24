@@ -23,14 +23,14 @@ function collect(val, memo) {
 }
 
 program
-  .version('1.6.2')
+  .version('1.6.3')
   .option('new <projectName>', 'Generate New React-Redux Project.')
   .option('g_container <ContainerName>', 'Generate Container file.')
   .option('g_component <ComponentName>', 'Generate Component file.')
   .option('g_action <actionName>', 'Generate action file.')
   .option('g_reducer <reducerName>', 'Generate reducer file.')
   .option('g_helper <helperName>', 'Generate helper file.')
-  .option('g_custom <fileType>', 'Generate custom file from saved template.')
+  .option('g_file <fileType>', 'Generate custom file from saved template.')
   .option('-i, import [importName]', '(Optional) Add import to generated file.', collect, [])
   .option('-d, defaults [defaults]', '(Optional) Import previous dependencies for generated file. No is default: (n, Y)', /^(Y|n)$/i, 'n')
   .option('-l, list [list]', 'List defaults: all/actions/containers/components/reducers/helpers', /^(actions|components|containers|reducers|helpers|all)$/i, 'undefined')
@@ -102,8 +102,8 @@ if (typeof program.list !== 'undefined') {
 }
 
 // Custom File Generation
-if (typeof program.g_custom !== 'undefined') {
-  var fileType = _.lowerFirst(program.g_custom);
+if (typeof program.g_file !== 'undefined') {
+  var fileType = _.lowerFirst(program.g_file);
   // List Files
   var filePathToFileType = directory + '/custom_templates/' + fileType;
   lTemp.listTemplates(fileType, filePathToFileType);

@@ -141,7 +141,7 @@ command to copy into Custom Template directory in *Mikey*. File selection is <st
 #### Generating Custom Files from Custom Templates:
 Once you've saved a template, you can reuse it.
 
-`$ mikey g_custom fileType`
+`$ mikey g_file fileType`
 
 A list of custom templates of that file type will be displayed. A prompt will be displayed in the console for template name and desired file name on completion. If you leave desired file name blank it will use template file name by default. File selection is <strong>without the .js extension</strong>
 
@@ -167,7 +167,7 @@ More Templates, Auto dependency installation, and more?...
 
 #### <strong>Version History:</strong>
 
-<strong>Current: 1.6.2</strong>: Added Custom Template generation/saving/deletion/listing. Refactored file generation to be DRY'er. When you deal with custom templates, prompts will be given to obtain more details about files. List is displayed on template deletion command. Ability to save a file in current project to reuse.
+<strong>Current: 1.6.3</strong>: Added Custom Template generation/saving/deletion/listing. Refactored file generation to be DRY'er. When you deal with custom templates, prompts will be given to obtain more details about files. List is displayed on template deletion command. Ability to save a file in current project to reuse.
 
 <strong>1.5.0</strong>: Changed Project generation to `spawn` instead of `exec`. Added some fun tidbits like colors and art to project generation. Refactored project generation to be cleaner and output more helpful information. Updated project template dependencies.
 
