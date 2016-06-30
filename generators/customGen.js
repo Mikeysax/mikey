@@ -20,7 +20,8 @@ var generateCustomFile = function(foundPath, fileType, templateName, fileName, i
       var regExTemplateName = new RegExp(templateName, 'g');
 
       readTemplate.on('data', function(chunk) {
-        var newData = chunk.toString().replace(regExTemplateName, fileName);
+        var newData = chunk.toString()
+          .replace(regExTemplateName, fileName);
         writeFile.write(newData);
         writeFile.end();
       });

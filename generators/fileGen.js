@@ -8,21 +8,21 @@ var colors = require('colors');
 var generateFile = function(foundPath, fileType, fileName, inpm, directory, defaults) {
   var readTemplate = fs.createReadStream(directory + '/file_templates/' + fileType + 'Template.js');
   var filePath = './' + foundPath + '/' + fileName + '.js';
+  
   fs.stat(filePath, function(err, stats) {
     if (stats === undefined) {
       var writeFile = fs.createWriteStream(filePath);
 
       readTemplate.on('data', function(chunk) {
-        var newData = chunk.toString().replace(/__Name__/g, fileName);
+        var newData = chunk.toString()
+          .replace(/__Name__/g, fileName);
+
         writeFile.write(newData);
         writeFile.end();
       });
 
       readTemplate.on('end', function(error) {
-        if (error) {
-          console.log(colors.red(error.toString()));
-        }
-        console.log(colors.yellow(_.capitalize(fileType).toString()) + ' Template Used Successfully');
+        if (error) { console.log(colors.red(error.toString())); }
       });
 
       gImport.importGen(fileType, filePath, inpm, directory);

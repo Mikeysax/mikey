@@ -8,7 +8,7 @@ var generateTest = function(filePath, fileType, fileName, directory) {
   var pluralFileType = fileType + 's';
   var foundTestPath = new ff(pluralFileType, {nottraversal: ['src', 'js', 'project_template', 'node_modules', 'user_auth_template', 'script', 'source']});
   // Read Test Template
-  var readTemplate = fs.createReadStream(directory + '/file_templates/testTemplate.js');
+  var readTemplate = fs.createReadStream(directory + '/test_templates/' + fileType + 'TestTemplate.js');
   // Test Path with File Type
   var testPath = './' + foundTestPath + '/' + fileName + '.test.js';
 
@@ -34,7 +34,7 @@ var generateTest = function(filePath, fileType, fileName, directory) {
         if (error) {
           console.log(error);
         }
-        console.log('Test Created in ' + colors.yellow(testPath.toString()));
+        console.log('Test created in ' + colors.yellow(testPath.toString()));
       });
 
     } else {
