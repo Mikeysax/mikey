@@ -23,7 +23,7 @@ function collect(val, memo) {
 }
 
 program
-  .version('1.7.0')
+  .version('1.7.1')
   .option('new <projectName>', 'Generate New React-Redux Project.')
   .option('g_container <ContainerName>', 'Generate Container file.')
   .option('g_component <ComponentName>', 'Generate Component file.')
@@ -107,6 +107,7 @@ if (typeof program.g_file !== 'undefined') {
   // List Files
   var filePathToFileType = directory + '/custom_templates/' + fileType;
   lTemp.listTemplates(fileType, filePathToFileType);
+
   setTimeout(function() {
     var questions = [
       {
@@ -181,5 +182,6 @@ if (typeof program.delete_template !== 'undefined') {
 // List Files
 if (typeof program.list_templates !== 'undefined') {
   var fileType = _.lowerFirst(program.list_templates);
-  lTemp.listTemplates(fileType, directory);
+  var filePathToFileType = directory + '/custom_templates/' + fileType;
+  lTemp.listTemplates(fileType, filePathToFileType);
 }
