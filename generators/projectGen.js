@@ -11,16 +11,9 @@ var generateProject = function(projectName, currentWDir, directory) {
     if (err) { console.log(err); }
   })
 
-  console.log(colors.bold('Running npm install: ') + colors.red('please be patient...this is not frozen.'))
-  var newProject = spawn('npm', ['install'], { cwd: projectDestination });
+  console.log(colors.bold('Running npm install: '));
 
-  newProject.stdout.on('data', function(data) {
-    console.log(colors.yellow('' + data));
-  });
-
-  newProject.stderr.on('data', function(data) {
-    console.log(colors.bold('Error: ') + colors.red(data));
-  });
+  var newProject = spawn('npm', ['install'], { cwd: projectDestination, stdio: 'inherit' });
 
   newProject.on('close', function (exitCode) {
     console.log(colors.bold('Done! cd to ') + colors.yellow.bold(projectName.toString()) + colors.bold(' and launch server: ') + colors.bold.green('npm start'));

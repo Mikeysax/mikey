@@ -23,7 +23,7 @@ var devServer = app.listen(8080, 'localhost', function(err) {
     return;
   }
   var port = devServer.address().port;
-  console.log('Listening at localhost:' + port);
+  console.log('Listening at http://localhost:' + port);
 });
 
 module.exports = devServer;
