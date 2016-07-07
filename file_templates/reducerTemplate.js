@@ -1,5 +1,5 @@
 
-const __Name__ = (state = undefined, action) => {
+const __Name__ = (state = null, action) => {
   return state;
 };
 
