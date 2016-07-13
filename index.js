@@ -23,8 +23,9 @@ function collect(val, memo) {
 }
 
 program
-  .version('1.7.3')
+  .version('2.0.0')
   .option('new <projectName>', 'Generate New React-Redux Project.')
+  .option('universal <projectName>', 'Generate New Universal React-Redux Project.')
   .option('g_container <ContainerName>', 'Generate Container file.')
   .option('g_component <ComponentName>', 'Generate Component file.')
   .option('g_action <actionName>', 'Generate action file.')
@@ -32,7 +33,7 @@ program
   .option('g_helper <helperName>', 'Generate helper file.')
   .option('g_file <fileType>', 'Generate custom file from saved template.')
   .option('-i, import [importName]', '(Optional) Add import to generated file.', collect, [])
-  .option('-d, defaults [defaults]', '(Optional) Import previous dependencies for generated file. No is default: (n, Y)', /^(Y|n)$/i, 'n')
+  .option('-d, defaults [defaults]', '(Optional) Import previous dependencies for generated file. Defaults to No: (n, Y)', /^(Y|n)$/i, 'n')
   .option('-l, list [list]', 'List defaults: all/actions/containers/components/reducers/helpers', /^(actions|components|containers|reducers|helpers|all)$/i, 'undefined')
   .option('-e, erase [erase]', 'Erase defaults: all/actions/containers/components/reducers/helpers', /^(actions|components|containers|reducers|helpers|all)$/i, 'undefined')
   .option('save_template [fileType]', 'Save file in current project as custom template.', /^(action|component|container|reducer|helper)$/i)
@@ -57,8 +58,17 @@ if (!process.argv.slice(2).length) {
 // Project Generation
 if (typeof program.new !== 'undefined') {
   var projectName = program.new;
+  var universal = false;
   console.log(colors.bold('Generating New Project: ') + colors.yellow(projectName.toString()) + colors.bold(' in ') + colors.yellow(currentWDir.toString()));
-  gProject.generateProject(projectName, currentWDir, directory);
+  gProject.generateProject(projectName, currentWDir, directory, universal);
+}
+
+// Universal Project Generation
+if (typeof program.universal !== 'undefined') {
+  var projectName = program.universal;
+  var universal = true;
+  console.log(colors.bold('Generating New Universal Project: ') + colors.yellow(projectName.toString()) + colors.bold(' in ') + colors.yellow(currentWDir.toString()));
+  gProject.generateProject(projectName, currentWDir, directory, universal);
 }
 
 // File Generation

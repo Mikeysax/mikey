@@ -20,11 +20,20 @@ ___
 
 ```$ mikey new projectName```
 
+<strong>To Generate a new universal project:</strong>
+
+```$ mikey universal projectName```
+
 When you create a new project, *Mikey* will run ```npm install``` automatically in the created project directory. All you have to do is be patient, it is not frozen.
 
 Once it is done, cd to project and start the server with:
 
 ```$ npm start```
+
+Or for Universal projects use:
+
+```$ npm run dev```
+
 
 *Mikey* projects are compatible with React / Redux Dev Chrome Extensions and also have hot reloading enabled. Dependencies are kept as minimal as possible. *Mikey* also contains ES6, SCSS/CSS Loading, Testing Setup, Production/Dev Config, and Source Mapping.
 
@@ -167,7 +176,9 @@ ___
 
 #### <strong>Version History:</strong>
 
-<strong>Current: 1.7.3</strong>: Added more test templates. Test template is chosen based on which file you are generating. Fixed README and added LICENSE text. Removed some console.log statements which were redundant. Changed helper template to contain basic const.
+<strong>Current: 2.0.0</strong>: Added Universal / Isomorphic project generation with `mikey universal projectName`.
+
+<strong>1.7.3</strong>: Added more test templates. Test template is chosen based on which file you are generating. Fixed README and added LICENSE text. Removed some console.log statements which were redundant. Changed helper template to contain basic const.
 
 <strong>1.6.3</strong>: Added Custom Template generation/saving/deletion/listing. Refactored file generation to be DRY'er. When you deal with custom templates, prompts will be given to obtain more details about files. List is displayed on template deletion command. Ability to save a file in current project to reuse.
 
