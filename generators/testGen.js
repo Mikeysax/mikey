@@ -6,7 +6,7 @@ var colors = require('colors');
 var generateTest = function(filePath, fileType, fileName, directory) {
   // Find Testing Folder and Correct Folder with File Type
   var pluralFileType = fileType + 's';
-  var foundTestPath = new ff(pluralFileType, {nottraversal: ['src', 'js', 'project_template', 'node_modules', 'user_auth_template', 'script', 'source']});
+  var foundTestPath = new ff(pluralFileType, {nottraversal: ['src', 'js', 'project_template', 'node_modules', 'user_auth_template', 'script', 'source', 'shared', 'client']});
   // Read Test Template
   var readTemplate = fs.createReadStream(directory + '/test_templates/' + fileType + 'TestTemplate.js');
   // Test Path with File Type

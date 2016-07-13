@@ -176,7 +176,7 @@ ___
 
 #### <strong>Version History:</strong>
 
-<strong>Current: 2.0.0</strong>: Added Universal / Isomorphic project generation with `mikey universal projectName`.
+<strong>Current: 2.0.1</strong>: Added Universal / Isomorphic project generation with `mikey universal projectName`.
 
 <strong>1.7.3</strong>: Added more test templates. Test template is chosen based on which file you are generating. Fixed README and added LICENSE text. Removed some console.log statements which were redundant. Changed helper template to contain basic const.
 

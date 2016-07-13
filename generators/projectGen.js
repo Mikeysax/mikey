@@ -8,6 +8,7 @@ var generateProject = function(projectName, currentWDir, directory, universal) {
     if (err) { console.log(err); }
   });
 
+  // Universal or Regular?
   var projectTemplate = '';
   var projectStart = '';
   if (universal === false) {

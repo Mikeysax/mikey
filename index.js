@@ -23,7 +23,7 @@ function collect(val, memo) {
 }
 
 program
-  .version('2.0.0')
+  .version('2.0.1')
   .option('new <projectName>', 'Generate New React-Redux Project.')
   .option('universal <projectName>', 'Generate New Universal React-Redux Project.')
   .option('g_container <ContainerName>', 'Generate Container file.')
@@ -95,7 +95,7 @@ if (typeof program.g_helper !== 'undefined') {
   reactFileType = 'helper';
   genFileName = program.g_helper;
 }
-// Generate Call
+// Generate File Call
 if (reactFileType.length > 1 && genFileName.length > 1) {
   var folderPath = gPath.generatePath(reactFileType + 's', currentWDir);
   console.log(colors.bold.underline('Generating ' + _.capitalize(reactFileType) + ' File:') + ' ' + colors.yellow(genFileName + '.js'));

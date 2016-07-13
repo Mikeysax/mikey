@@ -1,5 +1,6 @@
 // Server Dependencies
 import express from 'express';
+import fs from 'fs';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 
@@ -20,9 +21,9 @@ import rootReducer from './shared/js/reducers/index';
 // Lib
 import fetchComponentData from './shared/lib/fetchComponentData';
 
+
 const app = express();
 
-import fs from 'fs';
 app.use('/bundle.js', function (req, res) {
   return fs.createReadStream('./dist/bundle.js').pipe(res);
 });
