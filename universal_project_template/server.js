@@ -10,7 +10,7 @@ import { Provider } from 'react-redux';
 import routes from './shared/routes';
 
 // Store Dependencies
-import configureStore from './client/store';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
 
 // Middleware
 import thunkMiddleware from 'redux-thunk';
@@ -21,7 +21,7 @@ import rootReducer from './shared/js/reducers/index';
 // Lib
 import fetchComponentData from './shared/lib/fetchComponentData';
 
-const store = configureStore();
+
 const app = express();
 
 app.use('/bundle.js', function (req, res) {
@@ -29,6 +29,9 @@ app.use('/bundle.js', function (req, res) {
 });
 
 app.use( (req, res) => {
+
+  const reducer  = combineReducers(rootReducer);
+  const store    = applyMiddleware(thunkMiddleware)(createStore)(reducer);
 
   match({ routes, location: req.url }, (err, redirectLocation, renderProps) => {
     if(err) {
