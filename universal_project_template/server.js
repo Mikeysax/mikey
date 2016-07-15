@@ -10,7 +10,7 @@ import { Provider } from 'react-redux';
 import routes from './shared/routes';
 
 // Store Dependencies
-import { createStore, combineReducers, applyMiddleware } from 'redux';
+import configureStore from './client/store';
 
 // Middleware
 import thunkMiddleware from 'redux-thunk';
@@ -21,7 +21,7 @@ import rootReducer from './shared/js/reducers/index';
 // Lib
 import fetchComponentData from './shared/lib/fetchComponentData';
 
-
+const store = configureStore();
 const app = express();
 
 app.use('/bundle.js', function (req, res) {
@@ -29,8 +29,6 @@ app.use('/bundle.js', function (req, res) {
 });
 
 app.use( (req, res) => {
-  const reducer  = combineReducers(rootReducer);
-  const store    = applyMiddleware(thunkMiddleware)(createStore)(reducer);
 
   match({ routes, location: req.url }, (err, redirectLocation, renderProps) => {
     if(err) {
@@ -38,19 +36,22 @@ app.use( (req, res) => {
       return res.status(500).end('Internal server error');
     }
 
+    if (redirectLocation) {
+      return res.redirect(302, redirectLocation.pathname + redirectLocation.search);
+    }
+
     if(!renderProps) {
       return res.status(404).end('Not found');
     }
 
     function renderView() {
-
       const InitialView = (
         <Provider store={store}>
           <RouterContext {...renderProps} />
         </Provider>
       );
 
-      const componentHTML = ReactDOMServer.renderToStaticMarkup(InitialView);
+      const componentHTML = ReactDOMServer.renderToString(InitialView);
       const initialState = store.getState();
 
       // Initial HTML
@@ -60,7 +61,7 @@ app.use( (req, res) => {
         <head>
           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
           <meta charset="utf-8">
-          <title>Redux Demo</title>
+          <title>Mikey Universal App</title>
 
           <script>
             window.__INITIAL_STATE__ = ${JSON.stringify(initialState)};
@@ -80,6 +81,7 @@ app.use( (req, res) => {
       .then(renderView)
       .then(html => res.end(html))
       .catch(err => res.end(err.message));
+
   });
 });
 
