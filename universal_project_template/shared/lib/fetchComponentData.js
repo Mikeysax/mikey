@@ -1,6 +1,4 @@
-/*
-Utility function to fetch required data for component to render in server side.
-*/
+// Fetch Required Data For Components To Render On Server.
 import sequence from './promiseUtils';
 
 export default function fetchComponentData(store, components, params) {

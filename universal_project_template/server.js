@@ -11,10 +11,7 @@ import routes from './shared/routes';
 
 // Store Dependencies
 import configureStore from './client/store';
-// Middleware
-import thunkMiddleware from 'redux-thunk';
-// Import Root Reducer
-import rootReducer from './shared/js/reducers/index';
+
 // Lib
 import fetchComponentData from './shared/lib/fetchComponentData';
 
@@ -26,7 +23,7 @@ app.use('/bundle.js', function (req, res) {
   return fs.createReadStream('./dist/bundle.js').pipe(res);
 });
 
-// Render Initial HTML
+// Initial HTML
 const renderView = (html, initialState) => {
   return(`
   <!DOCTYPE html>
@@ -34,8 +31,7 @@ const renderView = (html, initialState) => {
     <head>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
       <meta charset="utf-8">
-      <title>Redux Demo</title>
-
+      <title>Mikey Universal App</title>
       <script>
         window.__INITIAL_STATE__ = ${JSON.stringify(initialState)};
       </script>
@@ -48,14 +44,15 @@ const renderView = (html, initialState) => {
   `);
 };
 
+// For Server Error Rendering
 const renderError = err => {
-  const softTab = '&#32;&#32;&#32;&#32;';
+  const softTab = '&#160;&#160;&#160;&#160;';
   const errTrace = process.env.NODE_ENV !== 'production' ?
     `:<br><br><pre style="color:red">${softTab}${err.stack.replace(/\n/g, `<br>${softTab}`)}</pre>` : '';
   return renderView(`Server Error${errTrace}`, {});
 };
 
-// Server Side Rendering based on routes matched by React-router.
+// Server Side Rendering
 app.use((req, res, next) => {
   match({ routes, location: req.url }, (err, redirectLocation, renderProps) => {
     if (err) {
@@ -92,9 +89,10 @@ app.use((req, res, next) => {
   });
 });
 
+// Port
 const PORT = process.env.PORT || 3000;
 
-// App Start
+// App / Server Start
 app.listen(PORT, (error) => {
   if (!error) {
     console.log('Server listening on: ' + PORT);

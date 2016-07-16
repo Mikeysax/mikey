@@ -1,7 +1,6 @@
-/**
- * Throw an array to it and a function which can generate promises
- * and it will call them sequentially, one after another
- */
+// Give sequence array and function that generates promises.
+// Will call then in order.
+// Used Primarily with fetchComponentData
 export default function sequence(items, consumer) {
   const results = [];
   const runner = () => {
