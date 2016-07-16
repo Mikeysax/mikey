@@ -13,7 +13,7 @@ import routes from '../shared/routes';
 
 // Store Dependencies
 import configureStore from './store';
-const store = configureStore();
+const store = configureStore(window.__INITIAL_STATE__);
 const history = syncHistoryWithStore(browserHistory, store);
 
 // Router

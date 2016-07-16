@@ -3,36 +3,38 @@ import { createStore, compose, applyMiddleware } from 'redux';
 import { routerMiddleware, syncHistoryWithStore } from 'react-router-redux';
 import { browserHistory } from 'react-router';
 import thunkMiddleware from 'redux-thunk';
-import immutifyState from '../shared/lib/immutifyState';
 
 // Import Root Reducer
 import rootReducer from '../shared/js/reducers/index';
 
+// Dev Tools
+import DevTools from '../shared/lib/devtools';
+
 // Import data/dummy data
 
 
-// Object for Initial Data
-const initialState = immutifyState(window.__INITIAL_STATE__);
-
-const configureStore = () => {
-
+export default function configureStore(initialState = {}) {
   // For Dev Tools
-  const enhancers = compose(
-    /* eslint-disable */
-    window.devToolsExtension ? window.devToolsExtension() : f => f
-    /* eslint-enable */
-  );
+  let enhancers = [];
+  if (typeof window === 'object' && typeof window.devToolsExtension !== 'undefined') {
+    enhancers.push(window.devToolsExtension ? window.devToolsExtension() : DevTools.instrument());
+  }
 
-  const reduxRouterMiddleware = routerMiddleware(browserHistory);
-
-  // Middleware Location
-  let createStoreWithMiddleware = applyMiddleware(
+  // Middleware
+  const middleware = [
     thunkMiddleware,
-    reduxRouterMiddleware
-  )(createStore);
+    routerMiddleware(browserHistory)
+  ];
 
   // Store
-  const store = createStoreWithMiddleware(rootReducer, initialState, enhancers);
+  const store = createStore(
+    rootReducer,
+    initialState,
+    compose(
+      applyMiddleware(...middleware),
+      ...enhancers
+    )
+  );
 
   // Reducer Hot Reloading
   if(module.hot) {
@@ -44,5 +46,3 @@ const configureStore = () => {
 
   return store;
 };
-
-export default configureStore;

@@ -1,5 +1,5 @@
 // Server Dependencies
-import express from 'express';
+import Express from 'express';
 import fs from 'fs';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
@@ -10,33 +10,56 @@ import { Provider } from 'react-redux';
 import routes from './shared/routes';
 
 // Store Dependencies
-import { createStore, combineReducers, applyMiddleware } from 'redux';
-
+import configureStore from './client/store';
 // Middleware
 import thunkMiddleware from 'redux-thunk';
-
 // Import Root Reducer
 import rootReducer from './shared/js/reducers/index';
-
 // Lib
 import fetchComponentData from './shared/lib/fetchComponentData';
 
 
-const app = express();
+// Initialize Express App
+const app = new Express();
 
 app.use('/bundle.js', function (req, res) {
   return fs.createReadStream('./dist/bundle.js').pipe(res);
 });
 
-app.use( (req, res) => {
+// Render Initial HTML
+const renderView = (html, initialState) => {
+  return(`
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
+      <meta charset="utf-8">
+      <title>Redux Demo</title>
 
-  const reducer  = combineReducers(rootReducer);
-  const store    = applyMiddleware(thunkMiddleware)(createStore)(reducer);
+      <script>
+        window.__INITIAL_STATE__ = ${JSON.stringify(initialState)};
+      </script>
+    </head>
+    <body>
+      <div id="app">${html}</div>
+      <script type="application/javascript" src="/bundle.js"></script>
+    </body>
+  </html>
+  `);
+};
 
+const renderError = err => {
+  const softTab = '&#32;&#32;&#32;&#32;';
+  const errTrace = process.env.NODE_ENV !== 'production' ?
+    `:<br><br><pre style="color:red">${softTab}${err.stack.replace(/\n/g, `<br>${softTab}`)}</pre>` : '';
+  return renderView(`Server Error${errTrace}`, {});
+};
+
+// Server Side Rendering based on routes matched by React-router.
+app.use((req, res, next) => {
   match({ routes, location: req.url }, (err, redirectLocation, renderProps) => {
-    if(err) {
-      console.error(err);
-      return res.status(500).end('Internal server error');
+    if (err) {
+      return res.status(500).end(renderError(err));
     }
 
     if (redirectLocation) {
@@ -44,54 +67,38 @@ app.use( (req, res) => {
     }
 
     if(!renderProps) {
-      return res.status(404).end('Not found');
+      return next();
     }
 
-    function renderView() {
-      const InitialView = (
-        <Provider store={store}>
-          <RouterContext {...renderProps} />
-        </Provider>
-      );
+    const store = configureStore();
 
-      const componentHTML = ReactDOMServer.renderToString(InitialView);
-      const initialState = store.getState();
+    return fetchComponentData(store, renderProps.components, renderProps.params)
+      .then(() => {
 
-      // Initial HTML
-      const HTML = `
-      <!DOCTYPE html>
-      <html>
-        <head>
-          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
-          <meta charset="utf-8">
-          <title>Mikey Universal App</title>
+        const initialView = ReactDOMServer.renderToString(
+          <Provider store={store}>
+            <RouterContext {...renderProps} />
+          </Provider>
+        );
 
-          <script>
-            window.__INITIAL_STATE__ = ${JSON.stringify(initialState)};
-          </script>
-        </head>
-        <body>
-          <div id="app">${componentHTML}</div>
-          <script type="application/javascript" src="/bundle.js"></script>
-        </body>
-      </html>
-      `;
+        const finalState = store.getState();
 
-      return HTML;
-    }
-
-    fetchComponentData(store.dispatch, renderProps.components, renderProps.params)
-      .then(renderView)
-      .then(html => res.end(html))
-      .catch(err => res.end(err.message));
+        res.set('Content-Type', 'text/html')
+          .status(200)
+          .end(renderView(initialView, finalState));
+      })
+      .catch((error) => next(error));
 
   });
 });
 
 const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, function () {
-  console.log('Server listening on: ' + PORT);
+// App Start
+app.listen(PORT, (error) => {
+  if (!error) {
+    console.log('Server listening on: ' + PORT);
+  }
 });
 
 export default app;
