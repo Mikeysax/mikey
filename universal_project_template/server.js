@@ -67,7 +67,11 @@ app.use((req, res, next) => {
       return next();
     }
 
-    const store = configureStore();
+    const initialState = {
+      // Populate State Here //
+    };
+
+    const store = configureStore(initialState);
 
     return fetchComponentData(store, renderProps.components, renderProps.params)
       .then(() => {

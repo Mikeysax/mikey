@@ -1,4 +1,5 @@
 var path = require('path');
+var webpack = require('webpack');
 
 var outDirectory = (process.env.NODE_ENV === 'production') ?
   'dist' :
@@ -16,6 +17,14 @@ module.exports = {
     path:     path.join(__dirname, outDirectory),
     filename: 'bundle.js'
   },
+  plugins: [
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      }
+    })
+  ],
   module: {
     loaders: [
       // JS Loaders

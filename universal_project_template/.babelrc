@@ -2,15 +2,21 @@
   "presets": ["react", "es2015"],
   "env": {
     "development": {
-      "plugins": [["react-transform", {
+      "plugins": [
+        ["transform-object-rest-spread"],
+        ["transform-react-display-name"],
+        ["react-transform", {
         "transforms": [{
           "transform": "react-transform-catch-errors",
-          "imports": [
-            "react",
-            "redbox-react"
-          ]
+          "imports": ["react", "redbox-react"]
         }]
       }]]
+    },
+    "production": {
+      "plugins": [
+        ["transform-object-rest-spread"],
+        ["transform-react-display-name"]
+      ]
     }
   }
 }
