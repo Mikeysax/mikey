@@ -3,6 +3,7 @@
 
 Inspired by Rails generate; *Mikey* is a CLI / Framework for React/Redux applications. *Mikey* was designed to be simple, intuitive to use, and increase development speed and productivity of React/Redux applications. *Mikey* can generate React/Redux projects and files, saving the developer valuable time that can be spent building features. *Mikey* can also be used in any React/Redux project and is intended to be a broad solution.
 
+![](screenshot.png)
 ___
 ### Installation
 
@@ -176,7 +177,7 @@ ___
 
 #### <strong>Version History:</strong>
 
-<strong>Current: 2.0.7</strong>: Added Universal / Isomorphic project generation with `mikey universal projectName`.
+<strong>Current: 2.0.8</strong>: Added Universal / Isomorphic project generation with `mikey universal projectName`.
 
 <strong>1.7.3</strong>: Added more test templates. Test template is chosen based on which file you are generating. Fixed README and added LICENSE text. Removed some console.log statements which were redundant. Changed helper template to contain basic const.
 
