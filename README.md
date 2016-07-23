@@ -42,7 +42,7 @@ Or for Universal projects use:
 ```$ npm run dev```
 
 
-*Mikey* projects are compatible with React / Redux Dev Chrome Extensions and also have hot reloading enabled. Dependencies are kept as minimal as possible. *Mikey* also contains ES6, SCSS/CSS Loading, Testing Setup, Production/Dev Config, and Source Mapping.
+*Mikey* projects are compatible with React / Redux Dev Chrome Extensions and also have hot reloading enabled. Dependencies are kept as minimal as possible. *Mikey* also contains ES6, SCSS/CSS Loading, Testing Setup, Production/Dev Config, and Source Mapping. Universal projects take advantage of Redux Async Connect / Redux-Connect fork to load data onto the server before rendering.
 
 To build for production:
 
@@ -106,7 +106,7 @@ ___
 
 <strong>To import with curly brackets:</strong>
 
-```$ mikey g_action thisActionFile -i {connect},react-redux```
+```$ mikey g_action fileName -i {connect},react-redux```
 
 You can import with a comma and it will split it correctly:
 
@@ -119,7 +119,7 @@ ___
 
 You can include defaults by typing ```-d Y``` (Yes) for using defaults, at the end of the generation command:
 
-```$ mikey g_component JimmyBob -d Y```
+```$ mikey g_component fileName -d Y```
 ___
 #### <strong>To list defaults:</strong>
 
@@ -131,7 +131,7 @@ If you want to list all stored defaults:
 ___
 #### <strong>To erase defaults:</strong>
 
-```$ mikey erase fileType```    |    ```$ mikey -e actions```
+```$ mikey erase fileType```    |    ```$ mikey -e fileType```
 
 If you want to erase all stored defaults:
 
@@ -183,7 +183,7 @@ ___
 
 #### <strong>Version History:</strong>
 
-<strong>Current: 2.1.0</strong>: Added Universal / Isomorphic project generation with `mikey universal projectName`. The Universal template uses redux-connect package, a fork of Redux Async Connect package, to pre-load
+<strong>Current: 2.1.1</strong>: Added Universal / Isomorphic project generation with `mikey universal projectName`. The Universal template uses redux-connect package, a fork of Redux Async Connect package, to pre-load
 data from AJAX calls onto the server. For examples you can take a look at the example from of how to use this feature.
 
 <strong>1.7.3</strong>: Added more test templates. Test template is chosen based on which file you are generating. Fixed README and added LICENSE text. Removed some console.log statements which were redundant. Changed helper template to contain basic const.

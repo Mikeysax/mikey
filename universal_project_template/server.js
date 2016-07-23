@@ -4,6 +4,7 @@ import fs from 'fs';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import compression from 'compression';
+import stringify from 'fast-stable-stringify';
 
 // Router Dependencies
 import { RouterContext, match } from 'react-router';
@@ -34,13 +35,6 @@ function renderComponents(sData, rProps) {
   );
 }
 
-function hydrateOnClient(data, props) {
-  let components = renderComponents(data, props);
-  setTimeout(() => {
-    res.send(initialPage(components, data));
-  }, 100);
-}
-
 // Initial HTML
 function initialPage(html, store) {
   return `
@@ -52,7 +46,7 @@ function initialPage(html, store) {
         <title>Mikey Universal App</title>
       </head>
       <body>
-        <script>window.__INITIAL_STATE__ = ${JSON.stringify(store.getState())};</script>
+        <script>window.__INITIAL_STATE__ = ${stringify(store.getState())};</script>
         <div id="app">${html}</div>
         <script type="application/javascript" src="/bundle.js"></script>
       </body>
@@ -66,7 +60,10 @@ app.use((req, res) => {
     if (error) {
       console.log('Error: ' + error);
       res.status(500);
-      hydrateOnClient(store, renderProps);
+      let components = renderComponents(store, renderProps);
+      setTimeout(() => {
+        res.send(initialPage(components, store));
+      }, 500);
 
     } else if (redirectLocation) {
       res.redirect(302, redirectLocation.pathname + redirectLocation.search);
@@ -77,7 +74,7 @@ app.use((req, res) => {
         res.status(200);
         setTimeout(() => {
           res.send(initialPage(components, store));
-        }, 100);
+        }, 500);
       });
 
     } else {
