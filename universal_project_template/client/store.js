@@ -3,6 +3,7 @@ import { createStore, compose, applyMiddleware } from 'redux';
 import { routerMiddleware, syncHistoryWithStore } from 'react-router-redux';
 import { browserHistory } from 'react-router';
 import thunkMiddleware from 'redux-thunk';
+import promiseMiddleware from 'redux-promise';
 
 // Import Root Reducer
 import rootReducer from '../shared/js/reducers/index';
@@ -10,9 +11,7 @@ import rootReducer from '../shared/js/reducers/index';
 // Dev Tools
 import DevTools from '../shared/lib/devtools';
 
-// Import data/dummy data
-
-
+// Store
 export default function configureStore(initialState = {}) {
   // For Dev Tools
   let enhancers = [];
@@ -22,6 +21,7 @@ export default function configureStore(initialState = {}) {
 
   // Middleware
   const middleware = [
+    promiseMiddleware,
     thunkMiddleware,
     routerMiddleware(browserHistory)
   ];

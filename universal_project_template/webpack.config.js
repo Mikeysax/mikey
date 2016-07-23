@@ -39,7 +39,10 @@ module.exports = Object.assign(prodCfg, {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.NoErrorsPlugin(),
+    new webpack.ProvidePlugin({
+      'Promise': 'exports?global.Promise!es6-promise'
+    }),
   ],
   devtool: 'inline-source-map',
   devServer: {

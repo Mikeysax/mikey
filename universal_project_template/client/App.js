@@ -9,6 +9,7 @@ import '../shared/css/application.scss';
 import { Router, browserHistory } from 'react-router';
 import { Provider } from 'react-redux';
 import { syncHistoryWithStore } from 'react-router-redux';
+import { ReduxAsyncConnect } from 'redux-connect';
 import routes from '../shared/routes';
 
 // Store Dependencies
@@ -18,8 +19,8 @@ const history = syncHistoryWithStore(browserHistory, store);
 
 // Router
 const router = (
-  <Provider store={store}>
-    <Router history={history}>
+  <Provider store={store} key="provider">
+    <Router render={(props) => <ReduxAsyncConnect {...props}/>} history={history}>
       {routes}
     </Router>
   </Provider>
