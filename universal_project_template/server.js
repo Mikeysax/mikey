@@ -2,9 +2,9 @@
 import Express from 'express';
 import fs from 'fs';
 import React from 'react';
-import ReactDOMServer from 'react-dom/server';
+import { renderToString } from 'react-dom/server';
 import compression from 'compression';
-import stringify from 'fast-stable-stringify';
+import serialize from 'serialize-javascript';
 
 // Router Dependencies
 import { RouterContext, match } from 'react-router';
@@ -23,20 +23,21 @@ app.use('/bundle.js', function (req, res) {
   return fs.createReadStream('./dist/bundle.js').pipe(res);
 });
 
-let initialState = {};
+const initialState = {};
 const store = configureStore(initialState);
 
 // Components
-function renderComponents(sData, rProps) {
-  return(ReactDOMServer.renderToString(
+const renderComponents = (sData, rProps) => {
+  return(renderToString(
     <Provider store={sData}>
        <ReduxAsyncConnect {...rProps}/>
     </Provider>)
   );
-}
+};
+
 
 // Initial HTML
-function initialPage(html, store) {
+const initialPage = (html, store) => {
   return `
   <!DOCTYPE html>
     <html>
@@ -46,13 +47,13 @@ function initialPage(html, store) {
         <title>Mikey Universal App</title>
       </head>
       <body>
-        <script>window.__INITIAL_STATE__ = ${stringify(store.getState())};</script>
+        <script>window.__INITIAL_STATE__ = ${serialize(store.getState())}; charSet="UTF-8"</script>
         <div id="app">${html}</div>
         <script type="application/javascript" src="/bundle.js"></script>
       </body>
     </html>
   `;
-}
+};
 
 // Server Side Rendering
 app.use((req, res) => {
@@ -61,9 +62,7 @@ app.use((req, res) => {
       console.log('Error: ' + error);
       res.status(500);
       let components = renderComponents(store, renderProps);
-      setTimeout(() => {
-        res.send(initialPage(components, store));
-      }, 500);
+      res.send(initialPage(components, store));
 
     } else if (redirectLocation) {
       res.redirect(302, redirectLocation.pathname + redirectLocation.search);
@@ -72,9 +71,8 @@ app.use((req, res) => {
       loadOnServer({...renderProps, store}).then(() => {
         const components = renderComponents(store, renderProps);
         res.status(200);
-        setTimeout(() => {
-          res.send(initialPage(components, store));
-        }, 500);
+        res.send(initialPage(components, store));
+
       });
 
     } else {
