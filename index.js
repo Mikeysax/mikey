@@ -23,7 +23,7 @@ function collect(val, memo) {
 }
 
 program
-  .version('2.1.2')
+  .version('2.1.3')
   .option('new <projectName>', 'Generate New React-Redux Project.')
   .option('universal <projectName>', 'Generate New Universal React-Redux Project.')
   .option('g_container <ContainerName>', 'Generate Container file.')

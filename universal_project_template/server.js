@@ -55,14 +55,19 @@ const initialPage = (html, store) => {
   `;
 };
 
+const renderError = error => {
+  const pad = '&#32;&#32;&#32;&#32;';
+  const errorTrace = process.env.NODE_ENV !== 'production' ?
+    `:<br><br><pre>${pad}${error.stack.replace(/\n/g, `<br>${pad}`)}</pre>` : '';
+  return initialPage(`<h1>Server Error:</h1> ${errorTrace}`, {});
+};
+
 // Server Side Rendering
 app.use((req, res) => {
   match({ routes, location: req.url }, (error, redirectLocation, renderProps) => {
     if (error) {
       console.log('Error: ' + error);
-      res.status(500);
-      let components = renderComponents(store, renderProps);
-      res.send(initialPage(components, store));
+      return res.status(500).end(renderError(error));
 
     } else if (redirectLocation) {
       res.redirect(302, redirectLocation.pathname + redirectLocation.search);
