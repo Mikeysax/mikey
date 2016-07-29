@@ -1,8 +1,9 @@
 // Server Dependencies
 import Express from 'express';
 import fs from 'fs';
+import path from 'path';
 import React from 'react';
-import { renderToString } from 'react-dom/server';
+import { renderToString, renderToStaticMarkup } from 'react-dom/server';
 import compression from 'compression';
 import serialize from 'serialize-javascript';
 
@@ -15,55 +16,38 @@ import routes from './shared/routes';
 // Store Dependencies
 import configureStore from './client/store';
 
+// Initial HTML Page
+import InitialPage from './initialPage';
+
 // Initialize Express App
 const app = new Express();
 
 app.use(compression());
-app.use('/bundle.js', function (req, res) {
-  return fs.createReadStream('./dist/bundle.js').pipe(res);
-});
+app.use(Express.static(__dirname + '/dist'));
 
 const initialState = {};
 const store = configureStore(initialState);
 
-// Components
-const renderComponents = (sData, rProps) => {
-  return(renderToString(
-    <Provider store={sData}>
-       <ReduxAsyncConnect {...rProps}/>
-    </Provider>)
-  );
-};
-
-
-// Initial HTML
-const initialPage = (html, store) => {
-  return `
-  <!DOCTYPE html>
-    <html>
-      <head>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
-        <meta charset="utf-8">
-        <title>Mikey Universal App</title>
-      </head>
-      <body>
-        <script>window.__INITIAL_STATE__ = ${serialize(store.getState())}; charSet="UTF-8"</script>
-        <div id="app">${html}</div>
-        <script type="application/javascript" src="/bundle.js"></script>
-      </body>
-    </html>
-  `;
-};
-
-const renderError = error => {
-  const pad = '&#32;&#32;&#32;&#32;';
-  const errorTrace = process.env.NODE_ENV !== 'production' ?
-    `:<br><br><pre>${pad}${error.stack.replace(/\n/g, `<br>${pad}`)}</pre>` : '';
-  return initialPage(`<h1>Server Error:</h1> ${errorTrace}`, {});
-};
-
 // Server Side Rendering
 app.use((req, res) => {
+  if (__DEVELOPMENT__) {
+    webpackIsomorphicTools.refresh();
+  }
+
+  // Initial HTML
+  const initialPage = (html, store, assets) => {
+    return '<!doctype html>\n' + renderToString(<InitialPage assets={assets} component={html} store={store}/>);
+  };
+
+  // Error Rendering
+  const renderError = error => {
+    const pad = '&#32;&#32;&#32;&#32;';
+    const errorTrace = process.env.NODE_ENV !== 'production' ?
+      `:<br><br><pre>${pad}${error.stack.replace(/\n/g, `<br>${pad}`)}</pre>` : '';
+    res.send(initialPage(`<h1>Server Error:</h1> ${errorTrace}`, {}, webpackIsomorphicTools.assets()));
+  };
+
+  // Rendering
   match({ routes, location: req.url }, (error, redirectLocation, renderProps) => {
     if (error) {
       console.log('Error: ' + error);
@@ -74,9 +58,21 @@ app.use((req, res) => {
 
     } else if (renderProps) {
       loadOnServer({...renderProps, store}).then(() => {
-        const components = renderComponents(store, renderProps);
+        const components = renderToStaticMarkup(
+          <Provider store={store}>
+             <ReduxAsyncConnect {...renderProps} />
+          </Provider>
+        );
         res.status(200);
-        res.send(initialPage(components, store));
+        res.send('<!doctype html>\n' +
+          renderToString(
+            <InitialPage
+              assets={webpackIsomorphicTools.assets()}
+              component={components}
+              store={store}
+            />
+          )
+        );
 
       });
 

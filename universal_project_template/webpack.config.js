@@ -4,12 +4,19 @@ var prodCfg   = require('./webpack.prod.config');
 
 Object.assign = require('object-assign');
 
+var config = require('./webpack-isomorphic-tools-configuration');
+var WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin');
+var webpackIsomorphicToolsPlugin = new WebpackIsomorphicToolsPlugin(config);
+
 module.exports = Object.assign(prodCfg, {
-  entry:  [
-    'webpack-dev-server/client?http://127.0.0.1:8080/',
-    'webpack/hot/only-dev-server',
-    './client/App'
-  ],
+  devtool: 'inline-source-map',
+  entry:  {
+    'main': [
+      'webpack-dev-server/client?http://127.0.0.1:8080/',
+      'webpack/hot/only-dev-server',
+      './client/App'
+    ]
+  },
   module: {
     loaders: [
       // JS Loaders
@@ -26,8 +33,8 @@ module.exports = Object.assign(prodCfg, {
       },
       // Image Loaders
       {
-        test: /\.(jpg|png)$/,
-        loader: 'url?limit=25000'
+        test: webpackIsomorphicToolsPlugin.regular_expression('images'),
+        loader: 'url-loader?limit=10240'
       }
     ]
   },
@@ -41,10 +48,16 @@ module.exports = Object.assign(prodCfg, {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new webpack.ProvidePlugin({
+      'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch',
       'Promise': 'exports?global.Promise!es6-promise'
     }),
+    new webpack.DefinePlugin({
+      __CLIENT__: true,
+      __SERVER__: false,
+      __DEVELOPMENT__: true
+    }),
+    webpackIsomorphicToolsPlugin.development()
   ],
-  devtool: 'inline-source-map',
   devServer: {
     hot: true,
     proxy: {
