@@ -48,7 +48,6 @@ module.exports = Object.assign(prodCfg, {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new webpack.ProvidePlugin({
-      'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch',
       'Promise': 'exports?global.Promise!es6-promise'
     }),
     new webpack.DefinePlugin({

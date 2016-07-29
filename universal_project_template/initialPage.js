@@ -14,6 +14,7 @@ export default class InitialPage extends React.Component {
           {Object.keys(assets.styles).map((style, key) =>
             <link href={assets.styles[style]} key={key} media="screen, projection" rel="stylesheet" type="text/css" charSet="UTF-8"/>
           )}
+          {Object.keys(assets.styles).length === 0 ? <style dangerouslySetInnerHTML={{__html: require('./shared/css/application.scss')._style}}/> : null }
         </head>
         <body>
           <div id="app" dangerouslySetInnerHTML={{__html: content}}/>

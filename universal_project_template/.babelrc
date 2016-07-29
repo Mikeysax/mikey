@@ -3,6 +3,7 @@
   "env": {
     "development": {
       "plugins": [
+        ["transform-decorators-legacy"],
         ["transform-object-rest-spread"],
         ["transform-react-display-name"],
         ["react-transform", {
@@ -14,6 +15,7 @@
     },
     "production": {
       "plugins": [
+        ["transform-decorators-legacy"],
         ["transform-object-rest-spread"],
         ["transform-react-display-name"]
       ]

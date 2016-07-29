@@ -19,11 +19,11 @@
   "license": "MIT",
   "homepage": "http://mikeysax.com",
   "dependencies": {
-    "axios": "^0.13.1",
     "bootstrap": "^3.3.6",
     "compression": "^1.6.2",
     "es6-promise": "^3.2.1",
     "express": "^4.13.3",
+    "extract-text-webpack-plugin": "^1.0.1",
     "history": "^3.0.0",
     "immutable": "^3.7.5",
     "node-sass": "^3.7.0",

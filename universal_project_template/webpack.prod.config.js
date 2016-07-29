@@ -1,5 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 var config = require('./webpack-isomorphic-tools-configuration');
 var WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin');
@@ -31,9 +32,12 @@ module.exports = {
       },
       // CSS Loaders
       {
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract('style', 'css', 'sass')
+      },
+      {
         test: /\.scss$/,
-        exclude: /node_modules/,
-        loaders: ['style', 'css', 'sass']
+        loader: ExtractTextPlugin.extract('style', 'css', 'sass')
       },
       // Image Loaders
       {
@@ -43,10 +47,10 @@ module.exports = {
     ]
   },
   plugins: [
+    new ExtractTextPlugin('bundle.css'),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.ProvidePlugin({
-      'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch',
       'Promise': 'exports?global.Promise!es6-promise'
     }),
     new webpack.optimize.UglifyJsPlugin({
