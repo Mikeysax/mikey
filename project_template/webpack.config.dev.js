@@ -1,6 +1,5 @@
 var path = require('path');
 var webpack = require('webpack');
-var NpmInstallPlugin = require('npm-install-webpack-plugin');
 
 module.exports = {
   devtool: 'eval-source-map',
@@ -15,10 +14,7 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
-    new NpmInstallPlugin({
-        save: true // --save
-    })
+    new webpack.NoErrorsPlugin()
   ],
   module: {
     loaders: [

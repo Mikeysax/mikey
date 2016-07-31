@@ -183,7 +183,7 @@ ___
 
 #### <strong>Version History:</strong>
 
-<strong>Current: 2.1.5</strong>: Added Universal / Isomorphic project generation with `mikey universal projectName`. The Universal template uses redux-connect package, a fork of Redux Async Connect package, to pre-load
+<strong>Current: 2.1.6</strong>: Added Universal / Isomorphic project generation with `mikey universal projectName`. The Universal template uses redux-connect package, a fork of Redux Async Connect package, to pre-load
 data from AJAX calls onto the server. For examples you can take a look at the example from of how to use this feature.
 
 <strong>1.7.3</strong>: Added more test templates. Test template is chosen based on which file you are generating. Fixed README and added LICENSE text. Removed some console.log statements which were redundant. Changed helper template to contain basic const.

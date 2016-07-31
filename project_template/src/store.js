@@ -7,8 +7,7 @@ import thunkMiddleware from 'redux-thunk';
 // Import Root Reducer
 import rootReducer from './js/reducers/index';
 
-// Import data/dummy data
-
+// Import Data/Dummy Data
 
 // Object for Initial Data
 const initialState = {
@@ -17,25 +16,25 @@ const initialState = {
     Trucks*/
 };
 
-const configureStore = () => {
-
+export default function configureStore() {
   // For Dev Tools
-  const enhancers = compose(
-    /* eslint-disable */
-    window.devToolsExtension ? window.devToolsExtension() : f => f
-    /* eslint-enable */
-  );
+  const devTools = window.devToolsExtension ? window.devToolsExtension() : f => f
 
-  const reduxRouterMiddleware = routerMiddleware(browserHistory);
-
-  // Middle Ware Location
-  let createStoreWithMiddleware = applyMiddleware(
+  // Middleware
+  const middleware = [
     thunkMiddleware,
-    reduxRouterMiddleware
-  )(createStore);
+    routerMiddleware(browserHistory)
+  ];
 
   // Store
-  const store = createStoreWithMiddleware(rootReducer, initialState, enhancers);
+  const store = createStore(
+    rootReducer,
+    initialState,
+    compose(
+      applyMiddleware(...middleware),
+      devTools
+    )
+  );
 
   // Reducer Hot Reloading
   if(module.hot) {
@@ -46,6 +45,4 @@ const configureStore = () => {
   }
 
   return store;
-};
-
-export default configureStore;
+}

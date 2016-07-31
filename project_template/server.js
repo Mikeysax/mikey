@@ -17,13 +17,13 @@ app.get('*', function(req, res) {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-var devServer = app.listen(8080, 'localhost', function(err) {
+var server = app.listen(8080, 'localhost', function(err) {
   if (err) {
     console.log(err);
     return;
   }
-  var port = devServer.address().port;
+  var port = server.address().port;
   console.log('Listening at http://localhost:' + port);
 });
 
-module.exports = devServer;
+module.exports = server;

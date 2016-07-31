@@ -1,12 +1,12 @@
 var request = require('supertest');
-var devServer = require('../../devServer');
+var server = require('../../server');
 
 describe('loading express', function() {
 
   it('responds to /', function(done) {
-    request(devServer)
+    request(server)
       .get('/')
       .expect(200, done);
   });
-  
+
 });
