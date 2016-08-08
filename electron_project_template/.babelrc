@@ -1,0 +1,27 @@
+{
+  "presets": ["es2015", "stage-0", "react"],
+  "plugins": ["add-module-exports"],
+  "env": {
+    "development": {
+      "plugins": [
+        ["transform-decorators-legacy"],
+        ["transform-object-rest-spread"],
+        ["transform-react-display-name"],
+        ["react-transform", {
+        "transforms": [{
+          "transform": "react-transform-catch-errors",
+          "imports": ["react", "redbox-react"]
+        }]
+      }]]
+    },
+    "production": {
+      "presets": ["react-optimize"],
+      "plugins": [
+        ["babel-plugin-dev-expression"],
+        ["transform-decorators-legacy"],
+        ["transform-object-rest-spread"],
+        ["transform-react-display-name"]
+      ]
+    }
+  }
+}

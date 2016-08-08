@@ -2,21 +2,25 @@ var fs = require('fs-extra');
 var spawn = require('child_process').spawn;
 var colors = require('colors');
 
-var generateProject = function(projectName, currentWDir, directory, universal) {
+var generateProject = function(projectName, currentWDir, directory, projectType) {
   var projectDestination = currentWDir + '/' + projectName;
   fs.mkdirs(projectDestination, function(err) {
     if (err) { console.log(err); }
   });
 
-  // Universal or Regular?
+  // Universal, Electron, or Regular?
   var projectTemplate = '';
   var projectStart = '';
-  if (universal === false) {
+  if (projectType === 'regular') {
     projectTemplate = '/project_template';
     projectStart = 'npm start';
   }
-  if (universal === true) {
+  if (projectType === 'universal') {
     projectTemplate = '/universal_project_template';
+    projectStart = 'npm run dev';
+  }
+  if (projectType === 'electron') {
+    projectTemplate = '/electron_project_template';
     projectStart = 'npm run dev';
   }
 

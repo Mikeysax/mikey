@@ -31,13 +31,17 @@ ___
 
 ```$ mikey universal projectName```
 
+<strong>To Generate a new electron project:</strong>
+
+```$ mikey electron projectName```
+
 When you create a new project, *Mikey* will run ```npm install``` automatically in the created project directory. All you have to do is be patient, it is not frozen.
 
 Once it is done, cd to project and start the server with:
 
 ```$ npm start```
 
-Or for Universal projects use:
+Or for Universal and Electron projects use:
 
 ```$ npm run dev```
 
@@ -48,7 +52,10 @@ To build for production:
 
 ```$ npm run build```
 
-You will see a build file inside of your project directory which can you upload.
+For eletron projects to build and package for production:
+
+```$ npm run build``` && ```$ npm run package``` or ```$ npm run package-all```
+
 ___
 ### File Generation
 
@@ -183,7 +190,9 @@ ___
 
 #### <strong>Version History:</strong>
 
-<strong>Current: 2.1.6</strong>: Added Universal / Isomorphic project generation with `mikey universal projectName`. The Universal template uses redux-connect package, a fork of Redux Async Connect package, to pre-load
+<strong>Current: 3.0.0</strong>: Added Electron project generation with `mikey electron projectName`. For more information consult the readme file in a generated Electron project.
+
+<strong>2.1.6</strong>: Added Universal / Isomorphic project generation with `mikey universal projectName`. The Universal template uses redux-connect package, a fork of Redux Async Connect package, to pre-load
 data from AJAX calls onto the server. For examples you can take a look at the example from of how to use this feature.
 
 <strong>1.7.3</strong>: Added more test templates. Test template is chosen based on which file you are generating. Fixed README and added LICENSE text. Removed some console.log statements which were redundant. Changed helper template to contain basic const.

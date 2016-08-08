@@ -23,9 +23,10 @@ function collect(val, memo) {
 }
 
 program
-  .version('2.1.6')
+  .version('3.0.0')
   .option('new <projectName>', 'Generate New React-Redux Project.')
   .option('universal <projectName>', 'Generate New Universal React-Redux Project.')
+  .option('electron <projectName>', 'Generate New Electron React-Redux Project.')
   .option('g_container <ContainerName>', 'Generate Container file.')
   .option('g_component <ComponentName>', 'Generate Component file.')
   .option('g_action <actionName>', 'Generate action file.')
@@ -58,17 +59,25 @@ if (!process.argv.slice(2).length) {
 // Project Generation
 if (typeof program.new !== 'undefined') {
   var projectName = program.new;
-  var universal = false;
+  var projectType = 'regular';
   console.log(colors.bold('Generating New Project: ') + colors.yellow(projectName.toString()) + colors.bold(' in ') + colors.yellow(currentWDir.toString()));
-  gProject.generateProject(projectName, currentWDir, directory, universal);
+  gProject.generateProject(projectName, currentWDir, directory, projectType);
 }
 
 // Universal Project Generation
 if (typeof program.universal !== 'undefined') {
   var projectName = program.universal;
-  var universal = true;
+  var projectType = 'universal';
   console.log(colors.bold('Generating New Universal Project: ') + colors.yellow(projectName.toString()) + colors.bold(' in ') + colors.yellow(currentWDir.toString()));
-  gProject.generateProject(projectName, currentWDir, directory, universal);
+  gProject.generateProject(projectName, currentWDir, directory, projectType);
+}
+
+// Universal Project Generation
+if (typeof program.electron !== 'undefined') {
+  var projectName = program.electron;
+  var projectType = 'electron';
+  console.log(colors.bold('Generating New Electron Project: ') + colors.yellow(projectName.toString()) + colors.bold(' in ') + colors.yellow(currentWDir.toString()));
+  gProject.generateProject(projectName, currentWDir, directory, projectType);
 }
 
 // File Generation
