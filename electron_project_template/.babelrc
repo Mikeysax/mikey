@@ -3,6 +3,7 @@
   "plugins": ["add-module-exports"],
   "env": {
     "development": {
+      "presets": ["react-hmre"],
       "plugins": [
         ["transform-decorators-legacy"],
         ["transform-object-rest-spread"],

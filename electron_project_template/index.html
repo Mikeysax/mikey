@@ -1,26 +1,23 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-    <link href='https://fonts.googleapis.com/css?family=Lato:400,100,700,400italic' rel='stylesheet' type='text/css'>
     <script>
       (function() {
           const link = document.createElement('link');
           link.rel = 'stylesheet';
-          link.href = (process.env.NODE_ENV !== 'development') ? './dist/style.css' : 'http://localhost:8080/src/css/application.scss';
+          link.href = (process.env.NODE_ENV !== 'development') ? './dist/style.css' : '';
           document.write(link.outerHTML);
       }());
     </script>
     <meta charset="UTF-8">
     <title>New Mikey Generated Electron App</title>
-    <link rel="shortcut icon" type="image/png" href="https://facebook.github.io/react/img/logo_og.png"/>
   </head>
   <body>
     <div id="app"></div>
     <script>
       (function() {
         const script = document.createElement('script');
-        script.src = (process.env.NODE_ENV !== 'development') ? './dist/bundle.js' : 'http://localhost:8080/static/bundle.js';
+        script.src = (process.env.NODE_ENV !== 'development') ? './dist/bundle.js' : 'http://localhost:8080/dist/bundle.js';
         document.write(script.outerHTML);
       }());
     </script>

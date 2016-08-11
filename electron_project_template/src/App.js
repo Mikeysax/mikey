@@ -3,6 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 // Import CSS/SCSS
+import 'bootstrap/dist/css/bootstrap.css';
 import './css/application.scss';
 
 // Router Dependencies
