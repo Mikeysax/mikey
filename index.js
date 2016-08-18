@@ -23,7 +23,7 @@ function collect(val, memo) {
 }
 
 program
-  .version('3.0.1')
+  .version('3.0.2')
   .option('new <projectName>', 'Generate New React-Redux Project.')
   .option('universal <projectName>', 'Generate New Universal React-Redux Project.')
   .option('electron <projectName>', 'Generate New Electron React-Redux Project.')
@@ -86,23 +86,23 @@ var genFileName = '';
 // Set File Variables
 if (typeof program.g_component !== 'undefined') {
   reactFileType = 'component';
-  genFileName = program.g_component;
+  genFileName = _.upperFirst(program.g_component);
 }
 if (typeof program.g_container !== 'undefined') {
   reactFileType = 'container';
-  genFileName = program.g_container;
+  genFileName = _.upperFirst(program.g_container);
 }
 if (typeof program.g_action !== 'undefined') {
   reactFileType = 'action';
-  genFileName = program.g_action;
+  genFileName = _.camelCase(program.g_action);
 }
 if (typeof program.g_reducer !== 'undefined') {
   reactFileType = 'reducer';
-  genFileName = program.g_reducer;
+  genFileName = _.camelCase(program.g_reducer);
 }
 if (typeof program.g_helper !== 'undefined') {
   reactFileType = 'helper';
-  genFileName = program.g_helper;
+  genFileName = _.camelCase(program.g_helper);
 }
 // Generate File Call
 if (reactFileType.length > 1 && genFileName.length > 1) {
