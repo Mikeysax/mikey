@@ -17,13 +17,12 @@ var dTemp = require('./custom_templates/deleteTemplate.js');
 var lTemp = require('./custom_templates/listTemplates.js');
 
 function collect(val, memo) {
-  console.log(val)
   memo.push(val);
   return memo;
 }
 
 program
-  .version('3.0.2')
+  .version('3.0.3')
   .option('new <projectName>', 'Generate New React-Redux Project.')
   .option('universal <projectName>', 'Generate New Universal React-Redux Project.')
   .option('electron <projectName>', 'Generate New Electron React-Redux Project.')
@@ -45,7 +44,7 @@ program
 // Directory for Mikey
 var directory = __dirname;
 // Imports
-var inpm = program.importName;
+var inpm = program.import;
 // Defaults
 var defaults = program.defaults;
 // Current Working Directory

@@ -190,7 +190,7 @@ ___
 
 #### <strong>Version History:</strong>
 
-<strong>Current: 3.0.2</strong>: Added Electron project generation with `mikey electron projectName`. For more information consult the readme file in a generated Electron project.
+<strong>Current: 3.0.3</strong>: Added Electron project generation with `mikey electron projectName`. For more information consult the readme file in a generated Electron project.
 
 <strong>2.1.6</strong>: Added Universal / Isomorphic project generation with `mikey universal projectName`. The Universal template uses redux-connect package, a fork of Redux Async Connect package, to pre-load
 data from AJAX calls onto the server. For examples you can take a look at the example from of how to use this feature.
