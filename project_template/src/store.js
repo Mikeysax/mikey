@@ -1,6 +1,6 @@
 // Store Dependencies
 import { createStore, compose, applyMiddleware } from 'redux';
-import { routerMiddleware, syncHistoryWithStore } from 'react-router-redux';
+import { routerMiddleware } from 'react-router-redux';
 import { browserHistory } from 'react-router';
 import thunkMiddleware from 'redux-thunk';
 

@@ -1,11 +1,10 @@
 // Store Dependencies
 import { createStore, compose, applyMiddleware } from 'redux';
-import { routerMiddleware, syncHistoryWithStore } from 'react-router-redux';
+import { routerMiddleware } from 'react-router-redux';
+import createLogger from 'redux-logger';
 import { hashHistory } from 'react-router';
 import thunkMiddleware from 'redux-thunk';
-import * as actionCreators from './js/actions/index';
-// Dev Tools
-import devTools from 'remote-redux-devtools';
+import actionCreators from './js/actions/index';
 
 // Import Root Reducer
 import rootReducer from './js/reducers/index';
@@ -22,16 +21,19 @@ const initialState = {
 export default function configureStore() {
   // Dev Tools
   let enhancers = [];
+  let logger = [];
   if (process.env.NODE_ENV === 'development') {
-    let dev_tools = window.devToolsExtension ?
-    window.devToolsExtension(actionCreators) :
-    noop => noop
-    enhancers.push(dev_tools);
+    enhancers.push(window.devToolsExtension ?
+      window.devToolsExtension({ actionCreators }) : f => f
+    );
+    logger.push(createLogger({ level: 'info', collapsed: true }));
   }
+
   // Middleware
   const middleware = [
     thunkMiddleware,
-    routerMiddleware(hashHistory)
+    routerMiddleware(hashHistory),
+    ...logger
   ];
 
   // Store
@@ -39,10 +41,14 @@ export default function configureStore() {
     rootReducer,
     initialState,
     compose(
-      applyMiddleware(...middleware),
+      applyMiddleware(...middleware, ...logger),
       ...enhancers
     )
   );
+
+  if (process.env.NODE_ENV === 'development' && window.devToolsExtension) {
+    window.devToolsExtension.updateStore(store);
+  }
 
   // Reducer Hot Reloading
   if(module.hot) {
@@ -50,10 +56,6 @@ export default function configureStore() {
       const nextRootReducer = require('./js/reducers/index').default;
       store.replaceReducer(nextRootReducer);
     });
-  }
-
-  if (process.env.NODE_ENV === 'development' && window.devToolsExtension) {
-    window.devToolsExtension.updateStore(store);
   }
 
   return store;

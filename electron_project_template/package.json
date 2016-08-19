@@ -117,6 +117,7 @@
     "url-loader": "^0.5.7",
     "webpack-dev-middleware": "^1.6.1",
     "webpack-hot-middleware": "^2.12.2",
+    "webpack-dashboard": "^0.1.2",
     "webpack-merge": "^0.14.1"
   }
 }

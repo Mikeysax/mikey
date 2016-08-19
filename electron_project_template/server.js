@@ -3,18 +3,26 @@ import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import config from './webpack.config';
+var Dashboard = require('webpack-dashboard');
+var DashboardPlugin = require('webpack-dashboard/plugin');
 
 const app = express();
 const compiler = webpack(config);
+var dashboard = new Dashboard();
 const PORT = 8080;
 
+compiler.apply(new DashboardPlugin(dashboard.setData));
+
 const webpackDevWare = webpackDevMiddleware(compiler, {
+  quiet: true,
   publicPath: config.output.publicPath,
   stats: { colors: true }
 });
 
 app.use(webpackDevWare);
-app.use(webpackHotMiddleware(compiler));
+app.use(webpackHotMiddleware(compiler, {
+  log: () => {}
+}));
 
 const server = app.listen(PORT, 'localhost', err => {
   if (err) {

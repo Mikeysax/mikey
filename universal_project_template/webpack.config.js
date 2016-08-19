@@ -1,6 +1,9 @@
 var path      = require('path');
 var webpack   = require('webpack');
 var prodCfg   = require('./webpack.prod.config');
+var Dashboard = require('webpack-dashboard');
+var DashboardPlugin = require('webpack-dashboard/plugin');
+var dashboard = new Dashboard();
 
 Object.assign = require('object-assign');
 
@@ -55,7 +58,8 @@ module.exports = Object.assign(prodCfg, {
       __SERVER__: false,
       __DEVELOPMENT__: true
     }),
-    webpackIsomorphicToolsPlugin.development()
+    webpackIsomorphicToolsPlugin.development(),
+    new DashboardPlugin(dashboard.setData)
   ],
   devServer: {
     hot: true,

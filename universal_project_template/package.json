@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "NODE_PATH=$NODE_PATH:./shared node --harmony .",
-    "dev": "npm run start & webpack-dev-server --progress --color",
+    "dev": "npm run start & webpack-dev-server --quiet --progress --color",
     "build": "NODE_ENV=production webpack --progress --color -p --config webpack.prod.config.js",
     "test": "mocha './tests/**/*.test.@(js|jsx)' --compilers js:babel-core/register --require ./tests/testHelpers.js 'tests/**/*.@(js|jsx)' --require ignore-styles",
     "test:watch": "npm run test -- --watch",
@@ -83,6 +83,7 @@
     "supertest": "^1.2.0",
     "url-loader": "^0.5.7",
     "webpack": "^1.12.1",
-    "webpack-dev-server": "^1.11.0"
+    "webpack-dev-server": "^1.11.0",
+    "webpack-dashboard": "^0.1.2"
   }
 }

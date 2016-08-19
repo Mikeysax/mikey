@@ -23,6 +23,6 @@ ReactDOM.render(
     <Router history={history}>
       {routes}
     </Router>
-  </Provider>
-  , document.getElementById('app')
+  </Provider>,
+  document.getElementById('app')
 );

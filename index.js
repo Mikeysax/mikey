@@ -22,7 +22,7 @@ function collect(val, memo) {
 }
 
 program
-  .version('3.0.3')
+  .version('3.0.4')
   .option('new <projectName>', 'Generate New React-Redux Project.')
   .option('universal <projectName>', 'Generate New Universal React-Redux Project.')
   .option('electron <projectName>', 'Generate New Electron React-Redux Project.')
