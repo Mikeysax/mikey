@@ -10,6 +10,8 @@ Inspired by Rails generate; *Mikey* is a CLI / Framework for React/Redux applica
 [Regular Mikey Example](https://github.com/otis-bot/otis-frontend)
 
 [Universal Mikey Example](https://github.com/Mikeysax/mikeyUniversalExample)
+
+[Electron Mikey Example](https://github.com/Mikeysax/Munote)
 ___
 ### Installation
 
@@ -46,15 +48,15 @@ Or for Universal and Electron projects use:
 ```$ npm run dev```
 
 
-*Mikey* projects are compatible with React / Redux Dev Chrome Extensions and also have hot reloading enabled. Dependencies are kept as minimal as possible. *Mikey* also contains ES6, SCSS/CSS Loading, Testing Setup, Production/Dev Config, and Source Mapping. Universal projects take advantage of Redux Async Connect / Redux-Connect fork to load data onto the server before rendering.
+*Mikey* projects are compatible with React / Redux Dev Chrome Extensions and also have hot reloading enabled. Dependencies are kept as minimal as possible. *Mikey* also contains Babel for ES6 compatibility, SCSS/CSS/Image loaders, Testing Setup with Enzyme and other testing dependencies, Production/Dev Config, and Source Mapping. Universal projects take advantage of Redux Async Connect / Redux-Connect fork to pre-load data onto the server before rendering.
 
 To build for production:
 
 ```$ npm run build```
 
-For eletron projects to build and package for production:
+For Electron project build and package for production:
 
-```$ npm run build``` && ```$ npm run package``` or ```$ npm run package-all```
+```$ npm run build``` && ```$ npm run package``` || ```$ npm run package-all```
 
 ___
 ### File Generation
@@ -63,9 +65,9 @@ ___
 
 ```$ mikey g_action fileName```
 
-```$ mikey g_component fileName```   
+```$ mikey g_component FileName```   
 
-```$ mikey g_container fileName```  
+```$ mikey g_container FileName```  
 
 ```$ mikey g_reducer fileName```  
 
@@ -79,7 +81,7 @@ Custom Files(section blow):
 
 #### <strong>*Mikey* classification and description of file type:</strong>
 
-<strong>[Containers](http://redux.js.org/docs/basics/UsageWithReact.html)</strong> are components which hold logic such as mapping state to props, lifecycle methods, dispatching, and random methods. Containers act as further separation of logic and view.
+<strong>[Containers](http://redux.js.org/docs/basics/UsageWithReact.html)</strong> are components which connect to your store. Containers should act as further separation of logic and view.
 
 <strong>[Components](http://redux.js.org/docs/basics/UsageWithReact.html)</strong> are primarily the view layer and rendered inside of Containers.
 
@@ -124,7 +126,7 @@ ___
 
 <strong>*Mikey* will remember</strong> previous imports and store them as defaults for each file type. Stored imports are only stored once per file type.
 
-You can include defaults by typing ```-d Y``` (Yes) for using defaults, at the end of the generation command:
+You can include defaults by typing ```-d Y``` (for Yes) for using defaults, at the end of the generation command:
 
 ```$ mikey g_component fileName -d Y```
 ___
@@ -148,11 +150,11 @@ ___
 ### Custom Templates
 
 #### Saving Custom Templates:
-<strong>*Mikey*</strong> will allow you to save react files as templates from your current project. Create a file in containers / components / reducers / actions / helpers folders and use the:
+<strong>*Mikey*</strong> will allow you to save your projects react file as a template. The file you wish to save should be in your current project. Create a file in containers / components / reducers / actions / helpers folders and use the:
 
 ```$ mikey save_template fileType```
 
-This command will save the file inside of *Mikey* as a template. File selection is <strong>without the .js extension</strong>. A list of files you can save will be displayed.
+This command will save the file inside of *Mikey* as a custom template. File selection is <strong>without the .js extension</strong>. A list of files you can save will be displayed.
 
 #### Generating Custom Files from Custom Templates:
 
@@ -190,7 +192,7 @@ ___
 
 #### <strong>Version History:</strong>
 
-<strong>3.0.4</strong>: Added Electron project generation with `mikey electron projectName`. For more information consult the readme file in a generated Electron project.
+<strong>3.0.5</strong>: Added Electron project generation with `mikey electron projectName`. For more information consult the readme file in a generated Electron project.
 
 <strong>2.1.6</strong>: Added Universal / Isomorphic project generation with `mikey universal projectName`. The Universal template uses redux-connect package, a fork of Redux Async Connect package, to pre-load
 data from AJAX calls onto the server. For examples you can take a look at the example from of how to use this feature.
