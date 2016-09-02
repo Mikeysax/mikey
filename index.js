@@ -22,8 +22,9 @@ function collect(val, memo) {
 }
 
 program
-  .version('3.0.5')
+  .version('3.1.0')
   .option('new <projectName>', 'Generate New React-Redux Project.')
+  .option('react <projectName>', 'Generate New React Project (No Redux).')
   .option('universal <projectName>', 'Generate New Universal React-Redux Project.')
   .option('electron <projectName>', 'Generate New Electron React-Redux Project.')
   .option('g_container <fileName>', 'Generate Container file.')
@@ -59,7 +60,15 @@ if (!process.argv.slice(2).length) {
 if (typeof program.new !== 'undefined') {
   var projectName = program.new;
   var projectType = 'regular';
-  console.log(colors.bold('Generating New Project: ') + colors.yellow(projectName.toString()) + colors.bold(' in ') + colors.yellow(currentWDir.toString()));
+  console.log(colors.bold('Generating New React-Redux Project: ') + colors.yellow(projectName.toString()) + colors.bold(' in ') + colors.yellow(currentWDir.toString()));
+  gProject.generateProject(projectName, currentWDir, directory, projectType);
+}
+
+// Project React(No Redux) Generation
+if (typeof program.new !== 'undefined') {
+  var projectName = program.react;
+  var projectType = 'no_redux';
+  console.log(colors.bold('Generating New React Project: ') + colors.yellow(projectName.toString()) + colors.bold(' in ') + colors.yellow(currentWDir.toString()));
   gProject.generateProject(projectName, currentWDir, directory, projectType);
 }
 
@@ -67,7 +76,7 @@ if (typeof program.new !== 'undefined') {
 if (typeof program.universal !== 'undefined') {
   var projectName = program.universal;
   var projectType = 'universal';
-  console.log(colors.bold('Generating New Universal Project: ') + colors.yellow(projectName.toString()) + colors.bold(' in ') + colors.yellow(currentWDir.toString()));
+  console.log(colors.bold('Generating New Universal React-Redux Project: ') + colors.yellow(projectName.toString()) + colors.bold(' in ') + colors.yellow(currentWDir.toString()));
   gProject.generateProject(projectName, currentWDir, directory, projectType);
 }
 
@@ -75,7 +84,7 @@ if (typeof program.universal !== 'undefined') {
 if (typeof program.electron !== 'undefined') {
   var projectName = program.electron;
   var projectType = 'electron';
-  console.log(colors.bold('Generating New Electron Project: ') + colors.yellow(projectName.toString()) + colors.bold(' in ') + colors.yellow(currentWDir.toString()));
+  console.log(colors.bold('Generating New Electron React-Redux Project: ') + colors.yellow(projectName.toString()) + colors.bold(' in ') + colors.yellow(currentWDir.toString()));
   gProject.generateProject(projectName, currentWDir, directory, projectType);
 }
 

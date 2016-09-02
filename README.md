@@ -9,6 +9,8 @@ Inspired by Rails generate; *Mikey* is a CLI / Framework for React/Redux applica
 
 [Regular Mikey Example](https://github.com/otis-bot/otis-frontend)
 
+[React Mikey Example (No Redux Coming Soon!)]()
+
 [Universal Mikey Example](https://github.com/Mikeysax/mikeyUniversalExample)
 
 [Electron Mikey Example](https://github.com/Mikeysax/Munote)
@@ -28,6 +30,10 @@ ___
 <strong>To Generate a new project:</strong>
 
 ```$ mikey new projectName```
+
+<strong>To Generate a new react(no redux) project:</strong>
+
+```$ mikey react projectName```
 
 <strong>To Generate a new universal project:</strong>
 
@@ -191,6 +197,8 @@ ___
 ___
 
 #### <strong>Version History:</strong>
+
+<strong>3.1.0</strong>: Added React (Without Redux) project generation with `mikey react projectName`. This project is the only project which does not contain Redux.
 
 <strong>3.0.5</strong>: Added Electron project generation with `mikey electron projectName`. For more information consult the readme file in a generated Electron project.
 

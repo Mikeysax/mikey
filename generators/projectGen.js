@@ -15,6 +15,10 @@ var generateProject = function(projectName, currentWDir, directory, projectType)
     projectTemplate = '/project_template';
     projectStart = 'npm start';
   }
+  if (projectType === 'no_redux') {
+    projectTemplate = '/project_react_template';
+    projectStart = 'npm start';
+  }
   if (projectType === 'universal') {
     projectTemplate = '/universal_project_template';
     projectStart = 'npm run dev';
