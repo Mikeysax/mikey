@@ -65,7 +65,7 @@ if (typeof program.new !== 'undefined') {
 }
 
 // Project React(No Redux) Generation
-if (typeof program.new !== 'undefined') {
+if (typeof program.react !== 'undefined') {
   var projectName = program.react;
   var projectType = 'no_redux';
   console.log(colors.bold('Generating New React Project: ') + colors.yellow(projectName.toString()) + colors.bold(' in ') + colors.yellow(currentWDir.toString()));

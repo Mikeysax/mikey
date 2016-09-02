@@ -18,7 +18,6 @@
   "homepage": "http://mikeysax.com",
   "dependencies": {
     "express": "^4.13.4",
-    "immutable": "^3.8.1",
     "node-sass": "^3.7.0",
     "react": "^15.0.2",
     "react-addons-css-transition-group": "^15.0.2",
