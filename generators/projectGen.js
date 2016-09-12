@@ -11,11 +11,11 @@ var generateProject = function(projectName, currentWDir, directory, projectType)
   // Universal, Electron, or Regular?
   var projectTemplate = '';
   var projectStart = '';
-  if (projectType === 'regular') {
+  if (projectType === 'redux') {
     projectTemplate = '/project_template';
     projectStart = 'npm start';
   }
-  if (projectType === 'no_redux') {
+  if (projectType === 'react') {
     projectTemplate = '/project_react_template';
     projectStart = 'npm start';
   }

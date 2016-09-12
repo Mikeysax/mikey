@@ -29,23 +29,24 @@ ___
 
 <strong>To Generate a new project:</strong>
 
-```$ mikey new projectName```
+```$ mikey new projectType```
 
-<strong>To Generate a new react(no redux) project:</strong>
+The different project types are:
 
-```$ mikey react projectName```
+react : react / webpack (no redux).
 
-<strong>To Generate a new universal project:</strong>
+redux : react-redux / webpack.
 
-```$ mikey universal projectName```
+universal : react-redux / webpack, with server rendering.
 
-<strong>To Generate a new electron project:</strong>
+electron : react-redux / webpack, served via electron.
 
-```$ mikey electron projectName```
+
+After the new command, *Mikey* will ask for the project name.
 
 When you create a new project, *Mikey* will run ```npm install``` automatically in the created project directory. All you have to do is be patient, it is not frozen.
 
-Once it is done, cd to project and start the server with:
+Once ```npm install``` is done, ```cd``` to project and start the server with:
 
 ```$ npm start```
 
@@ -201,6 +202,8 @@ ___
 ___
 
 #### <strong>Version History:</strong>
+
+<strong>3.3.0</strong>: Complete refactor of project generation into one command.
 
 <strong>3.2.0</strong>: ```mikey``` installs dependencies from importing via file generation and using defaults.
 

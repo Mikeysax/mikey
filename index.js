@@ -22,11 +22,8 @@ function collect(val, memo) {
 }
 
 program
-  .version('3.2.0')
-  .option('new <projectName>', 'Generate New React-Redux Project.')
-  .option('react <projectName>', 'Generate New React Project (No Redux).')
-  .option('universal <projectName>', 'Generate New Universal React-Redux Project.')
-  .option('electron <projectName>', 'Generate New Electron React-Redux Project.')
+  .version('3.3.0')
+  .option('new <projectName>', 'Generate New Mikey Project: react/redux/universal/electron', /^(react|redux|universal|electron)$/i)
   .option('g_container <fileName>', 'Generate Container file.')
   .option('g_component <fileName>', 'Generate Component file.')
   .option('g_action <fileName>', 'Generate action file.')
@@ -58,34 +55,23 @@ if (!process.argv.slice(2).length) {
 
 // Project Generation
 if (typeof program.new !== 'undefined') {
-  var projectName = program.new;
-  var projectType = 'regular';
-  console.log(colors.bold('Generating New React-Redux Project: ') + colors.yellow(projectName.toString()) + colors.bold(' in ') + colors.yellow(currentWDir.toString()));
-  generateProject(projectName, currentWDir, directory, projectType);
-}
+  setTimeout(function() {
+    var projectQuestion = [
+      {
+        type: 'input',
+        name: 'name',
+        message: 'Enter Project Name:'
+      }
+    ];
 
-// Project React(No Redux) Generation
-if (typeof program.react !== 'undefined') {
-  var projectName = program.react;
-  var projectType = 'no_redux';
-  console.log(colors.bold('Generating New React Project: ') + colors.yellow(projectName.toString()) + colors.bold(' in ') + colors.yellow(currentWDir.toString()));
-  generateProject(projectName, currentWDir, directory, projectType);
-}
+    inquirer.prompt(projectQuestion).then(function (answer) {
+      var projectType = program.new;
+      var projectName = answer.name;
 
-// Universal Project Generation
-if (typeof program.universal !== 'undefined') {
-  var projectName = program.universal;
-  var projectType = 'universal';
-  console.log(colors.bold('Generating New Universal React-Redux Project: ') + colors.yellow(projectName.toString()) + colors.bold(' in ') + colors.yellow(currentWDir.toString()));
-  generateProject(projectName, currentWDir, directory, projectType);
-}
-
-// Universal Project Generation
-if (typeof program.electron !== 'undefined') {
-  var projectName = program.electron;
-  var projectType = 'electron';
-  console.log(colors.bold('Generating New Electron React-Redux Project: ') + colors.yellow(projectName.toString()) + colors.bold(' in ') + colors.yellow(currentWDir.toString()));
-  generateProject(projectName, currentWDir, directory, projectType);
+      console.log(colors.bold(`Generating New ${_.upperFirst(projectType)} Mikey Project: `) + colors.yellow(projectName.toString()) + colors.bold(' in ') + colors.yellow(currentWDir.toString()));
+      generateProject(projectName, currentWDir, directory, projectType);
+    });
+  }, 100);
 }
 
 // File Generation
