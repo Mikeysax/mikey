@@ -1,7 +1,7 @@
 # mikey
 ### *Mikey* is a React-Redux framework for generating React-Redux projects and React-Redux files.
 
-Inspired by Rails generate; *Mikey* is a CLI / Framework for React/Redux applications. *Mikey* was designed to be simple, intuitive to use, and increase development speed and productivity of React/Redux applications. *Mikey* can generate React/Redux projects and files, saving the developer valuable time that can be spent building features. *Mikey* can also be used in any React/Redux project and is intended to be a broad solution.
+Inspired by Rails generate; *Mikey* is a CLI / Framework for React/Redux applications. *Mikey* was designed to be simple, intuitive to use, and increase development speed and productivity of React/Redux applications. *Mikey* can generate React/Redux projects and files, saving the developer valuable time that can be spent building features. *Mikey* can also be used in most React/Redux projects and is intended to be a broad solution.
 
 ![](screenshot.png)
 
@@ -31,32 +31,31 @@ ___
 
 ```$ mikey new projectType```
 
-The different project types are:
+<strong>The different project types are:</strong>
 
-react : react / webpack (no redux).
+```react``` : react / webpack (no redux).
 
-redux : react-redux / webpack.
+```redux``` : react-redux / webpack.
 
-universal : react-redux / webpack, with server rendering.
+```universal``` : react-redux / webpack, with server rendering.
 
-electron : react-redux / webpack, served via electron.
+```electron``` : react-redux / webpack, served via electron.
 
 
-After the new command, *Mikey* will ask for the project name.
+<strong>After the new command, *Mikey* will ask for the project name.</strong>
 
 When you create a new project, *Mikey* will run ```npm install``` automatically in the created project directory. All you have to do is be patient, it is not frozen.
-
+___
 Once ```npm install``` is done, ```cd``` to project and start the server with:
 
-```$ npm start```
+React and React-Redux Projects: ```$ npm start```
 
-Or for Universal and Electron projects use:
+Universal and Electron projects: ```$ npm run dev```
 
-```$ npm run dev```
+___
+*Mikey* projects are compatible with React / Redux Dev Chrome Extensions / Electron Dev Tools... Also, hot reloading is enabled. Dependencies are kept as minimal as possible. *Mikey* also contains Babel for ES6 compatibility, SCSS/CSS/Image loaders, Testing Setup with Enzyme and other testing dependencies, Production/Dev Config, and Source Mapping. Universal projects take advantage of Redux Async Connect / Redux-Connect fork to pre-load data onto the server before rendering.
 
-
-*Mikey* projects are compatible with React / Redux Dev Chrome Extensions and also have hot reloading enabled. Dependencies are kept as minimal as possible. *Mikey* also contains Babel for ES6 compatibility, SCSS/CSS/Image loaders, Testing Setup with Enzyme and other testing dependencies, Production/Dev Config, and Source Mapping. Universal projects take advantage of Redux Async Connect / Redux-Connect fork to pre-load data onto the server before rendering.
-
+___
 To build for production:
 
 ```$ npm run build```
@@ -80,12 +79,13 @@ ___
 
 ```$ mikey g_helper fileName```
 
-Custom Files(section blow):
+<strong>Custom Files(section blow):</strong>
 
 ```$ mikey g_file fileType```
 
 <strong>Use these commands in the root of your project.</strong>
 
+___
 #### <strong>*Mikey* classification and description of file type:</strong>
 
 <strong>[Containers](http://redux.js.org/docs/basics/UsageWithReact.html)</strong> are components which connect to your store. Containers should act as further separation of logic and view.
@@ -98,17 +98,18 @@ Custom Files(section blow):
 
 <strong>Helpers</strong> are used for organizing random methods which can clutter your Containers and Components. Using helpers enable you to reuse methods over and over throughout your project (DRYer).
 
+___
 ##### <strong>On File Creation Specifics:</strong>
 
 On file creation, *Mikey* will look through your working project directory for actions/components/containers/reducers/helpers folders and create the corresponding file type. If none of these folders exist, *Mikey* will create the file in the root of your project.
 
-*Mikey* also creates ```.mikeyPath``` folder in your project and saves the path of the file type generated. This is to optimize the speed of file creation. By saving this path *Mikey* does not have to dynamically find the folder again after each generated file.
+<strong>*Mikey* also creates ```.mikeyPath``` folder</strong> in your project and saves the path of the file type generated. This is to optimize the speed of file creation. By saving this path *Mikey* does not have to dynamically find the folder again after each generated file.
 
 <strong>A Test file is also generated when you generate a file.</strong>
 
 If your project directory changes at all, delete ```.mikeyPath``` folder to recache folder paths. ```.mikeyPath``` folder is added to ```.gitignore``` also.
 
-You cannot create files that already exist.
+<strong>You cannot create files that already exist. *Mikey* will prevent you from overwriting files you have already generated.</strong>
 ___
 ### Adding Imports on File Generation
 
@@ -128,7 +129,7 @@ You can import with a comma and it will split it correctly:
 
 ```import {connect} from 'react-redux';```
 
-If the imports are not currently listed in your projects ```package.json``` file dependencies, they will be installed.
+If the imports are not currently listed in your projects ```package.json``` file dependencies, they will be automatically installed.
 
 ___
 ### Defaults
@@ -139,7 +140,7 @@ You can include defaults by typing ```-d Y``` (for Yes) for using defaults, at t
 
 ```$ mikey g_component fileName -d Y```
 
-If the defaults are not currently listed in your projects ```package.json``` file dependencies, they will be installed.
+If the defaults are not currently listed in your projects ```package.json``` file dependencies, they will be automatically installed.
 ___
 #### <strong>To list defaults:</strong>
 
@@ -167,6 +168,7 @@ ___
 
 This command will save the file inside of *Mikey* as a custom template. File selection is <strong>without the .js extension</strong>. A list of files you can save will be displayed.
 
+___
 #### Generating Custom Files from Custom Templates:
 
 Once you've saved a template, you can reuse it in any project.
@@ -175,6 +177,7 @@ Once you've saved a template, you can reuse it in any project.
 
 A list of custom templates of that file type will be displayed. A prompt will be displayed in the console for template choice and desired file name. The template file name will be used by default if no new name is entered. File selection is <strong>without the .js extension</strong>
 
+___
 #### Deleting Custom Files from Custom Templates:
 
 If you want to delete a custom template:
@@ -183,6 +186,7 @@ If you want to delete a custom template:
 
 A list of custom templates of that file type will be displayed. The prompt will then ask which file you would like to delete. File selection is <strong>without the .js extension</strong>
 
+___
 #### List Custom Files from Custom Templates:
 
 If you would like to look at saved custom templates:
@@ -191,6 +195,7 @@ If you would like to look at saved custom templates:
 
 This will display all saved custom templates for current file type.
 
+___
 ### Contribute
 <strong>If you would like to contribute, it would be greatly appreciated.</strong>
 
@@ -203,7 +208,7 @@ ___
 
 #### <strong>Version History:</strong>
 
-<strong>3.3.0</strong>: Complete refactor of project generation into one command.
+<strong>3.3.1</strong>: Complete refactor of project generation into one command.
 
 <strong>3.2.0</strong>: ```mikey``` installs dependencies from importing via file generation and using defaults.
 

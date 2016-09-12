@@ -22,7 +22,7 @@ function collect(val, memo) {
 }
 
 program
-  .version('3.3.0')
+  .version('3.3.1')
   .option('new <projectName>', 'Generate New Mikey Project: react/redux/universal/electron', /^(react|redux|universal|electron)$/i)
   .option('g_container <fileName>', 'Generate Container file.')
   .option('g_component <fileName>', 'Generate Component file.')
