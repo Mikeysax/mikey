@@ -51,4 +51,4 @@ var eraseDefaults = function(defaults, directory) {
   }
 };
 
-module.exports.eraseDefaults = eraseDefaults;
+module.exports = eraseDefaults;

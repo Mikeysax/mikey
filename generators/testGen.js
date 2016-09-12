@@ -43,4 +43,4 @@ var generateTest = function(filePath, fileType, fileName, directory) {
   });
 };
 
-module.exports.generateTest = generateTest;
+module.exports = generateTest;

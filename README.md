@@ -127,6 +127,8 @@ You can import with a comma and it will split it correctly:
 
 ```import {connect} from 'react-redux';```
 
+If the imports are not currently listed in your projects ```package.json``` file dependencies, they will be installed.
+
 ___
 ### Defaults
 
@@ -135,6 +137,8 @@ ___
 You can include defaults by typing ```-d Y``` (for Yes) for using defaults, at the end of the generation command:
 
 ```$ mikey g_component fileName -d Y```
+
+If the defaults are not currently listed in your projects ```package.json``` file dependencies, they will be installed.
 ___
 #### <strong>To list defaults:</strong>
 
@@ -197,6 +201,8 @@ ___
 ___
 
 #### <strong>Version History:</strong>
+
+<strong>3.2.0</strong>: ```mikey``` installs dependencies from importing via file generation and using defaults.
 
 <strong>3.1.0</strong>: Added React (Without Redux) project generation with `mikey react projectName`. This project is the only project which does not contain Redux.
 

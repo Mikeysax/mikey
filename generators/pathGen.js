@@ -39,4 +39,4 @@ var generatePath = function(fileType, currentWDir) {
   return(folderPath);
 };
 
-module.exports.generatePath = generatePath;
+module.exports = generatePath;

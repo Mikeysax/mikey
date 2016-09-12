@@ -30,4 +30,4 @@ var saveTemplate = function(filePath, fileType, fileName, directory) {
   });
 };
 
-module.exports.saveTemplate = saveTemplate;
+module.exports = saveTemplate;

@@ -6,15 +6,15 @@ var inquirer = require('inquirer');
 var _ = require('lodash');
 
 // Mikey Files
-var gPath = require('./generators/pathGen.js');
-var gProject = require('./generators/projectGen.js');
-var gFile = require('./generators/fileGen.js');
-var gCustom = require('./generators/customGen.js');
-var eDefaults = require('./defaults/eraseDefaults.js');
-var lDefaults = require('./defaults/listDefaults.js');
-var sTemp = require('./custom_templates/saveTemplate.js');
-var dTemp = require('./custom_templates/deleteTemplate.js');
-var lTemp = require('./custom_templates/listTemplates.js');
+var generatePath = require('./generators/pathGen.js');
+var generateProject = require('./generators/projectGen.js');
+var generateFile = require('./generators/fileGen.js');
+var generateCustomFile = require('./generators/customGen.js');
+var eraseDefaults = require('./defaults/eraseDefaults.js');
+var listDefaults = require('./defaults/listDefaults.js');
+var saveTemplate = require('./custom_templates/saveTemplate.js');
+var deleteTemplate = require('./custom_templates/deleteTemplate.js');
+var listTemplates = require('./custom_templates/listTemplates.js');
 
 function collect(val, memo) {
   memo.push(val);
@@ -22,7 +22,7 @@ function collect(val, memo) {
 }
 
 program
-  .version('3.1.0')
+  .version('3.2.0')
   .option('new <projectName>', 'Generate New React-Redux Project.')
   .option('react <projectName>', 'Generate New React Project (No Redux).')
   .option('universal <projectName>', 'Generate New Universal React-Redux Project.')
@@ -61,7 +61,7 @@ if (typeof program.new !== 'undefined') {
   var projectName = program.new;
   var projectType = 'regular';
   console.log(colors.bold('Generating New React-Redux Project: ') + colors.yellow(projectName.toString()) + colors.bold(' in ') + colors.yellow(currentWDir.toString()));
-  gProject.generateProject(projectName, currentWDir, directory, projectType);
+  generateProject(projectName, currentWDir, directory, projectType);
 }
 
 // Project React(No Redux) Generation
@@ -69,7 +69,7 @@ if (typeof program.react !== 'undefined') {
   var projectName = program.react;
   var projectType = 'no_redux';
   console.log(colors.bold('Generating New React Project: ') + colors.yellow(projectName.toString()) + colors.bold(' in ') + colors.yellow(currentWDir.toString()));
-  gProject.generateProject(projectName, currentWDir, directory, projectType);
+  generateProject(projectName, currentWDir, directory, projectType);
 }
 
 // Universal Project Generation
@@ -77,7 +77,7 @@ if (typeof program.universal !== 'undefined') {
   var projectName = program.universal;
   var projectType = 'universal';
   console.log(colors.bold('Generating New Universal React-Redux Project: ') + colors.yellow(projectName.toString()) + colors.bold(' in ') + colors.yellow(currentWDir.toString()));
-  gProject.generateProject(projectName, currentWDir, directory, projectType);
+  generateProject(projectName, currentWDir, directory, projectType);
 }
 
 // Universal Project Generation
@@ -85,7 +85,7 @@ if (typeof program.electron !== 'undefined') {
   var projectName = program.electron;
   var projectType = 'electron';
   console.log(colors.bold('Generating New Electron React-Redux Project: ') + colors.yellow(projectName.toString()) + colors.bold(' in ') + colors.yellow(currentWDir.toString()));
-  gProject.generateProject(projectName, currentWDir, directory, projectType);
+  generateProject(projectName, currentWDir, directory, projectType);
 }
 
 // File Generation
@@ -114,18 +114,18 @@ if (typeof program.g_helper !== 'undefined') {
 }
 // Generate File Call
 if (reactFileType.length > 1 && genFileName.length > 1) {
-  var folderPath = gPath.generatePath(reactFileType + 's', currentWDir);
+  var folderPath = generatePath(reactFileType + 's', currentWDir);
   console.log(colors.bold.underline('Generating ' + _.capitalize(reactFileType) + ' File:') + ' ' + colors.yellow(genFileName + '.js'));
-  gFile.generateFile(folderPath, reactFileType, genFileName, inpm, directory, defaults);
+  generateFile(folderPath, reactFileType, genFileName, inpm, directory, defaults, currentWDir);
 }
 
 // Erase Defaults
 if (typeof program.erase !== 'undefined') {
-  eDefaults.eraseDefaults(program.erase, directory);
+  eraseDefaults(program.erase, directory);
 }
 // List Defaults
 if (typeof program.list !== 'undefined') {
-  lDefaults.listDefaults(program.list, directory);
+  listDefaults(program.list, directory);
 }
 
 // Custom File Generation
@@ -133,7 +133,7 @@ if (typeof program.g_file !== 'undefined') {
   var fileType = _.lowerFirst(program.g_file);
   // List Files
   var filePathToFileType = directory + '/custom_templates/' + fileType;
-  lTemp.listTemplates(fileType, filePathToFileType);
+  listTemplates(fileType, filePathToFileType);
 
   setTimeout(function() {
     var questions = [
@@ -150,9 +150,9 @@ if (typeof program.g_file !== 'undefined') {
     inquirer.prompt(questions).then(function (answer) {
       var templateName = answer.templateName;
       var fileName = answer.fileNameAnswer;
-      var folderPath = gPath.generatePath(fileType + 's', currentWDir);
+      var folderPath = generatePath(fileType + 's', currentWDir);
       console.log(colors.green('Generating ') + fileName + ' as ' + _.capitalize(fileType));
-      gCustom.generateCustomFile(folderPath, fileType, templateName, fileName, inpm, directory);
+      generateCustomFile(folderPath, fileType, templateName, fileName, inpm, directory);
     });
   }, 100);
 }
@@ -169,15 +169,15 @@ if (typeof program.save_template !== 'undefined') {
   ];
 
   var fileType = _.lowerFirst(program.save_template);
-  var filePath = gPath.generatePath(fileType + 's', currentWDir);
+  var filePath = generatePath(fileType + 's', currentWDir);
   // List Files
-  lTemp.listTemplates(fileType, filePath);
+  listTemplates(fileType, filePath);
 
   setTimeout(function() {
     inquirer.prompt(question).then(function (answer) {
       var templateName = answer.saveFile;
       // Save File
-      sTemp.saveTemplate(filePath, fileType, templateName, directory);
+      saveTemplate(filePath, fileType, templateName, directory);
     });
   }, 100);
 }
@@ -187,7 +187,7 @@ if (typeof program.delete_template !== 'undefined') {
   var fileType = _.lowerFirst(program.delete_template);
   var filePathToFileType = directory + '/custom_templates/' + fileType;
   // List Files
-  lTemp.listTemplates(fileType, filePathToFileType);
+  listTemplates(fileType, filePathToFileType);
 
   setTimeout(function() {
     // Prompt Questions
@@ -201,7 +201,7 @@ if (typeof program.delete_template !== 'undefined') {
     inquirer.prompt(question).then(function (answer) {
       var templateName = answer.deleteFile;
       // Delete File
-      dTemp.deleteTemplate(fileType, templateName, directory);
+      deleteTemplate(fileType, templateName, directory);
     })
   }, 100);
 }
@@ -210,5 +210,5 @@ if (typeof program.delete_template !== 'undefined') {
 if (typeof program.list_templates !== 'undefined') {
   var fileType = _.lowerFirst(program.list_templates);
   var filePathToFileType = directory + '/custom_templates/' + fileType;
-  lTemp.listTemplates(fileType, filePathToFileType);
+  listTemplates(fileType, filePathToFileType);
 }

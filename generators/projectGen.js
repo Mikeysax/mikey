@@ -47,4 +47,4 @@ var generateProject = function(projectName, currentWDir, directory, projectType)
   });
 };
 
-module.exports.generateProject = generateProject;
+module.exports = generateProject;

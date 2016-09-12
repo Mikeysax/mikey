@@ -1,14 +1,14 @@
 var fs = require('fs-extra');
 var _ = require('lodash');
-var gImport = require('./importGen.js');
-var gDefaults = require('./defaultGen.js');
-var tGen = require('./testGen.js');
+var importGen = require('./importGen.js');
+var importDefaults = require('./defaultGen.js');
+var generateTest = require('./testGen.js');
 var colors = require('colors');
 
-var generateFile = function(foundPath, fileType, fileName, inpm, directory, defaults) {
+var generateFile = function(foundPath, fileType, fileName, inpm, directory, defaults, currentWDir) {
   var readTemplate = fs.createReadStream(directory + '/file_templates/' + fileType + 'Template.js');
   var filePath = './' + foundPath + '/' + fileName + '.js';
-  
+
   fs.stat(filePath, function(err, stats) {
     if (stats === undefined) {
       var writeFile = fs.createWriteStream(filePath);
@@ -25,9 +25,9 @@ var generateFile = function(foundPath, fileType, fileName, inpm, directory, defa
         if (error) { console.log(colors.red(error.toString())); }
       });
 
-      gImport.importGen(fileType, filePath, inpm, directory);
-      gDefaults.importDefaults(defaults, filePath, fileType, directory);
-      tGen.generateTest(filePath, fileType, fileName, directory);
+      importGen(fileType, filePath, inpm, directory, currentWDir);
+      importDefaults(defaults, filePath, fileType, directory, currentWDir);
+      generateTest(filePath, fileType, fileName, directory);
 
       console.log('Successfuly created ' + colors.yellow(fileName + '.js') + ' in ' + colors.yellow(filePath.toString()));
     } else {
@@ -36,4 +36,4 @@ var generateFile = function(foundPath, fileType, fileName, inpm, directory, defa
   });
 };
 
-module.exports.generateFile = generateFile;
+module.exports = generateFile;

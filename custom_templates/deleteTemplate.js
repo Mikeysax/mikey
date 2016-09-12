@@ -18,4 +18,4 @@ var deleteTemplate = function(fileType, fileName, directory) {
   });
 };
 
-module.exports.deleteTemplate = deleteTemplate;
+module.exports = deleteTemplate;

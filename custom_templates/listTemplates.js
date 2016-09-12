@@ -21,4 +21,4 @@ var listTemplates = function(fileType, filePathToFileType) {
   });
 };
 
-module.exports.listTemplates = listTemplates;
+module.exports = listTemplates;

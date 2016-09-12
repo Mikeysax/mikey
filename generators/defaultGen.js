@@ -1,8 +1,9 @@
 var fs = require('fs-extra');
 var prependFile = require('prepend-file');
 var colors = require('colors');
+var installDep = require('./installDep');
 
-var importDefaults = function(defaults, filePath, fileType, directory) {
+var importDefaults = function(defaults, filePath, fileType, directory, currentWDir) {
   if (defaults.match(/n/)) {
     console.log('Defaults:' + colors.red(' No'));
   }
@@ -21,7 +22,11 @@ var importDefaults = function(defaults, filePath, fileType, directory) {
         console.log(err);
       }
     });
+
+    fileDefaults.match(/'(.*?)'/g).forEach(function(w) {
+      installDep(w.replace(/'/g, ''), currentWDir);
+    });
   }
 };
 
-module.exports.importDefaults = importDefaults;
+module.exports = importDefaults;

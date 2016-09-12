@@ -1,8 +1,9 @@
 var fs = require('fs-extra');
 var prependFile = require('prepend-file');
 var colors = require('colors');
+var installDep = require('./installDep');
 
-var importGen = function(fileType, filePath, inpm, directory) {
+var importGen = function(fileType, filePath, inpm, directory, currentWDir) {
   if (inpm) {
     var defaultPath = directory + '/defaults/' + fileType + 'Default.js';
     var defaultFileData = fs.readFileSync(defaultPath, "utf8");
@@ -22,17 +23,20 @@ var importGen = function(fileType, filePath, inpm, directory) {
         importArray.push(impSplit + "\n");
         console.log(colors.green("Adding: ") + impSplit);
         checkIfDefault(impSplit);
+        installDep(splitDep[1], currentWDir);
       } else if (i.match(/{|}/g)) {
         var removedCurl = i.replace(/{|}/g, '');
         var impRemovedCurl = "import " + i + " from " + "'" + removedCurl + "';";
         importArray.push(impRemovedCurl + "\n");
         console.log(colors.green("Adding: ") + impRemovedCurl);
         checkIfDefault(impRemovedCurl);
+        installDep(removedCurl, currentWDir);
       } else {
         var imp = "import " + i + " from " + "'" + i + "';";
         importArray.push(imp + "\n");
         console.log(colors.green("Adding: ") + imp);
         checkIfDefault(imp);
+        installDep(i, currentWDir);
       }
     });
 
@@ -51,4 +55,4 @@ var importGen = function(fileType, filePath, inpm, directory) {
   }
 };
 
-module.exports.importGen = importGen;
+module.exports = importGen;

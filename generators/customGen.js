@@ -1,11 +1,11 @@
 var fs = require('fs-extra');
 var _ = require('lodash');
-var gImport = require('./importGen.js');
-var gDefaults = require('./defaultGen.js');
-var tGen = require('./testGen.js');
+var importGen = require('./importGen.js');
+var importDefaults = require('./defaultGen.js');
+var generateTest = require('./testGen.js');
 var colors = require('colors');
 
-var generateCustomFile = function(foundPath, fileType, templateName, fileName, inpm, directory) {
+var generateCustomFile = function(foundPath, fileType, templateName, fileName, inpm, directory, currentWDir) {
   var readTemplate = fs.createReadStream(directory + '/custom_templates/' + fileType + '/' + templateName + '.js');
   var filePath = './' + foundPath + '/' + fileName + '.js';
 
@@ -33,8 +33,9 @@ var generateCustomFile = function(foundPath, fileType, templateName, fileName, i
         console.log(colors.yellow(_.capitalize(fileType).toString()) + '/' + templateName + ' Custom Template Used Successfully');
       });
 
-      gImport.importGen(fileType, filePath, inpm, directory);
-      tGen.generateTest(filePath, fileType, fileName, directory);
+      importGen(fileType, filePath, inpm, directory, currentWDir);
+      importDefaults(defaults, filePath, fileType, directory);
+      generateTest(filePath, fileType, fileName, directory);
 
       console.log('Successfuly created ' + colors.yellow(fileName + '.js') + ' in ' + colors.yellow(filePath.toString()));
     } else {
@@ -43,4 +44,4 @@ var generateCustomFile = function(foundPath, fileType, templateName, fileName, i
   });
 };
 
-module.exports.generateCustomFile = generateCustomFile;
+module.exports = generateCustomFile;

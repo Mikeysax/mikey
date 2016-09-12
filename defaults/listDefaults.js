@@ -52,4 +52,4 @@ var listDefaults = function(defaults, directory) {
   }
 };
 
-module.exports.listDefaults = listDefaults;
+module.exports = listDefaults;
