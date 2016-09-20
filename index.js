@@ -22,16 +22,11 @@ function collect(val, memo) {
 }
 
 program
-  .version('3.3.1')
+  .version('3.4.0')
   .option('new <projectName>', 'Generate New Mikey Project: react/redux/universal/electron', /^(react|redux|universal|electron)$/i)
-  .option('g_container <fileName>', 'Generate Container file.')
-  .option('g_component <fileName>', 'Generate Component file.')
-  .option('g_action <fileName>', 'Generate action file.')
-  .option('g_reducer <fileName>', 'Generate reducer file.')
-  .option('g_helper <fileName>', 'Generate helper file.')
-  .option('g_file <fileType>', 'Generate custom file from saved template.(singular)')
-  .option('-i, import [importName]', '(Optional) Add import to generated file.', collect, [])
-  .option('-d, defaults [Y/n]', '(Optional) Import previous dependencies for generated file. Defaults to No: (n, Y)', /^(Y|n)$/i, 'n')
+  .option('g <fileType>', 'Generate New React File: container/component/action/reducer/helper/custom', /^(container|component|action|reducer|helper|custom)$/i)
+  .option('-i, import [importName]', '(Optional) Add imports on file generation.', collect, [])
+  .option('-d, defaults [Y/n]', '(Optional) Import default dependencies (n, Y).', /^(Y|n)$/i, 'n')
   .option('-l, list [choice]', 'List defaults(plural): all/actions/containers/components/reducers/helpers', /^(actions|components|containers|reducers|helpers|all)$/i, 'undefined')
   .option('-e, erase [choice]', 'Erase defaults(plural): all/actions/containers/components/reducers/helpers', /^(actions|components|containers|reducers|helpers|all)$/i, 'undefined')
   .option('save_template [fileType]', 'Save file in current project as custom template.(singular)', /^(action|component|container|reducer|helper)$/i)
@@ -63,11 +58,9 @@ if (typeof program.new !== 'undefined') {
         message: 'Enter Project Name:'
       }
     ];
-
     inquirer.prompt(projectQuestion).then(function (answer) {
       var projectType = program.new;
       var projectName = answer.name;
-
       console.log(colors.bold(`Generating New ${_.upperFirst(projectType)} Mikey Project: `) + colors.yellow(projectName.toString()) + colors.bold(' in ') + colors.yellow(currentWDir.toString()));
       generateProject(projectName, currentWDir, directory, projectType);
     });
@@ -75,34 +68,55 @@ if (typeof program.new !== 'undefined') {
 }
 
 // File Generation
-var reactFileType = '';
-var genFileName = '';
-// Set File Variables
-if (typeof program.g_component !== 'undefined') {
-  reactFileType = 'component';
-  genFileName = _.upperFirst(program.g_component);
-}
-if (typeof program.g_container !== 'undefined') {
-  reactFileType = 'container';
-  genFileName = _.upperFirst(program.g_container);
-}
-if (typeof program.g_action !== 'undefined') {
-  reactFileType = 'action';
-  genFileName = _.camelCase(program.g_action);
-}
-if (typeof program.g_reducer !== 'undefined') {
-  reactFileType = 'reducer';
-  genFileName = _.camelCase(program.g_reducer);
-}
-if (typeof program.g_helper !== 'undefined') {
-  reactFileType = 'helper';
-  genFileName = _.camelCase(program.g_helper);
-}
-// Generate File Call
-if (reactFileType.length > 1 && genFileName.length > 1) {
-  var folderPath = generatePath(reactFileType + 's', currentWDir);
-  console.log(colors.bold.underline('Generating ' + _.capitalize(reactFileType) + ' File:') + ' ' + colors.yellow(genFileName + '.js'));
-  generateFile(folderPath, reactFileType, genFileName, inpm, directory, defaults, currentWDir);
+if (typeof program.g !== 'undefined') {
+    var fileType = _.lowerFirst(program.g);
+    var filePathToFileType = '';
+  if (fileType === 'custom') {
+    filePathToFileType = directory + '/custom_templates/' + fileType;
+    listTemplates(fileType, filePathToFileType);
+    setTimeout(function() {
+      var questions = [
+        {
+          type: 'input',
+          name: 'templateName',
+          message: 'Enter Saved Template Name(no extension):'
+        },
+        {
+          type: 'input',
+          name: 'fileNameAnswer',
+          message: 'Enter Desired File Name(no extension / default: Template Name):'
+        }];
+      inquirer.prompt(questions).then(function (answer) {
+        var templateName = answer.templateName;
+        var fileName = answer.fileNameAnswer;
+        var folderPath = generatePath(fileType + 's', currentWDir);
+        console.log(colors.green('Generating ') + fileName + ' as ' + _.capitalize(fileType));
+        generateCustomFile(folderPath, fileType, templateName, fileName, inpm, directory);
+      });
+    }, 100);
+  } else {
+    filePathToFileType = directory + '/custom_templates/' + fileType;
+    setTimeout(function() {
+      var questions = [
+        {
+          type: 'input',
+          name: 'fileNameAnswer',
+          message: 'Enter Desired File Name(no extension):'
+        }
+      ];
+      inquirer.prompt(questions).then(function (answer) {
+        var fileName = '';
+        if (fileType === 'component' || fileType === 'container') {
+          fileName =  _.upperFirst(answer.fileNameAnswer);
+        } else {
+          fileName =  _.camelCase(answer.fileNameAnswer);
+        }
+        var folderPath = generatePath(fileType + 's', currentWDir);
+        console.log(colors.green('Generating ') + fileName + ' as ' + _.capitalize(fileType));
+        generateFile(folderPath, fileType, fileName, inpm, directory, defaults, currentWDir);
+      });
+    }, 100);
+  }
 }
 
 // Erase Defaults
@@ -112,35 +126,6 @@ if (typeof program.erase !== 'undefined') {
 // List Defaults
 if (typeof program.list !== 'undefined') {
   listDefaults(program.list, directory);
-}
-
-// Custom File Generation
-if (typeof program.g_file !== 'undefined') {
-  var fileType = _.lowerFirst(program.g_file);
-  // List Files
-  var filePathToFileType = directory + '/custom_templates/' + fileType;
-  listTemplates(fileType, filePathToFileType);
-
-  setTimeout(function() {
-    var questions = [
-      {
-        type: 'input',
-        name: 'templateName',
-        message: 'Enter Saved Template Name(no extension):'
-      },
-      {
-        type: 'input',
-        name: 'fileNameAnswer',
-        message: 'Enter Desired File Name(no extension / default: Template Name):'
-      }];
-    inquirer.prompt(questions).then(function (answer) {
-      var templateName = answer.templateName;
-      var fileName = answer.fileNameAnswer;
-      var folderPath = generatePath(fileType + 's', currentWDir);
-      console.log(colors.green('Generating ') + fileName + ' as ' + _.capitalize(fileType));
-      generateCustomFile(folderPath, fileType, templateName, fileName, inpm, directory);
-    });
-  }, 100);
 }
 
 // Save Custom Template
@@ -153,12 +138,9 @@ if (typeof program.save_template !== 'undefined') {
       message: 'Enter Project ' + _.capitalize(program.save_template) + ' File Name To Save(no extension):'
     }
   ];
-
   var fileType = _.lowerFirst(program.save_template);
   var filePath = generatePath(fileType + 's', currentWDir);
-  // List Files
   listTemplates(fileType, filePath);
-
   setTimeout(function() {
     inquirer.prompt(question).then(function (answer) {
       var templateName = answer.saveFile;
@@ -172,9 +154,7 @@ if (typeof program.save_template !== 'undefined') {
 if (typeof program.delete_template !== 'undefined') {
   var fileType = _.lowerFirst(program.delete_template);
   var filePathToFileType = directory + '/custom_templates/' + fileType;
-  // List Files
   listTemplates(fileType, filePathToFileType);
-
   setTimeout(function() {
     // Prompt Questions
     var question = [

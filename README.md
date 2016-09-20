@@ -69,19 +69,15 @@ ___
 
 <strong>To generate a new react file:</strong>
 
-```$ mikey g_action fileName```
+```$ mikey g fileType```
 
-```$ mikey g_component FileName```   
+Pick any filetype: container / component / action / helper / reducer
 
-```$ mikey g_container FileName```  
-
-```$ mikey g_reducer fileName```  
-
-```$ mikey g_helper fileName```
+Mikey will ask you for a file name after you choose a filetype.
 
 <strong>Custom Files(section blow):</strong>
 
-```$ mikey g_file fileType```
+```$ mikey g custom```
 
 <strong>Use these commands in the root of your project.</strong>
 
@@ -115,21 +111,21 @@ ___
 
 <strong>To generate a new file and import one or multiple dependencies to top of file:</strong>
 
-```$ mikey g_container fileName -i depName```  
+```$ mikey g fileType -i depName```  
 
 <strong>To import multiple dependencies to top of file:</strong>
 
-```$ mikey g_component fileName -i depName -i depName -i depName```
+```$ mikey g fileType -i depName -i depName -i depName```
 
 <strong>To import with curly brackets:</strong>
 
-```$ mikey g_action fileName -i {connect},react-redux```
+```$ mikey g fileType -i {connect},react-redux```
 
 You can import with a comma and it will split it correctly:
 
 ```import {connect} from 'react-redux';```
 
-If the imports are not currently listed in your projects ```package.json``` file dependencies, they will be automatically installed.
+If the imports are not currently listed in your projects ```package.json``` file dependencies, they will be automatically installed by ```npm```.
 
 ___
 ### Defaults
@@ -138,9 +134,9 @@ ___
 
 You can include defaults by typing ```-d Y``` (for Yes) for using defaults, at the end of the generation command:
 
-```$ mikey g_component fileName -d Y```
+```$ mikey g fileType -d Y```
 
-If the defaults are not currently listed in your projects ```package.json``` file dependencies, they will be automatically installed.
+If the defaults are not currently listed in your projects ```package.json``` file dependencies, they will be automatically installed by ```npm```.
 ___
 #### <strong>To list defaults:</strong>
 
@@ -173,7 +169,7 @@ ___
 
 Once you've saved a template, you can reuse it in any project.
 
-```$ mikey g_file fileType```
+```$ mikey g fileType```
 
 A list of custom templates of that file type will be displayed. A prompt will be displayed in the console for template choice and desired file name. The template file name will be used by default if no new name is entered. File selection is <strong>without the .js extension</strong>
 
@@ -207,6 +203,8 @@ ___
 ___
 
 #### <strong>Version History:</strong>
+
+<strong>3.4.0</strong>: Complete refactor of file generation into one command.
 
 <strong>3.3.1</strong>: Complete refactor of project generation into one command.
 
