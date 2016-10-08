@@ -204,7 +204,7 @@ ___
 
 #### <strong>Version History:</strong>
 
-<strong>3.4.0</strong>: Complete refactor of file generation into one command.
+<strong>3.4.4</strong>: Complete refactor of file generation into one command.
 
 <strong>3.3.1</strong>: Complete refactor of project generation into one command.
 

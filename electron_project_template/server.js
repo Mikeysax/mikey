@@ -3,15 +3,13 @@ import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import config from './webpack.config';
-var Dashboard = require('webpack-dashboard');
 var DashboardPlugin = require('webpack-dashboard/plugin');
 
 const app = express();
 const compiler = webpack(config);
-var dashboard = new Dashboard();
 const PORT = 8080;
 
-compiler.apply(new DashboardPlugin(dashboard.setData));
+compiler.apply(new DashboardPlugin());
 
 const webpackDevWare = webpackDevMiddleware(compiler, {
   quiet: true,
