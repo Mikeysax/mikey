@@ -17,13 +17,12 @@ var rootDir = path.resolve(__dirname, '');
 
 global.__CLIENT__ = false;
 global.__SERVER__ = true;
-global.__DEVELOPMENT__ = process.env.NODE_ENV !== 'production';
+global.__DEVELOPMENT__ = process.env.NODE_ENV === 'development';
 
 var webpackConfig = require('./webpack-isomorphic-tools-configuration');
 var WebpackIsomorphicTools = require('webpack-isomorphic-tools');
 
 global.webpackIsomorphicTools = new WebpackIsomorphicTools(webpackConfig)
-  .development(__DEVELOPMENT__)
   .server(rootDir, function() {
     require('./server');
   });

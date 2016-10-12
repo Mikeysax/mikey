@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "NODE_PATH=$NODE_PATH:./shared node --harmony .",
-    "dev": "npm run start & webpack-dev-server --quiet --progress --color",
+    "dev": "NODE_ENV=development npm run start & webpack-dev-server --quiet --progress --color",
     "build": "NODE_ENV=production webpack --progress --color -p --config webpack.prod.config.js",
     "test": "mocha './tests/**/*.test.@(js|jsx)' --compilers js:babel-core/register --require ./tests/testHelpers.js 'tests/**/*.@(js|jsx)' --require ignore-styles",
     "test:watch": "npm run test -- --watch",
