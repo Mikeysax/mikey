@@ -28,9 +28,8 @@ var generateFile = function(foundPath, fileType, fileName, inpm, directory, defa
 
       importGen(fileType, filePath, inpm, directory, currentWDir);
       importDefaults(defaults, filePath, fileType, directory, currentWDir);
-      generateTest(filePath, fileType, fileName, directory);
+      generateTest(filePath, fileType, fileName, directory, currentWDir);
       generateCSS(fileName, fileType, currentWDir);
-
 
       console.log('Successfuly created ' + colors.yellow(fileName + '.js') + ' in ' + colors.yellow(filePath.toString()));
     } else {

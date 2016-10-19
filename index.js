@@ -15,6 +15,7 @@ var listDefaults = require('./defaults/listDefaults.js');
 var saveTemplate = require('./custom_templates/saveTemplate.js');
 var deleteTemplate = require('./custom_templates/deleteTemplate.js');
 var listTemplates = require('./custom_templates/listTemplates.js');
+var mikeyJsonGenerator = require('./generators/mikeyGen.js');
 
 function collect(val, memo) {
   memo.push(val);
@@ -22,7 +23,7 @@ function collect(val, memo) {
 }
 
 program
-  .version('3.5.0')
+  .version('3.6.0')
   .option('new <projectName>', 'Generate New Mikey Project: react/redux/universal/electron', /^(react|redux|universal|electron)$/i)
   .option('g <fileType>', 'Generate New React File: container/component/action/reducer/helper/custom', /^(container|component|action|reducer|helper|custom)$/i)
   .option('-i, import [importName]', '(Optional) Add imports on file generation.', collect, [])
@@ -69,6 +70,7 @@ if (typeof program.new !== 'undefined') {
 
 // File Generation
 if (typeof program.g !== 'undefined') {
+    mikeyJsonGenerator(currentWDir);
     var fileType = _.lowerFirst(program.g);
     var filePathToFileType = '';
   if (fileType === 'custom') {

@@ -99,6 +99,8 @@ ___
 
 On file creation, *Mikey* will look through your working project directory for actions/components/containers/reducers/helpers folders and create the corresponding file type. If none of these folders exist, *Mikey* will create the file in the root of your project.
 
+*Mikey* will also generate a .scss file in the CSS folder when you generate a component or container.
+
 <strong>*Mikey* also creates ```.mikeyPath``` folder</strong> in your project and saves the path of the file type generated. This is to optimize the speed of file creation. By saving this path *Mikey* does not have to dynamically find the folder again after each generated file.
 
 <strong>A Test file is also generated when you generate a file.</strong>
@@ -106,6 +108,21 @@ On file creation, *Mikey* will look through your working project directory for a
 If your project directory changes at all, delete ```.mikeyPath``` folder to recache folder paths. ```.mikeyPath``` folder is added to ```.gitignore``` also.
 
 <strong>You cannot create files that already exist. *Mikey* will prevent you from overwriting files you have already generated.</strong>
+___
+### mikey.json Details
+
+On file generation, *Mikey* will check the root of your project to see if a ```mikey.json``` file exists. If ```mikey.json``` does not exist it will be generated.
+
+Inside ```mikey.json``` contains settings for css generation, css folder name, css extension, and testing generation.
+
+- css: Can be set to a boolean and determines if *Mikey* should generate a css file.
+
+- cssFolder: Can be set to the name of the folder that contains your CSS files.
+
+- cssExtension: This determines what extension the CSS files *Mikey* generates will have.
+
+- testing: Can be set to a boolean and determines if *Mikey* should generate a test.
+
 ___
 ### Adding Imports on File Generation
 
@@ -204,7 +221,9 @@ ___
 
 #### <strong>Version History:</strong>
 
-<strong>3.5.0</strong>: Generated mikey projects auto import all CSS files. On file generation a .scss file is created with the same name in snake_case.
+<strong>3.6.0</strong>: *Mikey* now creates a ```mikey.json``` file in the root of your project to determine css style settings/generation and testing generation.
+
+<strong>3.5.0</strong>: Generated mikey projects auto import all CSS files. On file generation for components and containers a .scss file will be created with the same name in snake_case.
 
 <strong>3.4.6</strong>: Complete refactor of file generation into one command.
 
