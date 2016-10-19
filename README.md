@@ -221,7 +221,7 @@ ___
 
 #### <strong>Version History:</strong>
 
-<strong>3.6.0</strong>: *Mikey* now creates a ```mikey.json``` file in the root of your project to determine css style settings/generation and testing generation.
+<strong>3.6.1</strong>: *Mikey* now creates a ```mikey.json``` file in the root of your project to determine css style settings/generation and testing generation.
 
 <strong>3.5.0</strong>: Generated mikey projects auto import all CSS files. On file generation for components and containers a .scss file will be created with the same name in snake_case.
 

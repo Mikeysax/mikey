@@ -2,10 +2,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-// Auto Import CSS/SCSS
-require('fs').readdirSync('../shared/css').map((file, key) => {
-  require('../shared/css/' + file);
-});
+// Import CSS/SCSS
+import '../shared/css/application.scss';
 
 // Router Dependencies
 import { Router, browserHistory } from 'react-router';
