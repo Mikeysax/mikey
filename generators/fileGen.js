@@ -3,6 +3,7 @@ var _ = require('lodash');
 var importGen = require('./importGen.js');
 var importDefaults = require('./defaultGen.js');
 var generateTest = require('./testGen.js');
+var generateCSS = require('./cssGen.js');
 var colors = require('colors');
 
 var generateFile = function(foundPath, fileType, fileName, inpm, directory, defaults, currentWDir) {
@@ -28,6 +29,8 @@ var generateFile = function(foundPath, fileType, fileName, inpm, directory, defa
       importGen(fileType, filePath, inpm, directory, currentWDir);
       importDefaults(defaults, filePath, fileType, directory, currentWDir);
       generateTest(filePath, fileType, fileName, directory);
+      generateCSS(fileName, fileType, currentWDir);
+
 
       console.log('Successfuly created ' + colors.yellow(fileName + '.js') + ' in ' + colors.yellow(filePath.toString()));
     } else {

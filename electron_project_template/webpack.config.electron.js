@@ -9,6 +9,9 @@ module.exports = merge(baseConfig, {
     path: __dirname,
     filename: './main.js'
   },
+  node: {
+    fs: 'empty'
+  },
   plugins: [
     new webpack.optimize.UglifyJsPlugin({
       compressor: {

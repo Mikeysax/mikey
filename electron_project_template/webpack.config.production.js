@@ -23,6 +23,9 @@ const config = merge(baseConfig, {
       },
     ]
   },
+  node: {
+    fs: 'empty'
+  },
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.DefinePlugin({

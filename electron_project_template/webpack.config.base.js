@@ -11,6 +11,9 @@ module.exports = {
       loader: 'json-loader'
     }]
   },
+  node: {
+    fs: 'empty'
+  },
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',

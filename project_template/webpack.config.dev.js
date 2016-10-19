@@ -16,6 +16,9 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin()
   ],
+  node: {
+    fs: 'empty'
+  },
   module: {
     loaders: [
     // JS Loaders

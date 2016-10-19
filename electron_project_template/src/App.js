@@ -4,7 +4,10 @@ import ReactDOM from 'react-dom';
 
 // Import CSS/SCSS
 import 'bootstrap/dist/css/bootstrap.css';
-import './css/application.scss';
+// Import CSS/SCSS
+require('fs').readdirSync('./css').map((file, key) => {
+  require('./css/' + file);
+});
 
 // Router Dependencies
 import { Router, hashHistory } from 'react-router';

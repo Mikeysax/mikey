@@ -20,6 +20,9 @@ module.exports = Object.assign(prodCfg, {
       './client/App'
     ]
   },
+  node: {
+    fs: 'empty'
+  },
   module: {
     loaders: [
       // JS Loaders

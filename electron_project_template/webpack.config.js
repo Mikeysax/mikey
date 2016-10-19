@@ -29,6 +29,9 @@ module.exports = merge(baseConfig, {
       { test: /\.svg$/, loader: "url?limit=10000&mimetype=image/svg+xml" },
     ]
   },
+  node: {
+    fs: 'empty'
+  },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),

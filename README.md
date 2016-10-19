@@ -204,6 +204,8 @@ ___
 
 #### <strong>Version History:</strong>
 
+<strong>3.5.0</strong>: Generated mikey projects auto import all CSS files. On file generation a .scss file is created with the same name in snake_case.
+
 <strong>3.4.6</strong>: Complete refactor of file generation into one command.
 
 <strong>3.3.1</strong>: Complete refactor of project generation into one command.

@@ -1,6 +1,7 @@
 var fs = require('fs-extra');
 var ff = require('node-find-folder');
 var prependFile = require('prepend-file');
+var colors = require('colors');
 
 var generatePath = function(fileType, currentWDir) {
   var mikeyPathFile = currentWDir + '/.mikeyPath/.' + fileType;
@@ -25,7 +26,7 @@ var generatePath = function(fileType, currentWDir) {
   var gitIgnorePath = currentWDir + '/.gitignore';
   fs.access(gitIgnorePath, fs.F_OK, function(error) {
     if (error) {
-      console.log('Adding: .mikeyPath to .gitignore but file does not exist.');
+      console.log('Adding: ' + colors.green('.mikeyPath') + ' to ' + colors.green('.gitignore') + ' but ' + colors.red('file does not exist.'));
     } else {
       var gitIgnoreFile = fs.readFileSync(gitIgnorePath, 'utf8');
       if (!gitIgnoreFile.match(/\.mikeyPath/)) {

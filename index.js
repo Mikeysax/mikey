@@ -22,7 +22,7 @@ function collect(val, memo) {
 }
 
 program
-  .version('3.4.6')
+  .version('3.5.0')
   .option('new <projectName>', 'Generate New Mikey Project: react/redux/universal/electron', /^(react|redux|universal|electron)$/i)
   .option('g <fileType>', 'Generate New React File: container/component/action/reducer/helper/custom', /^(container|component|action|reducer|helper|custom)$/i)
   .option('-i, import [importName]', '(Optional) Add imports on file generation.', collect, [])
@@ -89,9 +89,13 @@ if (typeof program.g !== 'undefined') {
       inquirer.prompt(questions).then(function (answer) {
         var templateName = answer.templateName;
         var fileName = answer.fileNameAnswer;
-        var folderPath = generatePath(fileType + 's', currentWDir);
-        console.log(colors.green('Generating ') + fileName + ' as ' + _.capitalize(fileType));
-        generateCustomFile(folderPath, fileType, templateName, fileName, inpm, directory);
+        if (fileName.length <= 1) {
+          console.log(colors.red('Filename cannot be blank!'));
+        } else {
+          var folderPath = generatePath(fileType + 's', currentWDir);
+          console.log(colors.green('Generating ') + fileName + ' as ' + _.capitalize(fileType));
+          generateCustomFile(folderPath, fileType, templateName, fileName, inpm, directory);
+        }
       });
     }, 100);
   } else {
@@ -111,9 +115,13 @@ if (typeof program.g !== 'undefined') {
         } else {
           fileName =  _.camelCase(answer.fileNameAnswer);
         }
-        var folderPath = generatePath(fileType + 's', currentWDir);
-        console.log(colors.green('Generating ') + fileName + ' as ' + _.capitalize(fileType));
-        generateFile(folderPath, fileType, fileName, inpm, directory, defaults, currentWDir);
+        if (fileName.length <= 1) {
+          console.log(colors.red('Filename cannot be blank!'));
+        } else {
+          var folderPath = generatePath(fileType + 's', currentWDir);
+          console.log(colors.green('Generating ') + fileName + ' as ' + _.capitalize(fileType));
+          generateFile(folderPath, fileType, fileName, inpm, directory, defaults, currentWDir);
+        }
       });
     }, 100);
   }
