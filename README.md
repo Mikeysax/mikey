@@ -221,7 +221,7 @@ ___
 
 #### <strong>Version History:</strong>
 
-<strong>3.7.0</strong>: *Mikey* now automatically adds an import statement to App.js for generated CSS files. *Mikey* also has many more edge cases covered when generating a project or file to prevent accidental creation of files with no names and project with incorrect project types. Also, null or undefined paths will not be saved to .mikeyPath anymore.
+<strong>3.7.1</strong>: *Mikey* now automatically adds an import statement to App.js for generated CSS files. *Mikey* also has many more edge cases covered when generating a project or file to prevent accidental creation of files with no names and project with incorrect project types. Also, null or undefined paths will not be saved to .mikeyPath anymore.
 
 <strong>3.6.1</strong>: *Mikey* now creates a ```mikey.json``` file in the root of your project to determine css style settings/generation and testing generation.
 

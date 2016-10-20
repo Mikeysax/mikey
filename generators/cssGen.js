@@ -51,10 +51,12 @@ var autoImportCSS = function(filePath, cssFilePath, cssFileName, clientOrSrc, pr
   var importRegex = new RegExp(cssFilePath.toString(), 'g');
   var newData = '';
   if (readFilePath.match(importRegex) === null) {
+    var regExpCSS = new RegExp(`import.+\.${projectsMikeyJson.cssExtension}';\n`, 'm')
+    var replaceText = readFilePath.match(regExpCSS);
     if (clientOrSrc === 'client') {
-      newData = readFilePath.replace(/Import CSS\/SCSS/g, `Import CSS/SCSS\nimport '.${cssFilePath}';` );
+      newData = readFilePath.replace(regExpCSS, `${replaceText}import '.${cssFilePath}';\n` );
     } else {
-      newData = readFilePath.replace(/Import CSS\/SCSS/g, `Import CSS/SCSS\nimport '${cssFilePath}';` );
+      newData = readFilePath.replace(regExpCSS, `${replaceText}import '${cssFilePath}';\n` );
     }
     fs.writeFileSync(filePath, newData, 'utf8');
     console.log('Successfuly imported ' + colors.yellow(cssFileName + '.' + projectsMikeyJson.cssExtension) + ' in ' + colors.yellow(filePath.toString()));
