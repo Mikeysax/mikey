@@ -1,6 +1,6 @@
 {
   "name": "mikey",
-  "version": "3.6.1",
+  "version": "3.7.0",
   "description": "Mikey is a React-Redux framework for generating React-Redux projects and React-Redux files.",
   "author": "Michael Farrell",
   "main": "index.js",

@@ -16,11 +16,48 @@ var generateCSS = function(fileName, fileType, currentWDir) {
         if (stats === undefined) {
           fs.writeFileSync(cssFilePath.toString(), '');
           console.log('Successfuly created ' + colors.yellow(cssFileName + '.' + projectsMikeyJson.cssExtension) + ' in ' + colors.yellow(cssFilePath.toString()));
+
+          // Auto Import to App.js
+          // Every other projects App.js location
+          var srcFolderPath = generatePath('src', currentWDir);
+          var srcAppJsFilePath = './' + srcFolderPath + '/App.js';
+          fs.stat(srcAppJsFilePath, function(err, stats) {
+            if (stats === undefined) {
+              // src doesnt exist so check if universal
+              // Universal App.js location
+              var clientFolderPath = generatePath('client', currentWDir);
+              var clientAppJsFilePath = './' + clientFolderPath + '/App.js';
+              fs.stat(clientAppJsFilePath, function(err, stats) {
+                if (stats === undefined) {
+                  console.log('Cannot find App.js to Auto Import Generated CSS file.')
+                } else {
+                  autoImportCSS(clientAppJsFilePath, cssFilePath, cssFileName, 'client', projectsMikeyJson)
+                }
+              });
+            } else {
+              autoImportCSS(srcAppJsFilePath, cssFilePath, cssFileName, 'src')
+            }
+          });
         } else {
           console.log(colors.yellow(cssFileName + '.' + projectsMikeyJson.cssExtension) + colors.red(' already exists in this project.'));
         }
       });
     }
+  }
+};
+
+var autoImportCSS = function(filePath, cssFilePath, cssFileName, clientOrSrc, projectsMikeyJson) {
+  var readFilePath = fs.readFileSync(filePath, 'utf8');
+  var importRegex = new RegExp(cssFilePath.toString(), 'g');
+  var newData = '';
+  if (readFilePath.match(importRegex) === null) {
+    if (clientOrSrc === 'client') {
+      newData = readFilePath.replace(/Import CSS\/SCSS/g, `Import CSS/SCSS\nimport '.${cssFilePath}';` );
+    } else {
+      newData = readFilePath.replace(/Import CSS\/SCSS/g, `Import CSS/SCSS\nimport '${cssFilePath}';` );
+    }
+    fs.writeFileSync(filePath, newData, 'utf8');
+    console.log('Successfuly imported ' + colors.yellow(cssFileName + '.' + projectsMikeyJson.cssExtension) + ' in ' + colors.yellow(filePath.toString()));
   }
 };
 

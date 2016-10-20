@@ -23,7 +23,7 @@ function collect(val, memo) {
 }
 
 program
-  .version('3.6.1')
+  .version('3.7.0')
   .option('new <projectName>', 'Generate New Mikey Project: react/redux/universal/electron', /^(react|redux|universal|electron)$/i)
   .option('g <fileType>', 'Generate New React File: container/component/action/reducer/helper/custom', /^(container|component|action|reducer|helper|custom)$/i)
   .option('-i, import [importName]', '(Optional) Add imports on file generation.', collect, [])
@@ -51,81 +51,94 @@ if (!process.argv.slice(2).length) {
 
 // Project Generation
 if (typeof program.new !== 'undefined') {
-  setTimeout(function() {
-    var projectQuestion = [
-      {
-        type: 'input',
-        name: 'name',
-        message: 'Enter Project Name:'
-      }
-    ];
-    inquirer.prompt(projectQuestion).then(function (answer) {
-      var projectType = program.new;
-      var projectName = answer.name;
-      console.log(colors.bold(`Generating New ${_.upperFirst(projectType)} Mikey Project: `) + colors.yellow(projectName.toString()) + colors.bold(' in ') + colors.yellow(currentWDir.toString()));
-      generateProject(projectName, currentWDir, directory, projectType);
-    });
-  }, 100);
-}
-
-// File Generation
-if (typeof program.g !== 'undefined') {
-    mikeyJsonGenerator(currentWDir);
-    var fileType = _.lowerFirst(program.g);
-    var filePathToFileType = '';
-  if (fileType === 'custom') {
-    filePathToFileType = directory + '/custom_templates/' + fileType;
-    listTemplates(fileType, filePathToFileType);
+  if (program.new === 'react' || program.new === 'redux' || program.new === 'universal' || program.new === 'electron') {
     setTimeout(function() {
-      var questions = [
+      var projectQuestion = [
         {
           type: 'input',
-          name: 'templateName',
-          message: 'Enter Saved Template Name(no extension):'
-        },
-        {
-          type: 'input',
-          name: 'fileNameAnswer',
-          message: 'Enter Desired File Name(no extension / default: Template Name):'
-        }];
-      inquirer.prompt(questions).then(function (answer) {
-        var templateName = answer.templateName;
-        var fileName = answer.fileNameAnswer;
-        if (fileName.length <= 1) {
-          console.log(colors.red('Filename cannot be blank!'));
+          name: 'name',
+          message: 'Enter Project Name:'
+        }
+      ];
+      inquirer.prompt(projectQuestion).then(function (answer) {
+        var projectType = program.new;
+        var projectName = answer.name;
+        if (projectName.length >= 1) {
+          console.log(colors.bold(`Generating New ${_.upperFirst(projectType)} Mikey Project: `) + colors.yellow(projectName.toString()) + colors.bold(' in ') + colors.yellow(currentWDir.toString()));
+          generateProject(projectName, currentWDir, directory, projectType);
         } else {
-          var folderPath = generatePath(fileType + 's', currentWDir);
-          console.log(colors.green('Generating ') + fileName + ' as ' + _.capitalize(fileType));
-          generateCustomFile(folderPath, fileType, templateName, fileName, inpm, directory);
+          console.log(colors.red('Project name cannot be blank!'));
         }
       });
     }, 100);
   } else {
-    filePathToFileType = directory + '/custom_templates/' + fileType;
-    setTimeout(function() {
-      var questions = [
-        {
-          type: 'input',
-          name: 'fileNameAnswer',
-          message: 'Enter Desired File Name(no extension):'
-        }
-      ];
-      inquirer.prompt(questions).then(function (answer) {
-        var fileName = '';
-        if (fileType === 'component' || fileType === 'container') {
-          fileName =  _.upperFirst(answer.fileNameAnswer);
-        } else {
-          fileName =  _.camelCase(answer.fileNameAnswer);
-        }
-        if (fileName.length <= 1) {
-          console.log(colors.red('Filename cannot be blank!'));
-        } else {
-          var folderPath = generatePath(fileType + 's', currentWDir);
-          console.log(colors.green('Generating ') + fileName + ' as ' + _.capitalize(fileType));
-          generateFile(folderPath, fileType, fileName, inpm, directory, defaults, currentWDir);
-        }
-      });
-    }, 100);
+    console.log(colors.red('Project type did not match and/or cannot be blank!'));
+  }
+}
+
+// File Generation
+if (typeof program.g !== 'undefined') {
+  if (program.g === 'container' || program.g === 'component' || program.g === 'action' || program.g === 'reducer' || program.g === 'helper' || program.g === 'custom') {
+    mikeyJsonGenerator(currentWDir);
+    var fileType = _.lowerFirst(program.g);
+    var filePathToFileType = '';
+
+    if (fileType === 'custom') {
+      filePathToFileType = directory + '/custom_templates/' + fileType;
+      listTemplates(fileType, filePathToFileType);
+      setTimeout(function() {
+        var questions = [
+          {
+            type: 'input',
+            name: 'templateName',
+            message: 'Enter Saved Template Name(no extension):'
+          },
+          {
+            type: 'input',
+            name: 'fileNameAnswer',
+            message: 'Enter Desired File Name(no extension / default: Template Name):'
+          }];
+        inquirer.prompt(questions).then(function (answer) {
+          var templateName = answer.templateName;
+          var fileName = answer.fileNameAnswer;
+          if (fileName.length <= 1 || templateName.length <= 1) {
+            console.log(colors.red('File name or Template name cannot be blank!'));
+          } else {
+            var folderPath = generatePath(fileType + 's', currentWDir);
+            console.log(colors.green('Generating ') + fileName + ' as ' + _.capitalize(fileType));
+            generateCustomFile(folderPath, fileType, templateName, fileName, inpm, directory);
+          }
+        });
+      }, 100);
+    } else {
+      filePathToFileType = directory + '/custom_templates/' + fileType;
+      setTimeout(function() {
+        var questions = [
+          {
+            type: 'input',
+            name: 'fileNameAnswer',
+            message: 'Enter Desired File Name(no extension):'
+          }
+        ];
+        inquirer.prompt(questions).then(function (answer) {
+          var fileName = '';
+          if (fileType === 'component' || fileType === 'container') {
+            fileName =  _.upperFirst(answer.fileNameAnswer);
+          } else {
+            fileName =  _.camelCase(answer.fileNameAnswer);
+          }
+          if (fileName.length <= 1) {
+            console.log(colors.red('Filename cannot be blank!'));
+          } else {
+            var folderPath = generatePath(fileType + 's', currentWDir);
+            console.log(colors.green('Generating ') + fileName + ' as ' + _.capitalize(fileType));
+            generateFile(folderPath, fileType, fileName, inpm, directory, defaults, currentWDir);
+          }
+        });
+      }, 100);
+    }
+  } else {
+    console.log(colors.red('File type did not match and/or cannot be blank!'));
   }
 }
 
