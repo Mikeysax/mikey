@@ -9,7 +9,8 @@
     "build": "NODE_ENV=production webpack --progress --color -p --config webpack.prod.config.js",
     "test": "mocha './tests/**/*.test.@(js|jsx)' --compilers js:babel-core/register --require ./tests/testHelpers.js 'tests/**/*.@(js|jsx)' --require ignore-styles",
     "test:watch": "npm run test -- --watch",
-    "lint": "eslint src"
+    "lint": "eslint src",
+    "kill": "killall node"
   },
   "repository": {
     "type": "git",
