@@ -35,7 +35,7 @@ var generateCSS = function(fileName, fileType, currentWDir) {
                 }
               });
             } else {
-              autoImportCSS(srcAppJsFilePath, cssFilePath, cssFileName, 'src')
+              autoImportCSS(srcAppJsFilePath, cssFilePath, cssFileName, 'src', projectsMikeyJson)
             }
           });
         } else {
@@ -56,7 +56,8 @@ var autoImportCSS = function(filePath, cssFilePath, cssFileName, clientOrSrc, pr
     if (clientOrSrc === 'client') {
       newData = readFilePath.replace(regExpCSS, `${replaceText}import '.${cssFilePath}';\n` );
     } else {
-      newData = readFilePath.replace(regExpCSS, `${replaceText}import '${cssFilePath}';\n` );
+      var cssLocation = cssFilePath.replace(/([^\/]*\/){2}/, './');
+      newData = readFilePath.replace(regExpCSS, `${replaceText}import '${cssLocation}';\n` );
     }
     fs.writeFileSync(filePath, newData, 'utf8');
     console.log('Successfuly imported ' + colors.yellow(cssFileName + '.' + projectsMikeyJson.cssExtension) + ' in ' + colors.yellow(filePath.toString()));
