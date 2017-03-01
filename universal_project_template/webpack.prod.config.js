@@ -15,7 +15,7 @@ module.exports = {
     './client/App'
   ],
   resolve: {
-    modulesDirectories: ['node_modules', 'shared'],
+    modules: ['node_modules', 'shared'],
     extensions: ['.js', '.jsx']
   },
   output: {

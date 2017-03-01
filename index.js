@@ -23,7 +23,7 @@ function collect(val, memo) {
 }
 
 program
-  .version('3.8.2')
+  .version('3.8.3')
   .option('new <projectName>', 'Generate New Mikey Project: react/redux/universal/electron', /^(react|redux|universal|electron)$/i)
   .option('g <fileType>', 'Generate New React File: container/component/action/reducer/helper/custom', /^(container|component|action|reducer|helper|custom)$/i)
   .option('-i, import [importName]', '(Optional) Add imports on file generation.', collect, [])
@@ -78,7 +78,11 @@ if (typeof program.new !== 'undefined') {
       }
       inquirer.prompt(projectQuestion).then(function (answer) {
         var api = program.api;
-        api === 'Y' || api === 'y' ? api = true : false;
+        if (api === 'Y' || api === 'y') {
+          api = true;
+        } else {
+          api = false;
+        }
         var projectType = program.new;
         var projectName = answer.name;
         if (projectName.length >= 1) {

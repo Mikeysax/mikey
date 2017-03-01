@@ -20,7 +20,7 @@ var generateProject = function(projectName, currentWDir, directory, projectType,
     projectStart = 'npm start';
   }
   if (projectType === 'universal') {
-    if (api) {
+    if (api === true || api === 'Y' || api === 'y') {
       projectTemplate = '/universal_api_project_template';
       projectStart = 'npm run dev';
     } else {
