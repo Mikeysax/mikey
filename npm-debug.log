@@ -1,0 +1,141 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/home/michael/.nvm/versions/node/v7.6.0/bin/node',
+1 verbose cli   '/home/michael/.nvm/versions/node/v7.6.0/bin/npm',
+1 verbose cli   'publish' ]
+2 info using npm@4.1.2
+3 info using node@v7.6.0
+4 verbose publish [ '.' ]
+5 silly cache add args [ '.', null ]
+6 verbose cache add spec .
+7 silly cache add parsed spec Result {
+7 silly cache add   raw: '.',
+7 silly cache add   scope: null,
+7 silly cache add   escapedName: null,
+7 silly cache add   name: null,
+7 silly cache add   rawSpec: '.',
+7 silly cache add   spec: '/home/michael/Documents/Code/mikey',
+7 silly cache add   type: 'directory' }
+8 verbose addLocalDirectory /home/michael/.npm/mikey/3.7.1/package.tgz not in flight; packing
+9 verbose correctMkdir /home/michael/.npm correctMkdir not in flight; initializing
+10 info lifecycle mikey@3.7.1~prepublish: mikey@3.7.1
+11 silly lifecycle mikey@3.7.1~prepublish: no script for prepublish, continuing
+12 info lifecycle mikey@3.7.1~prepare: mikey@3.7.1
+13 silly lifecycle mikey@3.7.1~prepare: no script for prepare, continuing
+14 verbose tar pack [ '/home/michael/.npm/mikey/3.7.1/package.tgz',
+14 verbose tar pack   '/home/michael/Documents/Code/mikey' ]
+15 verbose tarball /home/michael/.npm/mikey/3.7.1/package.tgz
+16 verbose folder /home/michael/Documents/Code/mikey
+17 verbose addLocalTarball adding from inside cache /home/michael/.npm/mikey/3.7.1/package.tgz
+18 verbose correctMkdir /home/michael/.npm correctMkdir not in flight; initializing
+19 silly cache afterAdd mikey@3.7.1
+20 verbose afterAdd /home/michael/.npm/mikey/3.7.1/package/package.json not in flight; writing
+21 verbose correctMkdir /home/michael/.npm correctMkdir not in flight; initializing
+22 verbose afterAdd /home/michael/.npm/mikey/3.7.1/package/package.json written
+23 silly publish { name: 'mikey',
+23 silly publish   version: '3.7.1',
+23 silly publish   description: 'Mikey is a React-Redux framework for generating React-Redux projects and React-Redux files.',
+23 silly publish   author: { name: 'Michael Farrell' },
+23 silly publish   main: 'index.js',
+23 silly publish   repository:
+23 silly publish    { type: 'git',
+23 silly publish      url: 'git+https://github.com/Mikeysax/mikey.git' },
+23 silly publish   keywords:
+23 silly publish    [ 'mikey',
+23 silly publish      'framework',
+23 silly publish      'generator',
+23 silly publish      'generate',
+23 silly publish      'cli',
+23 silly publish      'react',
+23 silly publish      'react-redux',
+23 silly publish      'redux',
+23 silly publish      'webpack',
+23 silly publish      'development',
+23 silly publish      'tool',
+23 silly publish      'build',
+23 silly publish      'dev',
+23 silly publish      'app',
+23 silly publish      'universal',
+23 silly publish      'isomorphic',
+23 silly publish      'hotreload' ],
+23 silly publish   scripts: { test: 'echo "Error: no test specified" && exit 1' },
+23 silly publish   license: 'MIT',
+23 silly publish   bin: { mikey: './index.js' },
+23 silly publish   dependencies:
+23 silly publish    { colors: '^1.1.2',
+23 silly publish      commander: '^2.9.0',
+23 silly publish      'fs-extra': '^0.28.0',
+23 silly publish      inquirer: '^1.0.3',
+23 silly publish      lodash: '^4.11.1',
+23 silly publish      'node-find-folder': '^0.1.25',
+23 silly publish      'prepend-file': '^1.3.0',
+23 silly publish      'spawn-npm-install': '^1.2.0' },
+23 silly publish   devDependencies: { mocha: '^2.4.5' },
+23 silly publish   readme: '# mikey\n### *Mikey* is a React-Redux framework for generating React-Redux projects and React-Redux files.\n\nInspired by Rails generate; *Mikey* is a CLI / Framework for React/Redux applications. *Mikey* was designed to be simple, intuitive to use, and increase development speed and productivity of React/Redux applications. *Mikey* can generate React/Redux projects and files, saving the developer valuable time that can be spent building features. *Mikey* can also be used in most React/Redux projects and is intended to be a broad solution.\n\n![](screenshot.png)\n\n<strong>Example Applications:</strong>\n\n[Regular Mikey Example](https://github.com/otis-bot/otis-frontend)\n\n[React Mikey Example (No Redux Coming Soon!)]()\n\n[Universal Mikey Example](https://github.com/Mikeysax/mikeyUniversalExample)\n\n[Electron Mikey Example](https://github.com/Mikeysax/Munote)\n___\n### Installation\n\n<strong>To Install *Mikey*:</strong>\n\n```$ npm install mikey -g```\n\nTo see a list of commands:\n\n```$ mikey```\n___\n### Project Generation\n\n<strong>To Generate a new project:</strong>\n\n```$ mikey new projectType```\n\n<strong>The different project types are:</strong>\n\n```react``` : react / webpack (no redux).\n\n```redux``` : react-redux / webpack.\n\n```universal``` : react-redux / webpack, with server rendering. This also has an API version which is setup to use Waterline and Postgresql out of the box. Universal projects use Webpack 2.\n\n```electron``` : react-redux / webpack, served via electron.\n\n\n<strong>After the new command, *Mikey* will ask for the project name.</strong>\n\nWhen you create a new project, *Mikey* will run ```npm install``` automatically in the created project directory. All you have to do is be patient, it is not frozen.\n___\nOnce ```npm install``` is done, ```cd``` to project and start the server with:\n\nReact and React-Redux Projects: ```$ npm start```\n\nUniversal and Electron projects: ```$ npm run dev```\n\n___\n*Mikey* projects are compatible with React / Redux Dev Chrome Extensions / Electron Dev Tools... Also, hot reloading is enabled. Dependencies are kept as minimal as possible. *Mikey* also contains Babel for ES6 compatibility, SCSS/CSS/Image loaders, Testing Setup with Enzyme and other testing dependencies, Production/Dev Config, and Source Mapping. Universal projects take advantage of Redux Async Connect / Redux-Connect fork to pre-load data onto the server before rendering.\n\n___\nTo build for production:\n\n```$ npm run build```\n\nFor Electron project build and package for production:\n\n```$ npm run build``` && ```$ npm run package``` || ```$ npm run package-all```\n\n___\n### File Generation\n\n<strong>To generate a new react file:</strong>\n\n```$ mikey g fileType```\n\nPick any filetype: container / component / action / helper / reducer\n\nMikey will ask you for a file name after you choose a filetype.\n\n<strong>Custom Files(section blow):</strong>\n\n```$ mikey g custom```\n\n<strong>Use these commands in the root of your project.</strong>\n\n___\n#### <strong>*Mikey* classification and description of file type:</strong>\n\n<strong>[Containers](http://redux.js.org/docs/basics/UsageWithReact.html)</strong> are components which connect to your store. Containers should act as further separation of logic and view.\n\n<strong>[Components](http://redux.js.org/docs/basics/UsageWithReact.html)</strong> are primarily the view layer and rendered inside of Containers.\n\n<strong>[Reducers](http://redux.js.org/docs/basics/Reducers.html)</strong> are responsible for updating the state of your application. Reducers are pure functions, meaning they do not mutate the state. Reducers take the current state and return a new state object.\n\n<strong>[Actions](http://redux.js.org/docs/basics/Actions.html)</strong> are dispatched with a type and payload. Actions work with Reducers in updating the application store. Actions can contain Ajax requests or new information generated by a User.\n\n<strong>Helpers</strong> are used for organizing random methods which can clutter your Containers and Components. Using helpers enable you to reuse methods over and over throughout your project (DRYer).\n\n___\n##### <strong>On File Creation Specifics:</strong>\n\nOn file creation, *Mikey* will look through your working project directory for actions/components/containers/reducers/helpers folders and create the corresponding file type. If none of these folders exist, *Mikey* will create the file in the root of your project.\n\n*Mikey* will also generate a .scss file in the CSS folder when you generate a component or container.\n\n<strong>*Mikey* also creates ```.mikeyPath``` folder</strong> in your project and saves the path of the file type generated. This is to optimize the speed of file creation. By saving this path *Mikey* does not have to dynamically find the folder again after each generated file.\n\n<strong>A Test file is also generated when you generate a file.</strong>\n\nIf your project directory changes at all, delete ```.mikeyPath``` folder to recache folder paths. ```.mikeyPath``` folder is added to ```.gitignore``` also.\n\n<strong>You cannot create files that already exist. *Mikey* will prevent you from overwriting files you have already generated.</strong>\n___\n### mikey.json Details\n\nOn file generation, *Mikey* will check the root of your project to see if a ```mikey.json``` file exists. If ```mikey.json``` does not exist it will be generated.\n\nInside ```mikey.json``` contains settings for css generation, css folder name, css extension, and testing generation.\n\n- css: Can be set to a boolean and determines if *Mikey* should generate a css file.\n\n- cssFolder: Can be set to the name of the folder that contains your CSS files.\n\n- cssExtension: This determines what extension the CSS files *Mikey* generates will have.\n\n- testing: Can be set to a boolean and determines if *Mikey* should generate a test.\n\n___\n### Adding Imports on File Generation\n\n<strong>To generate a new file and import one or multiple dependencies to top of file:</strong>\n\n```$ mikey g fileType -i depName```  \n\n<strong>To import multiple dependencies to top of file:</strong>\n\n```$ mikey g fileType -i depName -i depName -i depName```\n\n<strong>To import with curly brackets:</strong>\n\n```$ mikey g fileType -i {connect},react-redux```\n\nYou can import with a comma and it will split it correctly:\n\n```import {connect} from \'react-redux\';```\n\nIf the imports are not currently listed in your projects ```package.json``` file dependencies, they will be automatically installed by ```npm```.\n\n___\n### Defaults\n\n<strong>*Mikey* will remember</strong> previous imports and store them as defaults for each file type. Stored imports are only stored once per file type.\n\nYou can include defaults by typing ```-d Y``` (for Yes) for using defaults, at the end of the generation command:\n\n```$ mikey g fileType -d Y```\n\nIf the defaults are not currently listed in your projects ```package.json``` file dependencies, they will be automatically installed by ```npm```.\n___\n#### <strong>To list defaults:</strong>\n\n```$ mikey list fileType```    |    ```$ mikey -l fileType```\n\nIf you want to list all stored defaults:\n\n```$ mikey list all```    |    ```$ mikey -l all```\n___\n#### <strong>To erase defaults:</strong>\n\n```$ mikey erase fileType```    |    ```$ mikey -e fileType```\n\nIf you want to erase all stored defaults:\n\n```$ mikey erase all```    |    ```$ mikey -e all```\n\n___\n### Custom Templates\n\n#### Saving Custom Templates:\n<strong>*Mikey*</strong> will allow you to save your projects react file as a template. The file you wish to save should be in your current project. Create a file in containers / components / reducers / actions / helpers folders and use the:\n\n```$ mikey save_template fileType```\n\nThis command will save the file inside of *Mikey* as a custom template. File selection is <strong>without the .js extension</strong>. A list of files you can save will be displayed.\n\n___\n#### Generating Custom Files from Custom Templates:\n\nOnce you\'ve saved a template, you can reuse it in any project.\n\n```$ mikey g fileType```\n\nA list of custom templates of that file type will be displayed. A prompt will be displayed in the console for template choice and desired file name. The template file name will be used by default if no new name is entered. File selection is <strong>without the .js extension</strong>\n\n___\n#### Deleting Custom Files from Custom Templates:\n\nIf you want to delete a custom template:\n\n```$ mikey delete_template fileType```\n\nA list of custom templates of that file type will be displayed. The prompt will then ask which file you would like to delete. File selection is <strong>without the .js extension</strong>\n\n___\n#### List Custom Files from Custom Templates:\n\nIf you would like to look at saved custom templates:\n\n```$ mikey list_templates fileType```\n\nThis will display all saved custom templates for current file type.\n\n___\n### Contribute\n<strong>If you would like to contribute, it would be greatly appreciated.</strong>\n\n___\n#### <strong>For help and more commands:</strong>\n\n```$ mikey -h``` | ```$ mikey -V``` | ```$ mikey```\n\n___\n\n#### <strong>Version History:</strong>\n\n<strong>3.8.0</strong>: *Mikey* Universal projects are now updated to <strong>Webpack 2</strong>. Universal projects also have an API version which are setup to use Waterline and Postgresql out of the box. There are also examples of user authentication using JSON web tokens which can serve as a guide or be used.\n\n<strong>3.7.1</strong>: *Mikey* now automatically adds an import statement to App.js for generated CSS files. *Mikey* also has many more edge cases covered when generating a project or file to prevent accidental creation of files with no names and project with incorrect project types. Also, null or undefined paths will not be saved to .mikeyPath anymore.\n\n<strong>3.6.1</strong>: *Mikey* now creates a ```mikey.json``` file in the root of your project to determine css style settings/generation and testing generation.\n\n<strong>3.5.0</strong>: Generated mikey projects auto import all CSS files. On file generation for components and containers a .scss file will be created with the same name in snake_case.\n\n<strong>3.4.6</strong>: Complete refactor of file generation into one command.\n\n<strong>3.3.1</strong>: Complete refactor of project generation into one command.\n\n<strong>3.2.0</strong>: ```mikey``` installs dependencies from importing via file generation and using defaults.\n\n<strong>3.1.0</strong>: Added React (Without Redux) project generation with `mikey react projectName`. This project is the only project which does not contain Redux.\n\n<strong>3.0.5</strong>: Added Electron project generation with `mikey electron projectName`. For more information consult the readme file in a generated Electron project.\n\n<strong>2.1.6</strong>: Added Universal / Isomorphic project generation with `mikey universal projectName`. The Universal template uses redux-connect package, a fork of Redux Async Connect package, to pre-load\ndata from AJAX calls onto the server. For examples you can take a look at the example from of how to use this feature.\n\n<strong>1.7.3</strong>: Added more test templates. Test template is chosen based on which file you are generating. Fixed README and added LICENSE text. Removed some console.log statements which were redundant. Changed helper template to contain basic const.\n\n<strong>1.6.3</strong>: Added Custom Template generation/saving/deletion/listing. Refactored file generation to be DRY\'er. When you deal with custom templates, prompts will be given to obtain more details about files. List is displayed on template deletion command. Ability to save a file in current project to reuse.\n\n<strong>1.5.0</strong>: Changed Project generation to `spawn` instead of `exec`. Added some fun tidbits like colors and art to project generation. Refactored project generation to be cleaner and output more helpful information. Updated project template dependencies.\n\n<strong>1.4.4</strong>: Mikey displays help when just typing ```mikey```. Modified Project Template App.js and store.js file to be more logical. Added actions index to import all actions to.\n\n<strong>1.3.6</strong>: Generating files also generate corresponding tests. Switched testing files to .test.js to keep with consistency of other aspects of mikey. Previous generated projects will need to switch test script in package.json to be compatible with newly generated tests. Added new container template.\n\n<strong>1.2.4</strong>: Project Template uses enzyme for testing.\n\n<strong>1.1.8</strong>: New CLI Commands which are direct and logical, testing integrated in Project Creation Template. README reflects all changes for New CLI Commands and movement towards *Mikey* as a Framework.\n\n<strong>1.0.0</strong>: New Project Creation Template with More Concise Documentation.\n',
+23 silly publish   readmeFilename: 'README.md',
+23 silly publish   gitHead: 'bd68b73069fd5da14cf9d912d0f51ac3f10734d5',
+23 silly publish   bugs: { url: 'https://github.com/Mikeysax/mikey/issues' },
+23 silly publish   homepage: 'https://github.com/Mikeysax/mikey#readme',
+23 silly publish   _id: 'mikey@3.7.1',
+23 silly publish   _shasum: 'a55ade83c1f4a4b510915809193ee61ca3114996',
+23 silly publish   _from: '.' }
+24 info lifecycle mikey@3.7.1~prepublishOnly: mikey@3.7.1
+25 silly lifecycle mikey@3.7.1~prepublishOnly: no script for prepublishOnly, continuing
+26 verbose getPublishConfig undefined
+27 silly mapToRegistry name mikey
+28 silly mapToRegistry using default registry
+29 silly mapToRegistry registry https://registry.npmjs.org/
+30 silly mapToRegistry data Result {
+30 silly mapToRegistry   raw: 'mikey',
+30 silly mapToRegistry   scope: null,
+30 silly mapToRegistry   escapedName: 'mikey',
+30 silly mapToRegistry   name: 'mikey',
+30 silly mapToRegistry   rawSpec: '',
+30 silly mapToRegistry   spec: 'latest',
+30 silly mapToRegistry   type: 'tag' }
+31 silly mapToRegistry uri https://registry.npmjs.org/mikey
+32 verbose publish registryBase https://registry.npmjs.org/
+33 silly publish uploading /home/michael/.npm/mikey/3.7.1/package.tgz
+34 verbose request uri https://registry.npmjs.org/mikey
+35 verbose request sending authorization for write operation
+36 info attempt registry request try #1 at 8:58:39 AM
+37 verbose request using bearer token for auth
+38 verbose request id 8bd4a94a435f64d3
+39 http request PUT https://registry.npmjs.org/mikey
+40 http 403 https://registry.npmjs.org/mikey
+41 verbose headers { 'content-type': 'application/json',
+41 verbose headers   'cache-control': 'max-age=300',
+41 verbose headers   'content-length': '95',
+41 verbose headers   'accept-ranges': 'bytes',
+41 verbose headers   date: 'Wed, 01 Mar 2017 13:58:41 GMT',
+41 verbose headers   via: '1.1 varnish',
+41 verbose headers   connection: 'keep-alive',
+41 verbose headers   'x-served-by': 'cache-jfk8123-JFK',
+41 verbose headers   'x-cache': 'MISS',
+41 verbose headers   'x-cache-hits': '0',
+41 verbose headers   'x-timer': 'S1488376720.122155,VS0,VE1230',
+41 verbose headers   vary: 'Accept-Encoding' }
+42 verbose request invalidating /home/michael/.npm/registry.npmjs.org/mikey on PUT
+43 error publish Failed PUT 403
+44 verbose stack Error: "You cannot publish over the previously published version 3.7.1." : mikey
+44 verbose stack     at makeError (/home/michael/.nvm/versions/node/v7.6.0/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:304:12)
+44 verbose stack     at CachingRegistryClient.<anonymous> (/home/michael/.nvm/versions/node/v7.6.0/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:292:14)
+44 verbose stack     at Request._callback (/home/michael/.nvm/versions/node/v7.6.0/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:212:14)
+44 verbose stack     at Request.self.callback (/home/michael/.nvm/versions/node/v7.6.0/lib/node_modules/npm/node_modules/request/request.js:186:22)
+44 verbose stack     at emitTwo (events.js:106:13)
+44 verbose stack     at Request.emit (events.js:192:7)
+44 verbose stack     at Request.<anonymous> (/home/michael/.nvm/versions/node/v7.6.0/lib/node_modules/npm/node_modules/request/request.js:1081:10)
+44 verbose stack     at emitOne (events.js:96:13)
+44 verbose stack     at Request.emit (events.js:189:7)
+44 verbose stack     at IncomingMessage.<anonymous> (/home/michael/.nvm/versions/node/v7.6.0/lib/node_modules/npm/node_modules/request/request.js:1001:12)
+45 verbose statusCode 403
+46 verbose pkgid mikey
+47 verbose cwd /home/michael/Documents/Code/mikey
+48 error Linux 4.4.0-64-generic
+49 error argv "/home/michael/.nvm/versions/node/v7.6.0/bin/node" "/home/michael/.nvm/versions/node/v7.6.0/bin/npm" "publish"
+50 error node v7.6.0
+51 error npm  v4.1.2
+52 error code E403
+53 error "You cannot publish over the previously published version 3.7.1." : mikey
+54 error If you need help, you may report this error at:
+54 error     <https://github.com/npm/npm/issues>
+55 verbose exit [ 1, true ]
