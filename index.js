@@ -23,7 +23,7 @@ function collect(val, memo) {
 }
 
 program
-  .version('3.8.4')
+  .version('3.8.5')
   .option('new <projectName>', 'Generate New Mikey Project: react/redux/universal/electron', /^(react|redux|universal|electron)$/i)
   .option('g <fileType>', 'Generate New React File: container/component/action/reducer/helper/custom', /^(container|component|action|reducer|helper|custom)$/i)
   .option('-i, import [importName]', '(Optional) Add imports on file generation.', collect, [])
@@ -92,7 +92,7 @@ if (typeof program.new !== 'undefined') {
           } else {
             console.log(colors.bold(`Generating New ${_.upperFirst(projectType)} Mikey Project: `) + colors.yellow(projectName.toString()) + colors.bold(' in ') + colors.yellow(currentWDir.toString()));
           }
-          // generateProject(projectName, currentWDir, directory, projectType, api);
+          generateProject(projectName, currentWDir, directory, projectType, api);
         } else {
           console.log(colors.red('Project name cannot be blank!'));
         }
