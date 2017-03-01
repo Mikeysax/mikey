@@ -1,9 +1,6 @@
 var path      = require('path');
 var webpack   = require('webpack');
 var prodCfg   = require('./webpack.prod.config');
-var Dashboard = require('webpack-dashboard');
-var DashboardPlugin = require('webpack-dashboard/plugin');
-var dashboard = new Dashboard();
 
 Object.assign = require('object-assign');
 
@@ -15,32 +12,62 @@ module.exports = Object.assign(prodCfg, {
   devtool: 'inline-source-map',
   entry:  {
     'main': [
-      'webpack-dev-server/client?http://127.0.0.1:8080/',
-      'webpack/hot/only-dev-server',
+      // 'webpack-dev-server/client?http://127.0.0.1:8080/',
+      // 'webpack/hot/only-dev-server',
       './client/App'
     ]
+  },
+  output: {
+    path: path.join(__dirname, 'dist'),
+    filename: 'bundle.js',
+    publicPath: '/dist/'
   },
   node: {
     fs: 'empty'
   },
   module: {
-    loaders: [
+    rules: [
       // JS Loaders
       {
         test:    /\.jsx?$/,
         exclude: /node_modules/,
-        loaders: ['react-hot', 'babel']
+        use: ['react-hot-loader', 'babel-loader']
       },
       // CSS Loaders
       {
+        test: /\.css$/,
+        exclude: /node_modules/,
+        use: ['style-loader', 'css-loader']
+      },
+      {
         test: /\.scss$/,
         exclude: /node_modules/,
-        loaders: ['style', 'css', 'sass']
+        use: ['style-loader', 'css-loader', 'sass-loader']
       },
       // Image Loaders
       {
         test: webpackIsomorphicToolsPlugin.regular_expression('images'),
-        loader: 'url-loader?limit=10240'
+        loader: 'url-loader'
+      },
+      // Video Loaders
+      {
+        test: webpackIsomorphicToolsPlugin.regular_expression('videos'),
+        loader: 'url-loader'
+      },
+      // Font Loaders
+      {
+        test: webpackIsomorphicToolsPlugin.regular_expression('fonts'),
+        loader: 'url-loader'
+      },
+      // SVG Loaders
+      {
+        test: webpackIsomorphicToolsPlugin.regular_expression('svg'),
+        loader: 'url-loader'
+      },
+      // Font Loaders
+      {
+        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'url-loader',
       }
     ]
   },
@@ -52,6 +79,7 @@ module.exports = Object.assign(prodCfg, {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
+    new webpack.NamedModulesPlugin(),
     new webpack.NoErrorsPlugin(),
     new webpack.ProvidePlugin({
       'Promise': 'exports?global.Promise!es6-promise'
@@ -62,7 +90,6 @@ module.exports = Object.assign(prodCfg, {
       __DEVELOPMENT__: true
     }),
     webpackIsomorphicToolsPlugin.development(),
-    new DashboardPlugin(dashboard.setData)
   ],
   devServer: {
     hot: true,

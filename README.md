@@ -37,7 +37,7 @@ ___
 
 ```redux``` : react-redux / webpack.
 
-```universal``` : react-redux / webpack, with server rendering.
+```universal``` : react-redux / webpack, with server rendering. This also has an API version which is setup to use Waterline and Postgresql out of the box. Universal projects use Webpack 2.
 
 ```electron``` : react-redux / webpack, served via electron.
 
@@ -220,6 +220,8 @@ ___
 ___
 
 #### <strong>Version History:</strong>
+
+<strong>3.8.0</strong>: *Mikey* Universal projects are now updated to <strong>Webpack 2</strong>. Universal projects also have an API version which are setup to use Waterline and Postgresql out of the box. There are also examples of user authentication using JSON web tokens which can serve as a guide or be used.
 
 <strong>3.7.1</strong>: *Mikey* now automatically adds an import statement to App.js for generated CSS files. *Mikey* also has many more edge cases covered when generating a project or file to prevent accidental creation of files with no names and project with incorrect project types. Also, null or undefined paths will not be saved to .mikeyPath anymore.
 

@@ -16,7 +16,7 @@ module.exports = {
   ],
   resolve: {
     modulesDirectories: ['node_modules', 'shared'],
-    extensions: ['', '.js', '.jsx']
+    extensions: ['.js', '.jsx']
   },
   output: {
     path: path.join(__dirname, outDirectory),
@@ -26,41 +26,60 @@ module.exports = {
     fs: 'empty'
   },
   module: {
-    loaders: [
+    rules: [
       // JS Loaders
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        loaders: ['babel']
+        loader: 'babel-loader'
       },
       // CSS Loaders
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract('style', 'css', 'sass')
+        use: ExtractTextPlugin.extract({
+          fallback: "style-loader",
+          use: ['css-loader', 'sass-loader']
+        })
       },
       {
         test: /\.scss$/,
-        loader: ExtractTextPlugin.extract('style', 'css', 'sass')
+        use: ExtractTextPlugin.extract({
+          fallback: "style-loader",
+          use: ['css-loader', 'sass-loader']
+        })
       },
       // Image Loaders
       {
         test: webpackIsomorphicToolsPlugin.regular_expression('images'),
         loader: 'url-loader?limit=10240'
+      },
+      // Video Loaders
+      {
+        test: webpackIsomorphicToolsPlugin.regular_expression('videos'),
+        loader: 'url-loader'
+      },
+      // Font Loaders
+      {
+        test: webpackIsomorphicToolsPlugin.regular_expression('fonts'),
+        loader: 'url-loader'
+      },
+      // SVG Loaders
+      {
+        test: webpackIsomorphicToolsPlugin.regular_expression('svg'),
+        loader: 'url-loader?limit=10240'
+      },
+      {
+        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'url-loader?limit=10000',
       }
     ]
   },
   plugins: [
     new ExtractTextPlugin('bundle.css'),
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.ProvidePlugin({
       'Promise': 'exports?global.Promise!es6-promise'
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      }
-    }),
+    new webpack.optimize.UglifyJsPlugin(),
     new webpack.DefinePlugin({
      'process.env': {
        NODE_ENV: '"production"'

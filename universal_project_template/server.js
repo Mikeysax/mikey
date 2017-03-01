@@ -73,12 +73,13 @@ app.use((req, res) => {
             />
           )
         );
-
+      })
+      .catch(err => {
+        console.log('Caught Error in Server Render: ');
+        console.log(err);
       });
-
     } else {
       res.status(404).send('Not Found');
-
     }
   });
 });

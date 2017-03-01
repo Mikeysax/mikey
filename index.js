@@ -23,7 +23,7 @@ function collect(val, memo) {
 }
 
 program
-  .version('3.7.1')
+  .version('3.8.0')
   .option('new <projectName>', 'Generate New Mikey Project: react/redux/universal/electron', /^(react|redux|universal|electron)$/i)
   .option('g <fileType>', 'Generate New React File: container/component/action/reducer/helper/custom', /^(container|component|action|reducer|helper|custom)$/i)
   .option('-i, import [importName]', '(Optional) Add imports on file generation.', collect, [])
@@ -53,19 +53,41 @@ if (!process.argv.slice(2).length) {
 if (typeof program.new !== 'undefined') {
   if (program.new === 'react' || program.new === 'redux' || program.new === 'universal' || program.new === 'electron') {
     setTimeout(function() {
-      var projectQuestion = [
-        {
-          type: 'input',
-          name: 'name',
-          message: 'Enter Project Name:'
-        }
-      ];
+      var projectQuestion = '';
+      if (program.new === 'universal') {
+        projectQuestion = [
+          {
+            type: 'input',
+            name: 'api',
+            message: 'Universal App with API? (Y/n):'
+          },
+          {
+            type: 'input',
+            name: 'name',
+            message: 'Enter Project Name:'
+          }
+        ];
+      } else {
+        projectQuestion = [
+          {
+            type: 'input',
+            name: 'name',
+            message: 'Enter Project Name:'
+          }
+        ];
+      }
       inquirer.prompt(projectQuestion).then(function (answer) {
+        var api = program.api;
+        api === 'Y' || api === 'y' ? api = true : false;
         var projectType = program.new;
         var projectName = answer.name;
         if (projectName.length >= 1) {
-          console.log(colors.bold(`Generating New ${_.upperFirst(projectType)} Mikey Project: `) + colors.yellow(projectName.toString()) + colors.bold(' in ') + colors.yellow(currentWDir.toString()));
-          generateProject(projectName, currentWDir, directory, projectType);
+          if (api) {
+            console.log(colors.bold(`Generating New ${_.upperFirst(projectType)} Mikey Project with API: `) + colors.yellow(projectName.toString()) + colors.bold(' in ') + colors.yellow(currentWDir.toString()));
+          } else {
+            console.log(colors.bold(`Generating New ${_.upperFirst(projectType)} Mikey Project: `) + colors.yellow(projectName.toString()) + colors.bold(' in ') + colors.yellow(currentWDir.toString()));
+          }
+          generateProject(projectName, currentWDir, directory, projectType, api);
         } else {
           console.log(colors.red('Project name cannot be blank!'));
         }

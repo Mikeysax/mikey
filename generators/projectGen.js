@@ -2,7 +2,7 @@ var fs = require('fs-extra');
 var spawn = require('child_process').spawn;
 var colors = require('colors');
 
-var generateProject = function(projectName, currentWDir, directory, projectType) {
+var generateProject = function(projectName, currentWDir, directory, projectType, api) {
   var projectDestination = currentWDir + '/' + projectName;
   fs.mkdirs(projectDestination, function(err) {
     if (err) { console.log(err); }
@@ -20,8 +20,13 @@ var generateProject = function(projectName, currentWDir, directory, projectType)
     projectStart = 'npm start';
   }
   if (projectType === 'universal') {
-    projectTemplate = '/universal_project_template';
-    projectStart = 'npm run dev';
+    if (api) {
+      projectTemplate = '/universal_api_project_template';
+      projectStart = 'npm run dev';
+    } else {
+      projectTemplate = '/universal_project_template';
+      projectStart = 'npm run dev';
+    }
   }
   if (projectType === 'electron') {
     projectTemplate = '/electron_project_template';

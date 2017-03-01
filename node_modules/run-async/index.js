@@ -1,7 +1,6 @@
 'use strict';
 
 var isPromise = require('is-promise');
-var Promise = require('pinkie-promise')
 
 /**
  * Return a function that will run a function asynchronously or synchronously
