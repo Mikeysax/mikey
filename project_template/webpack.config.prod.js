@@ -28,25 +28,24 @@ module.exports = {
     fs: 'empty'
   },
   module: {
-    loaders: [
+    rules: [
     // JS Loaders
     {
       test: /\.js$/,
-      loaders: ['babel'],
-      include: path.join(__dirname, 'src'),
+      use: ['babel-loader'],
       exclude: /(node_modules|bower_components)/
     },
     // CSS Loaders
     {
       test: /\.scss$/,
-      include: path.join(__dirname, 'src'),
-      loaders: ['style', 'css', 'sass']
+      exclude: /(node_modules|bower_components)/,
+      loaders: ['style-loader', 'css-loader', 'sass-loader']
     },
     // Image Loaders
     {
       test: /\.(jpg|png)$/,
-      include: path.join(__dirname, 'src'),
-      loader: 'url?limit=25000'
+      exclude: /(node_modules|bower_components)/,
+      loader: 'url-loader?limit=25000'
     }
     ]
   }

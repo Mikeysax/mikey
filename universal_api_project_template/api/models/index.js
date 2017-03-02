@@ -15,7 +15,7 @@ const config = {
       host: 'localhost',
       user: 'postgres',
       password: 'password',
-      database: 'database_qelody',
+      database: 'database_mikey',
       poolSize: 10
     }
   }
