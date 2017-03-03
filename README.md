@@ -221,7 +221,7 @@ ___
 
 #### <strong>Version History:</strong>
 
-<strong>3.9.1</strong>: *Mikey* now uses ```yarn``` to install project dependencies, greatly decreasing the time it takes to generate a full project. All projects besides Electron, use Webpack 2.
+<strong>3.9.2</strong>: *Mikey* now uses ```yarn``` to install project dependencies, greatly decreasing the time it takes to generate a full project. All projects besides Electron, use Webpack 2. Installing dependencies on file generation will now use yarn.
 
 <strong>3.8.0</strong>: *Mikey* Universal projects are now updated to <strong>Webpack 2</strong>. Universal projects also have an API version which are setup to use Waterline and Postgresql out of the box. There are also examples of user authentication using JSON web tokens which can serve as a guide or be used.
 

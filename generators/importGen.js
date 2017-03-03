@@ -23,20 +23,20 @@ var importGen = function(fileType, filePath, inpm, directory, currentWDir) {
         importArray.push(impSplit + "\n");
         console.log(colors.green("Adding: ") + impSplit);
         checkIfDefault(impSplit);
-        installDep(splitDep[1], currentWDir);
+        installDep(splitDep[1], currentWDir, directory);
       } else if (i.match(/{|}/g)) {
         var removedCurl = i.replace(/{|}/g, '');
         var impRemovedCurl = "import " + i + " from " + "'" + removedCurl + "';";
         importArray.push(impRemovedCurl + "\n");
         console.log(colors.green("Adding: ") + impRemovedCurl);
         checkIfDefault(impRemovedCurl);
-        installDep(removedCurl, currentWDir);
+        installDep(removedCurl, currentWDir, directory);
       } else {
         var imp = "import " + i + " from " + "'" + i + "';";
         importArray.push(imp + "\n");
         console.log(colors.green("Adding: ") + imp);
         checkIfDefault(imp);
-        installDep(i, currentWDir);
+        installDep(i, currentWDir, directory);
       }
     });
 
