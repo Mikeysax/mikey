@@ -1,7 +1,5 @@
 
 
-const __Name__ = () => {
+export const __Name__ = () => {
 
 };
-
-export default __Name__;

@@ -37,7 +37,7 @@ var generateProject = function(projectName, currentWDir, directory, projectType,
     if (err) { console.log(err); }
   })
 
-  console.log(colors.bold('Running npm install: '));
+  console.log(colors.bold('Running yarn install: '));
 
   var yarnLocation = directory + '/node_modules/.bin/yarn';
 
