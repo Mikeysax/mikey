@@ -33,27 +33,27 @@ ___
 
 <strong>The different project types are:</strong>
 
-```react``` : react / webpack (no redux).
+```react``` : react / webpack 2 (no redux).
 
-```redux``` : react-redux / webpack.
+```redux``` : react-redux / webpack 2.
 
-```universal``` : react-redux / webpack, with server rendering. This also has an API version which is setup to use Waterline and Postgresql out of the box. Universal projects use Webpack 2.
+```universal``` : react-redux / webpack 2, with server rendering. This also has an API version which is setup to use Waterline and Postgresql out of the box.
 
 ```electron``` : react-redux / webpack, served via electron.
 
 
 <strong>After the new command, *Mikey* will ask for the project name.</strong>
 
-When you create a new project, *Mikey* will run ```npm install``` automatically in the created project directory. All you have to do is be patient, it is not frozen.
+When you create a new project, *Mikey* will run ```yarn install``` automatically in the created project directory. All you have to do is be patient.
 ___
-Once ```npm install``` is done, ```cd``` to project and start the server with:
+Once ```yarn install``` is done, ```cd``` to project and start the server with:
 
 React and React-Redux Projects: ```$ npm start```
 
 Universal and Electron projects: ```$ npm run dev```
 
 ___
-*Mikey* projects are compatible with React / Redux Dev Chrome Extensions / Electron Dev Tools... Also, hot reloading is enabled. Dependencies are kept as minimal as possible. *Mikey* also contains Babel for ES6 compatibility, SCSS/CSS/Image loaders, Testing Setup with Enzyme and other testing dependencies, Production/Dev Config, and Source Mapping. Universal projects take advantage of Redux Async Connect / Redux-Connect fork to pre-load data onto the server before rendering.
+*Mikey* projects are compatible with React / Redux Dev Chrome Extensions / Electron Dev Tools... and hot reloading is enabled. Dependencies are kept as minimal as possible. *Mikey* also contains Babel for ES6 compatibility, SCSS/CSS/Image loaders, Testing Setup with Enzyme and other testing dependencies, Production/Dev Config, and Source Mapping. Universal projects take advantage of Redux Async Connect / Redux-Connect fork to pre-load data onto the server before rendering. Almost every project template uses Webpack 2.
 
 ___
 To build for production:
@@ -220,6 +220,8 @@ ___
 ___
 
 #### <strong>Version History:</strong>
+
+<strong>3.9.0</strong>: *Mikey* now uses ```yarn``` to install project dependencies, greatly decreasing the time it takes to generate a full project.
 
 <strong>3.8.0</strong>: *Mikey* Universal projects are now updated to <strong>Webpack 2</strong>. Universal projects also have an API version which are setup to use Waterline and Postgresql out of the box. There are also examples of user authentication using JSON web tokens which can serve as a guide or be used.
 

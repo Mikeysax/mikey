@@ -39,7 +39,9 @@ var generateProject = function(projectName, currentWDir, directory, projectType,
 
   console.log(colors.bold('Running npm install: '));
 
-  var newProject = spawn('npm', ['install'], { cwd: projectDestination, stdio: 'inherit' });
+  var yarnLocation = directory + '/node_modules/.bin/yarn';
+
+  var newProject = spawn(yarnLocation, ['install'], { cwd: projectDestination, stdio: 'inherit' });
 
   newProject.on('close', function (exitCode) {
     console.log(colors.bold('Done! cd to ') + colors.yellow.bold(projectName.toString()) + colors.bold(' and launch server: ') + colors.bold.green(projectStart.toString()));
