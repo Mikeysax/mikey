@@ -9,13 +9,16 @@ import promiseMiddleware from 'redux-promise';
 import rootReducer from '../shared/js/reducers/index';
 
 // Dev Tools
-import DevTools from '../shared/lib/devtools';
+let DevTools;
+if (__DEVELOPMENT__) {
+  DevTools = require('../shared/lib/devtools');
+}
 
 // Store
 export default function configureStore(initialState = {}) {
   // For Dev Tools
   let enhancers = [];
-  if (typeof window === 'object' && typeof window.devToolsExtension !== 'undefined') {
+  if (__DEVELOPMENT__ && typeof window === 'object' && typeof window.devToolsExtension !== 'undefined') {
     enhancers.push(window.devToolsExtension ? window.devToolsExtension() : DevTools.instrument());
   }
 

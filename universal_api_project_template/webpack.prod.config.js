@@ -6,10 +6,6 @@ var config = require('./webpack-isomorphic-tools-configuration');
 var WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin');
 var webpackIsomorphicToolsPlugin = new WebpackIsomorphicToolsPlugin(config);
 
-var outDirectory = (process.env.NODE_ENV === 'production') ?
-  'dist' :
-  'build';
-
 module.exports = {
   entry: [
     './client/App'
@@ -19,7 +15,7 @@ module.exports = {
     extensions: ['.js', '.jsx']
   },
   output: {
-    path: path.join(__dirname, outDirectory),
+    path: path.join(__dirname, 'dist'),
     filename: 'bundle.js'
   },
   node: {
@@ -38,14 +34,14 @@ module.exports = {
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
           fallback: "style-loader",
-          use: ['css-loader', 'sass-loader']
+          use: "css-loader"
         })
       },
       {
         test: /\.scss$/,
         use: ExtractTextPlugin.extract({
           fallback: "style-loader",
-          use: ['css-loader', 'sass-loader']
+          use: ["css-loader", "sass-loader"]
         })
       },
       // Image Loaders
@@ -75,7 +71,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new ExtractTextPlugin('bundle.css'),
+    new ExtractTextPlugin("bundle.css"),
     new webpack.ProvidePlugin({
       'Promise': 'exports-loader?global.Promise!es6-promise'
     }),

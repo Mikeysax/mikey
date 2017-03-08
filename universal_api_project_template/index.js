@@ -1,6 +1,5 @@
 var fs = require('fs');
 var babelrc = fs.readFileSync('./.babelrc');
-require('./env.js');
 var config;
 
 try {
@@ -19,6 +18,10 @@ var rootDir = path.resolve(__dirname, '');
 global.__CLIENT__ = false;
 global.__SERVER__ = true;
 global.__DEVELOPMENT__ = process.env.NODE_ENV === 'development';
+
+if (__DEVELOPMENT__) {
+  require('./env.js');
+}
 
 var webpackConfig = require('./webpack-isomorphic-tools-configuration');
 var WebpackIsomorphicTools = require('webpack-isomorphic-tools');

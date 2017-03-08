@@ -37,12 +37,12 @@ module.exports = Object.assign(prodCfg, {
       {
         test: /\.css$/,
         exclude: /node_modules/,
-        use: ['style-loader', 'css-loader']
+        use: ['isomorphic-style-loader', 'css-loader']
       },
       {
         test: /\.scss$/,
         exclude: /node_modules/,
-        use: ['style-loader', 'css-loader', 'sass-loader']
+        use: ['isomorphic-style-loader', 'css-loader', 'sass-loader']
       },
       // Image Loaders
       {
@@ -80,16 +80,16 @@ module.exports = Object.assign(prodCfg, {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
-    new webpack.NoErrorsPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
     new webpack.ProvidePlugin({
-      'Promise': 'exports?global.Promise!es6-promise'
+      'Promise': 'exports-loader?global.Promise!es6-promise'
     }),
     new webpack.DefinePlugin({
       __CLIENT__: true,
       __SERVER__: false,
       __DEVELOPMENT__: true
     }),
-    webpackIsomorphicToolsPlugin.development(),
+    webpackIsomorphicToolsPlugin.development()
   ],
   devServer: {
     hot: true,

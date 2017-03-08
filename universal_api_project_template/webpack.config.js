@@ -37,12 +37,12 @@ module.exports = Object.assign(prodCfg, {
       {
         test: /\.css$/,
         exclude: /node_modules/,
-        use: ['style-loader', 'css-loader']
+        use: ['isomorphic-style-loader', 'css-loader']
       },
       {
         test: /\.scss$/,
         exclude: /node_modules/,
-        use: ['style-loader', 'css-loader', 'sass-loader']
+        use: ['isomorphic-style-loader', 'css-loader', 'sass-loader']
       },
       // Image Loaders
       {
