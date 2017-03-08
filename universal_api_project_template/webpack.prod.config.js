@@ -33,14 +33,14 @@ module.exports = {
       {
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
-          fallback: "style-loader",
+          fallback: "isomorphic-style-loader",
           use: "css-loader"
         })
       },
       {
         test: /\.scss$/,
         use: ExtractTextPlugin.extract({
-          fallback: "style-loader",
+          fallback: "isomorphic-style-loader",
           use: ["css-loader", "sass-loader"]
         })
       },
@@ -71,7 +71,10 @@ module.exports = {
     ]
   },
   plugins: [
-    new ExtractTextPlugin("bundle.css"),
+    new ExtractTextPlugin({
+      filename:"bundle.css",
+      allChunks: true
+    }),
     new webpack.ProvidePlugin({
       'Promise': 'exports-loader?global.Promise!es6-promise'
     }),

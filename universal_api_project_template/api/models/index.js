@@ -17,7 +17,7 @@ if (__DEVELOPMENT__) {
         host: 'localhost',
         user: 'postgres',
         password: 'password',
-        database: 'database_qelody',
+        database: 'database',
         poolSize: 10
       }
     }

@@ -15,8 +15,8 @@ export default class InitialPage extends React.Component {
           <script src="https://use.fontawesome.com/2778da33c5.js"></script>
           {/* For Production */}
           {Object.keys(assets.styles).map((style, i) =>
-            <link href={assets.styles[style]} key={i} media="screen, projection"
-                  rel="stylesheet" type="text/css"/>)}
+            <link href={assets.styles[style]} key={i} media="screen, projection" rel="stylesheet" type="text/css"/>
+          )}
           {/* For Development */}
           { Object.keys(assets.styles).length === 0 ? Object.keys(assets.assets).map((style, key) =>
             <style dangerouslySetInnerHTML={{__html: require(`${style}`)._style}} key={key}/>
