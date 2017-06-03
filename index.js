@@ -23,7 +23,7 @@ function collect(val, memo) {
 }
 
 program
-  .version('3.9.4')
+  .version('3.9.5')
   .option('new <projectName>', 'Generate New Mikey Project: react/redux/universal/electron', /^(react|redux|universal|electron)$/i)
   .option('g <fileType>', 'Generate New React File: container/component/action/reducer/helper/custom', /^(container|component|action|reducer|helper|custom)$/i)
   .option('-i, import [importName]', '(Optional) Add imports on file generation.', collect, [])
