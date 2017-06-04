@@ -9,13 +9,10 @@ var router = express.Router();
 
 // Base Path /api->
 router.get('/', function(req, res) {
-  res.json({ message: 'Qelody API...' });
-});
-
+  res.json({ message: 'Mikey API...' });
+})
 // Routes
-// Example: router.use('/user', require('./user'));
-
-
+// .use('/user', require('./user'));
 // -----------------------------------------------
 
 module.exports = router;

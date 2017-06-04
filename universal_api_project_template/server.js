@@ -11,7 +11,6 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import methodOverride from 'method-override';
-let models = require('./api/models');
 
 // Router Dependencies
 import { RouterContext, match } from 'react-router';
@@ -98,16 +97,26 @@ app.use((req, res) => {
 
 // Port
 const PORT = process.env.PORT || 3000;
-// App / Server Start
-models.waterline.initialize(models.config, function(err, models) {
-  if(err) throw err;
-  // console.log(models.collections);
-  app.models = models.collections;
-  app.connections = models.connections;
 
-  app.listen(PORT, (error) => {
-    if (!error) { console.log('Server listening on: ' + PORT); }
-  });
+// if (__DEVELOPMENT__) {
+//   // sequelize models
+//   let models = require('./api/models');
+//   // App / Server Start / Models Sync.
+//   models.sequelize.sync({ force: true })
+//   .then(() => {
+//     app.listen(PORT, (error) => {
+//       if (!error) { console.log('Server listening on: ' + PORT); }
+//     });
+//   })
+//   .catch((err) => {
+//     console.log('Sequelize Error:');
+//     console.log(err);
+//   });
+// } else {
+app.listen(PORT, (error) => {
+  if (!error) { console.log('Server listening on: ' + PORT); }
 });
+// }
+
 
 export default app;

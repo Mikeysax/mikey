@@ -44,9 +44,9 @@ ___
 
 <strong>After the new command, *Mikey* will ask for the project name.</strong>
 
-When you create a new project, *Mikey* will run ```yarn install``` automatically in the created project directory. All you have to do is be patient.
+When you create a new project, *Mikey* will run ```npm install``` automatically in the created project directory. All you have to do is be patient.
 ___
-Once ```yarn install``` is done, ```cd``` to project and start the server with:
+Once ```npm install``` is done, ```cd``` to project and start the server with:
 
 React and React-Redux Projects: ```$ npm start```
 
@@ -188,7 +188,7 @@ Once you've saved a template, you can reuse it in any project.
 
 ```$ mikey g fileType```
 
-A list of custom templates of that file type will be displayed. A prompt will be displayed in the console for template choice and desired file name. The template file name will be used by default if no new name is entered. File selection is <strong>without the .js extension</strong>
+A list of custom templates of that file type will display. A prompt will display in the console for template choice and desired file name. The template file name will be used by default if no new name is entered. File selection is <strong>without the .js extension</strong>
 
 ___
 #### Deleting Custom Files from Custom Templates:
@@ -197,7 +197,7 @@ If you want to delete a custom template:
 
 ```$ mikey delete_template fileType```
 
-A list of custom templates of that file type will be displayed. The prompt will then ask which file you would like to delete. File selection is <strong>without the .js extension</strong>
+A list of custom templates of that file type will display. The prompt will then ask which file you would like to delete. File selection is <strong>without the .js extension</strong>
 
 ___
 #### List Custom Files from Custom Templates:
@@ -220,6 +220,8 @@ ___
 ___
 
 #### <strong>Version History:</strong>
+
+<strong>3.9.6</strong>: *Mikey* Universal API Template uses sequelize by default instead of waterline. Cleaned up README.
 
 <strong>3.9.5</strong>: *Mikey* now uses ```npm``` to install project dependencies. With the advent of npm 5 and the progrssive enhancements will also prevent other possible errors from occuring on project generation.
 

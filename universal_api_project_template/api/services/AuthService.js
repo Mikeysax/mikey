@@ -1,28 +1,30 @@
-// import jwt from 'jwt-simple';
+import crypto from 'crypto';
 import jwt from 'jsonwebtoken';
 import moment from 'moment';
 import app from '../../server';
+import models from '../models';
 
 module.exports = {
-	generateUserToken: function(user){
+	generateUserToken: (user) => {
 		let issueDate = moment().utc().format();
-
 		let token = jwt.sign({
 			id: user.id,
 			issued: issueDate
 		  },
 			app.secret, {
-			expiresIn: "7d" // expires in 1 week
+			expiresIn: "7d"
 		});
-
 		return token;
 	},
-
-	getUser: function(token, cb){
-		// Is token valid?
-		let tokenObj = jwt.verify(token, app.secret);
-		let userid = tokenObj.id;
-		// Find the user from the valid token.
-	  return app.models.user.findOne({ id: userid });
+	// getUser: (token) => {
+	// 	let tokenObj = jwt.verify(token, app.secret);
+	//   return models.User.findOne({ where: { id: tokenObj.id }});
+	// },
+	generateConfirmationToken: (email) => {
+		const seed = crypto.randomBytes(20);
+    return {
+			confirmation_token: crypto.createHash('sha1').update(seed + email).digest('hex'),
+			confirmation_created_at: Date.now()
+		};
 	}
 }

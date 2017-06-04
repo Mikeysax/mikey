@@ -33,14 +33,14 @@ module.exports = {
       {
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
-          fallback: "isomorphic-style-loader",
+          fallback: "style-loader",
           use: "css-loader"
         })
       },
       {
         test: /\.scss$/,
         use: ExtractTextPlugin.extract({
-          fallback: "isomorphic-style-loader",
+          fallback: "style-loader",
           use: ["css-loader", "sass-loader"]
         })
       },
@@ -80,12 +80,12 @@ module.exports = {
     }),
     new webpack.optimize.UglifyJsPlugin(),
     new webpack.DefinePlugin({
-     'process.env': {
+      'process.env': {
        NODE_ENV: '"production"'
-     },
-     __CLIENT__: true,
-     __SERVER__: false,
-     __DEVELOPMENT__: false
+      },
+      __CLIENT__: true,
+      __SERVER__: false,
+      __DEVELOPMENT__: false
    }),
     webpackIsomorphicToolsPlugin
   ]

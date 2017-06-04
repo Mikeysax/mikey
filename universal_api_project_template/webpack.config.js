@@ -12,8 +12,8 @@ module.exports = Object.assign(prodCfg, {
   devtool: 'inline-source-map',
   entry:  {
     'main': [
-      // 'webpack-dev-server/client?http://127.0.0.1:8080/',
-      // 'webpack/hot/only-dev-server',
+      'webpack-dev-server/client?http://127.0.0.1:8080/',
+      'webpack/hot/only-dev-server',
       './client/App'
     ]
   },
@@ -29,7 +29,7 @@ module.exports = Object.assign(prodCfg, {
     rules: [
       // JS Loaders
       {
-        test:    /\.jsx?$/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         use: ['react-hot-loader', 'babel-loader']
       },
