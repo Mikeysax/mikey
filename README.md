@@ -221,7 +221,7 @@ ___
 
 #### <strong>Version History:</strong>
 
-<strong>3.9.6</strong>: *Mikey* Universal API Template uses sequelize by default instead of waterline. Cleaned up README.
+<strong>3.9.7</strong>: *Mikey* Universal API Template uses sequelize by default instead of waterline. Cleaned up README.
 
 <strong>3.9.5</strong>: *Mikey* now uses ```npm``` to install project dependencies. With the advent of npm 5 and the progrssive enhancements will also prevent other possible errors from occuring on project generation.
 
