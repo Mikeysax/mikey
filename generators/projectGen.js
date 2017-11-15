@@ -8,7 +8,7 @@ var generateProject = function(projectName, currentWDir, directory, projectType,
     if (err) { console.log(err); }
   });
 
-  // Universal, Electron, or Regular?
+  // Universal or Regular?
   var projectTemplate = '';
   var projectStart = '';
   if (projectType === 'redux') {
@@ -27,10 +27,6 @@ var generateProject = function(projectName, currentWDir, directory, projectType,
       projectTemplate = '/universal_project_template';
       projectStart = 'npm run dev';
     }
-  }
-  if (projectType === 'electron') {
-    projectTemplate = '/electron_project_template';
-    projectStart = 'npm run dev';
   }
 
   fs.copy(directory + projectTemplate, projectDestination, function(err) {

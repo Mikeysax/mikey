@@ -1,9 +1,10 @@
 // Import Project Dependencies
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { hydrate } from 'react-dom';
 
 // Import CSS/SCSS
-import '../shared/css/application.scss';
+const requireAll = (r) => r.keys().forEach(r);
+requireAll(require.context('../shared/css/', true, /\.scss$/));
 
 // Router Dependencies
 import { Router, browserHistory } from 'react-router';
@@ -27,6 +28,4 @@ const router = (
 );
 
 // Render
-ReactDOM.render(
-  router, document.getElementById('app')
-);
+hydrate(router, document.getElementById('app'));

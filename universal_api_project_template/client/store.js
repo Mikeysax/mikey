@@ -10,9 +10,7 @@ import rootReducer from '../shared/js/reducers/index';
 
 // Dev Tools
 let DevTools;
-if (__DEVELOPMENT__) {
-  DevTools = require('../shared/lib/devtools');
-}
+if (__DEVELOPMENT__) DevTools = require('../shared/lib/devtools');
 
 // Store
 export default function configureStore(initialState = {}) {
@@ -40,12 +38,7 @@ export default function configureStore(initialState = {}) {
   );
 
   // Reducer Hot Reloading
-  if(module.hot) {
-    module.hot.accept('../shared/js/reducers/', () => {
-      const nextRootReducer = require('../shared/js/reducers/index').default;
-      store.replaceReducer(nextRootReducer);
-    });
-  }
+  if (module.hot) module.hot.accept('../shared/js/reducers/', () => store.replaceReducer(require('../shared/js/reducers/index').default) );
 
   return store;
 };

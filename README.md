@@ -128,7 +128,7 @@ ___
 
 <strong>To generate a new file and import one or multiple dependencies to top of file:</strong>
 
-```$ mikey g fileType -i depName```  
+```$ mikey g fileType -i depName```
 
 <strong>To import multiple dependencies to top of file:</strong>
 
@@ -220,6 +220,8 @@ ___
 ___
 
 #### <strong>Version History:</strong>
+
+<strong>3.9.8</strong>: Updated Universal API Templates to use latest React and updated server side rendering setup with Hydrate and NodeStream. Improved Webpack config as well.
 
 <strong>3.9.7</strong>: *Mikey* Universal API Template uses sequelize by default instead of waterline. Cleaned up README.
 

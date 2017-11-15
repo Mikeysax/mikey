@@ -1,73 +1,116 @@
-var path      = require('path');
-var webpack   = require('webpack');
-var prodCfg   = require('./webpack.prod.config');
+const path      = require('path');
+const webpack   = require('webpack');
+const autoprefixer = require('autoprefixer');
 
 Object.assign = require('object-assign');
 
-var config = require('./webpack-isomorphic-tools-configuration');
-var WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin');
-var webpackIsomorphicToolsPlugin = new WebpackIsomorphicToolsPlugin(config);
+const config = require('./webpack-isomorphic-tools-configuration');
+const WITPlugin = require('webpack-isomorphic-tools/plugin');
+const webpackIsomorphicToolsPlugin = new WITPlugin(config);
+const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
+const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
+const noopServiceWorkerMiddleware = require('react-dev-utils/noopServiceWorkerMiddleware');
 
-module.exports = Object.assign(prodCfg, {
-  devtool: 'inline-source-map',
-  entry:  {
-    'main': [
-      // 'webpack-dev-server/client?http://127.0.0.1:8080/',
-      // 'webpack/hot/only-dev-server',
-      './client/App'
-    ]
-  },
+module.exports = {
+  devtool: 'cheap-module-source-map',
+  entry:  [
+    require.resolve('react-error-overlay'),
+    'webpack-dev-server/client?http://localhost:8080',
+    'webpack/hot/only-dev-server',
+    './client/App'
+  ],
   output: {
     path: path.join(__dirname, 'dist'),
+    pathinfo: true,
     filename: 'bundle.js',
+    chunkFilename: '[name].chunk.js',
     publicPath: '/dist/'
   },
   node: {
     fs: 'empty'
   },
   module: {
+    strictExportPresence: true,
     rules: [
-      // JS Loaders
       {
-        test:    /\.jsx?$/,
-        exclude: /node_modules/,
-        use: ['react-hot-loader', 'babel-loader']
-      },
-      // CSS Loaders
-      {
-        test: /\.css$/,
-        exclude: /node_modules/,
-        use: ['isomorphic-style-loader', 'css-loader']
-      },
-      {
-        test: /\.scss$/,
-        exclude: /node_modules/,
-        use: ['isomorphic-style-loader', 'css-loader', 'sass-loader']
-      },
-      // Image Loaders
-      {
-        test: webpackIsomorphicToolsPlugin.regular_expression('images'),
-        loader: 'url-loader'
-      },
-      // Video Loaders
-      {
-        test: webpackIsomorphicToolsPlugin.regular_expression('videos'),
-        loader: 'url-loader'
-      },
-      // Font Loaders
-      {
-        test: webpackIsomorphicToolsPlugin.regular_expression('fonts'),
-        loader: 'url-loader'
-      },
-      // SVG Loaders
-      {
-        test: webpackIsomorphicToolsPlugin.regular_expression('svg'),
-        loader: 'url-loader'
-      },
-      // Font Loaders
-      {
-        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url-loader',
+        oneOf: [
+          // JS Loaders
+          {
+            test: /\.(js|jsx)$/,
+            exclude: /node_modules/,
+            loader: require.resolve('babel-loader'),
+            options: {
+              cacheDirectory: true,
+            }
+          },
+          // CSS Loaders
+          {
+            test: /\.(scss|sass)$/,
+            exclude: /node_modules/,
+            use: [
+              require.resolve('isomorphic-style-loader'),
+              {
+                loader: require.resolve('css-loader'),
+                options: {
+                  importLoaders: 1
+                }
+              }, {
+                loader: require.resolve('postcss-loader'),
+                options: {
+                  ident: 'postcss',
+                  plugins: () => [
+                    require('postcss-flexbugs-fixes'),
+                    autoprefixer({
+                      browsers: [
+                        '>1%',
+                        'last 4 versions',
+                        'Firefox ESR',
+                        'not ie < 9'
+                      ],
+                      flexbox: 'no-2009'
+                    })
+                  ]
+                }
+              },
+              {
+                loader: require.resolve('sass-loader')
+              }
+            ]
+          },
+          // Image Loaders
+          {
+            test: webpackIsomorphicToolsPlugin.regular_expression('images'),
+            loader: require.resolve('url-loader')
+          },
+          // Video Loaders
+          {
+            test: webpackIsomorphicToolsPlugin.regular_expression('videos'),
+            loader: require.resolve('url-loader')
+          },
+          // Font Loaders
+          {
+            test: webpackIsomorphicToolsPlugin.regular_expression('fonts'),
+            loader: require.resolve('url-loader')
+          },
+          // SVG Loaders
+          {
+            test: webpackIsomorphicToolsPlugin.regular_expression('svg'),
+            loader: require.resolve('url-loader')
+          },
+          // Font Loaders
+          {
+            test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+            loader: require.resolve('url-loader'),
+          },
+          // Other
+          {
+            exclude: [/\.js$/, /\.html$/, /\.json$/],
+            loader: require.resolve('file-loader'),
+            options: {
+              name: '[name].[hash:8].[ext]',
+            }
+          }
+        ]
       }
     ]
   },
@@ -78,24 +121,51 @@ module.exports = Object.assign(prodCfg, {
     'react/lib/ReactContext': true
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
-    new webpack.NoEmitOnErrorsPlugin(),
-    new webpack.ProvidePlugin({
-      'Promise': 'exports-loader?global.Promise!es6-promise'
-    }),
     new webpack.DefinePlugin({
+      'process.env': {
+        ENV: JSON.stringify('development'),
+        NODE_ENV: JSON.stringify('development')
+      },
       __CLIENT__: true,
       __SERVER__: false,
       __DEVELOPMENT__: true
     }),
+    new webpack.HotModuleReplacementPlugin(),
+    new CaseSensitivePathsPlugin(),
+    new WatchMissingNodeModulesPlugin('./node_modules'),
+    new webpack.ProvidePlugin({
+      'Promise': 'exports-loader?global.Promise!es6-promise',
+      'fetch': 'imports-loader?this=>global!exports-loader?global.fetch!whatwg-fetch'
+    }),
+    // new webpack.NoEmitOnErrorsPlugin(),
+    // new webpack.optimize.ModuleConcatenationPlugin(),
+    // new webpack.EnvironmentPlugin(),
     webpackIsomorphicToolsPlugin.development()
   ],
   devServer: {
+    compress: true,
+    inline: true,
+    watchContentBase: true,
     hot: true,
+    watchOptions: {
+      aggregateTimeout: 300,
+      poll: true,
+      ignored: /node_modules/
+    },
+    overlay: false,
+    historyApiFallback: {
+      disableDotRule: true,
+    },
     proxy: {
       '*': 'http://127.0.0.1:' + (process.env.PORT || 3000)
     },
-    host: '127.0.0.1'
+    host: '127.0.0.1',
+    before(app) {
+      app.use(noopServiceWorkerMiddleware());
+    }
+  },
+  performance: {
+    hints: false,
   }
-});
+};
