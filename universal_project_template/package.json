@@ -14,7 +14,7 @@
     "test:watch": "npm run test -- --watch",
     "lint": "eslint src",
     "heroku-prebuild": "rm yarn.lock",
-    "heroku-postbuild": "npm run build",
+    "heroku-postbuild": "npm run build"
   },
   "repository": {
     "type": "git",
