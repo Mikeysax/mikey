@@ -1,5 +1,4 @@
 var fs = require('fs-extra');
-var _ = require('lodash');
 var importGen = require('./importGen.js');
 var importDefaults = require('./defaultGen.js');
 var generateTest = require('./testGen.js');
@@ -23,7 +22,7 @@ var generateFile = function(foundPath, fileType, fileName, inpm, directory, defa
       });
 
       readTemplate.on('end', function(error) {
-        if (error) { console.log(colors.red(error.toString())); }
+        if (error) console.log(colors.red(error.toString()));
       });
 
       importGen(fileType, filePath, inpm, directory, currentWDir);

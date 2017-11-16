@@ -9,6 +9,7 @@ export default class InitialPage extends React.Component {
     return (
       <html lang="en-us">
         <head>
+          <meta charSet="utf8" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           {/* For Production */}
           {Object.keys(assets.styles).map((style, i) =>

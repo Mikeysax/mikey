@@ -1,5 +1,5 @@
 var fs = require('fs-extra');
-var _ = require('lodash');
+var capitalize = require('lodash/capitalize');
 var importGen = require('./importGen.js');
 var importDefaults = require('./defaultGen.js');
 var generateTest = require('./testGen.js');
@@ -22,15 +22,14 @@ var generateCustomFile = function(foundPath, fileType, templateName, fileName, i
       readTemplate.on('data', function(chunk) {
         var newData = chunk.toString()
           .replace(regExTemplateName, fileName);
+
         writeFile.write(newData);
         writeFile.end();
       });
 
       readTemplate.on('end', function(error) {
-        if (error) {
-          console.log(colors.red(error.toString()));
-        }
-        console.log(colors.yellow(_.capitalize(fileType).toString()) + '/' + templateName + ' Custom Template Used Successfully');
+        if (error) console.log(colors.red(error.toString()));
+        console.log(colors.yellow(capitalize(fileType).toString()) + '/' + templateName + ' Custom Template Used Successfully');
       });
 
       importGen(fileType, filePath, inpm, directory, currentWDir);

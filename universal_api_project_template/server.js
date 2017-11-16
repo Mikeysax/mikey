@@ -84,7 +84,7 @@ app.use((req, res) => {
         )
       )
       .then(components => {
-        const htmlStream = renderToStaticNodeStream(
+        const htmlStream = renderToNodeStream(
           <InitialPage
             assets={webpackIsomorphicTools.assets()}
             component={components}

@@ -33,18 +33,19 @@ var generateProject = function(projectName, currentWDir, directory, projectType,
     if (err) { console.log(err); }
   })
 
-  console.log(colors.bold('Running npm install: '));
+  console.log(colors.bold('Installing Project Dependencies: '));
 
-  var newProject = spawn('npm', ['install'], { cwd: projectDestination, stdio: 'inherit' });
+  var yarnLocation = directory + '/node_modules/.bin/yarn';
+  var newProject = spawn(yarnLocation, [''], { cwd: projectDestination, stdio: 'inherit' });
 
   newProject.on('close', (exitCode) => {
     console.log(colors.bold('Done! cd to ') + colors.yellow.bold(projectName.toString()) + colors.bold(' and launch server: ') + colors.bold.green(projectStart.toString()));
-    console.log(colors.rainbow('   ███╗   ███╗██╗██╗  ██╗███████╗██╗   ██╗'));
-    console.log(colors.rainbow('   ████╗ ████║██║██║ ██╔╝██╔════╝╚██╗ ██╔╝'));
-    console.log(colors.rainbow('   ██╔████╔██║██║█████╔╝ █████╗   ╚████╔╝'));
-    console.log(colors.rainbow('   ██║╚██╔╝██║██║██╔═██╗ ██╔══╝    ╚██╔╝'));
-    console.log(colors.rainbow('   ██║ ╚═╝ ██║██║██║  ██╗███████╗   ██║'));
-    console.log(colors.rainbow('   ╚═╝     ╚═╝╚═╝╚═╝  ╚═╝╚══════╝   ╚═╝'));
+    console.log(colors.rainbow('   ███╗   ███╗ ██╗ ██╗  ██╗ ███████╗ ██╗   ██╗'));
+    console.log(colors.rainbow('   ████╗ ████║ ██║ ██║ ██╔╝ ██╔════╝╚██╗ ██╔╝'));
+    console.log(colors.rainbow('   ██╔████╔██║ ██║ █████╔╝  █████╗   ╚████╔╝'));
+    console.log(colors.rainbow('   ██║╚██╔╝██║ ██║ ██╔═██╗  ██╔══╝    ╚██╔╝'));
+    console.log(colors.rainbow('   ██║ ╚═╝ ██║ ██║ ██║  ██╗ ███████╗   ██║'));
+    console.log(colors.rainbow('   ╚═╝     ╚═╝ ╚═╝ ╚═╝  ╚═╝ ╚══════╝   ╚═╝'));
   });
 };
 

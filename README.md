@@ -212,7 +212,7 @@ ___
 
 #### <strong>Version History:</strong>
 
-<strong>3.9.14</strong>: Updated Universal API Templates to use latest React and updated server side rendering setup with Hydrate and NodeStream. Improved Webpack config as well.
+<strong>3.10.0</strong>: Updated Universal API Templates to use latest React and updated server side rendering setup with Hydrate and NodeStream. Improved Webpack config as well. Refactored pieces of mikey and implemented use of yarn to install project dependencies.
 
 <strong>3.9.7</strong>: *Mikey* Universal API Template uses sequelize by default instead of waterline. Cleaned up README.
 
