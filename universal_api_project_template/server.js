@@ -76,13 +76,14 @@ app.use((req, res) => {
       res.redirect(302, redirectLocation.pathname + redirectLocation.search);
     } else if (renderProps) {
       loadOnServer({ ...renderProps, store })
-      .then(() => {
-        const components = renderToString(
+      .then(() => Promise.resolve(
+        renderToString(
           <Provider store={store}>
             <ReduxAsyncConnect {...renderProps} />
-          </Provider>
-        );
-
+          </Provider>)
+        )
+      )
+      .then(components => {
         const htmlStream = renderToStaticNodeStream(
           <InitialPage
             assets={webpackIsomorphicTools.assets()}
@@ -92,8 +93,7 @@ app.use((req, res) => {
         );
 
         res.write('<!DOCTYPE html>\n');
-
-        htmlStream.pipe(res, {end: false});
+        htmlStream.pipe(res, { end: false });
         htmlStream.on('end', () => res.end());
       })
       .catch(err => console.error('Caught Error in Server Render: ', err) );
