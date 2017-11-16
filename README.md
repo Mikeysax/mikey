@@ -12,8 +12,6 @@ Inspired by Rails generate; *Mikey* is a CLI / Framework for React/Redux applica
 [React Mikey Example (No Redux Coming Soon!)]()
 
 [Universal Mikey Example](https://github.com/Mikeysax/mikeyUniversalExample)
-
-[Electron Mikey Example](https://github.com/Mikeysax/Munote)
 ___
 ### Installation
 
@@ -37,10 +35,7 @@ ___
 
 ```redux``` : react-redux / webpack 2.
 
-```universal``` : react-redux / webpack 2, with server rendering. This also has an API version which is setup to use Waterline and Postgresql out of the box.
-
-```electron``` : react-redux / webpack, served via electron.
-
+```universal``` : react-redux / webpack 2, with server rendering. This also has an API version which is setup to use Sequelize and Postgresql out of the box.
 
 <strong>After the new command, *Mikey* will ask for the project name.</strong>
 
@@ -50,19 +45,15 @@ Once ```npm install``` is done, ```cd``` to project and start the server with:
 
 React and React-Redux Projects: ```$ npm start```
 
-Universal and Electron projects: ```$ npm run dev```
+Universal projects: ```$ npm run dev```
 
 ___
-*Mikey* projects are compatible with React / Redux Dev Chrome Extensions / Electron Dev Tools... and hot reloading is enabled. Dependencies are kept as minimal as possible. *Mikey* also contains Babel for ES6 compatibility, SCSS/CSS/Image loaders, Testing Setup with Enzyme and other testing dependencies, Production/Dev Config, and Source Mapping. Universal projects take advantage of Redux Async Connect / Redux-Connect fork to pre-load data onto the server before rendering. Almost every project template uses Webpack 2.
+*Mikey* projects are compatible with React / Redux Dev Chrome Extensions and hot reloading is enabled. Dependencies are kept as minimal as possible. *Mikey* also contains Babel for ES6 compatibility, SCSS/CSS/Image loaders, Testing Setup with Enzyme and other testing dependencies, Production/Dev Config, and Source Mapping. Universal projects take advantage of Redux Async Connect / Redux-Connect fork to pre-load data onto the server before rendering. Almost every project template uses Webpack 2.
 
 ___
 To build for production:
 
 ```$ npm run build```
-
-For Electron project build and package for production:
-
-```$ npm run build``` && ```$ npm run package``` || ```$ npm run package-all```
 
 ___
 ### File Generation
@@ -221,7 +212,7 @@ ___
 
 #### <strong>Version History:</strong>
 
-<strong>3.9.12</strong>: Updated Universal API Templates to use latest React and updated server side rendering setup with Hydrate and NodeStream. Improved Webpack config as well.
+<strong>3.9.13</strong>: Updated Universal API Templates to use latest React and updated server side rendering setup with Hydrate and NodeStream. Improved Webpack config as well.
 
 <strong>3.9.7</strong>: *Mikey* Universal API Template uses sequelize by default instead of waterline. Cleaned up README.
 
