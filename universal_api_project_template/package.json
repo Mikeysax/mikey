@@ -1,5 +1,5 @@
 {
-  "name": "UniversalMikeyGeneratedApp",
+  "name": "universal-api-mikey-generated-app",
   "version": "0.0.1",
   "engines": {
     "node": ">=9.0.0"
@@ -16,7 +16,7 @@
     "heroku-prebuild": "rm yarn.lock",
     "heroku-postbuild": "npm run build",
     "seq": "node_modules/.bin/sequelize",
-    "migrate": "node_modules/.bin/sequelize db:migrate",
+    "migrate": "node_modules/.bin/sequelize db:migrate"
   },
   "repository": {
     "type": "git",
