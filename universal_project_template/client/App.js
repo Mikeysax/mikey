@@ -28,6 +28,4 @@ const router = (
 );
 
 // Render
-ReactDOM.render(
-  router, document.getElementById('app')
-);
+hydrate(router, document.getElementById('app'));
