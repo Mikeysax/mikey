@@ -32,9 +32,7 @@ const store = configureStore(initialState);
 app.use((req, res) => {
   if (__DEVELOPMENT__) webpackIsomorphicTools.refresh();
 
-  const initialState = {
-    modal: { showSignUp: false, showSignIn: false, showSignOut: false, showReset: false }
-  };
+  const initialState = {};
   const store = configureStore(initialState);
 
   // Initial HTML
