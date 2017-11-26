@@ -3,6 +3,7 @@ var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var autoprefixer = require('autoprefixer');
 var SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
+const HappyPack = require('happypack');
 
 var config = require('./webpack-isomorphic-tools-configuration');
 var WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin');
@@ -11,9 +12,7 @@ var webpackIsomorphicToolsPlugin = new WebpackIsomorphicToolsPlugin(config);
 module.exports = {
   bail: true,
   devtool: 'source-map',
-  entry: [
-    './client/App'
-  ],
+  entry: ['./client/App'],
   resolve: {
     modules: ['node_modules', 'shared'],
     extensions: ['.js', '.jsx']
@@ -35,7 +34,7 @@ module.exports = {
           {
             test: /\.(js|jsx)$/,
             exclude: /node_modules/,
-            loader: require.resolve('babel-loader'),
+            loader: require.resolve('happypack/loader'),
             options: {
               compact: true
             }
@@ -44,13 +43,15 @@ module.exports = {
             test: /\.scss$/,
             use: ExtractTextPlugin.extract({
               fallback: require.resolve('style-loader'),
-              use: [{
+              use: [
+                {
                   loader: require.resolve('css-loader'),
                   options: {
                     importLoaders: 1,
                     minimize: true
                   }
-                }, {
+                },
+                {
                   loader: require.resolve('postcss-loader'),
                   options: {
                     ident: 'postcss',
@@ -67,7 +68,8 @@ module.exports = {
                       })
                     ]
                   }
-                }, {
+                },
+                {
                   loader: require.resolve('sass-loader'),
                   options: {
                     minimize: true
@@ -99,14 +101,14 @@ module.exports = {
           // Font Loaders
           {
             test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
-            loader: require.resolve('url-loader'),
+            loader: require.resolve('url-loader')
           },
           // Other
           {
             exclude: [/\.js$/, /\.html$/, /\.json$/],
             loader: require.resolve('file-loader'),
             options: {
-              name: '[name].[hash:8].[ext]',
+              name: '[name].[hash:8].[ext]'
             }
           }
         ]
@@ -119,18 +121,19 @@ module.exports = {
       allChunks: true
     }),
     new webpack.ProvidePlugin({
-      'Promise': 'exports-loader?global.Promise!es6-promise',
-      'fetch': 'imports-loader?this=>global!exports-loader?global.fetch!whatwg-fetch'
+      Promise: 'exports-loader?global.Promise!es6-promise',
+      fetch:
+        'imports-loader?this=>global!exports-loader?global.fetch!whatwg-fetch'
     }),
     // Uglify might not work either in production.
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false,
-        comparisons: false,
+        comparisons: false
       },
       output: {
         comments: false,
-        ascii_only: true,
+        ascii_only: true
       }
     }),
     // SWPrecacheWebpackPlugin might not work properly in production as set up.
@@ -145,19 +148,23 @@ module.exports = {
       minify: true,
       navigateFallback: '/index.html',
       navigateFallbackWhitelist: [/^(?!\/__).*/],
-      staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/],
+      staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/]
     }),
     new webpack.optimize.ModuleConcatenationPlugin(),
     // new webpack.EnvironmentPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
-        ENV: JSON.stringify("production"),
-        NODE_ENV: JSON.stringify("production")
+        ENV: JSON.stringify('production'),
+        NODE_ENV: JSON.stringify('production')
       },
       __CLIENT__: true,
       __SERVER__: false,
       __DEVELOPMENT__: false
-   }),
+    }),
+    new HappyPack({
+      loaders: ['babel-loader'],
+      threads: 4
+    }),
     webpackIsomorphicToolsPlugin
   ]
 };

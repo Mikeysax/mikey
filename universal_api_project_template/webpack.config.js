@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
+const HappyPack = require('happypack');
 
 Object.assign = require('object-assign');
 
@@ -38,7 +39,7 @@ module.exports = {
           {
             test: /\.(js|jsx)$/,
             exclude: /node_modules/,
-            loader: require.resolve('babel-loader'),
+            loader: require.resolve('happypack/loader'),
             options: {
               cacheDirectory: true
             }
@@ -143,6 +144,10 @@ module.exports = {
     // new webpack.NoEmitOnErrorsPlugin(),
     // new webpack.optimize.ModuleConcatenationPlugin(),
     // new webpack.EnvironmentPlugin(),
+    new HappyPack({
+      loaders: ['babel-loader'],
+      threads: 4
+    }),
     webpackIsomorphicToolsPlugin.development()
   ],
   devServer: {
