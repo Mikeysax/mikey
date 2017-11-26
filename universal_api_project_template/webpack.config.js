@@ -1,5 +1,5 @@
-const path      = require('path');
-const webpack   = require('webpack');
+const path = require('path');
+const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
 
 Object.assign = require('object-assign');
@@ -13,7 +13,7 @@ const noopServiceWorkerMiddleware = require('react-dev-utils/noopServiceWorkerMi
 
 module.exports = {
   devtool: 'cheap-module-source-map',
-  entry:  [
+  entry: [
     require.resolve('react-error-overlay'),
     'webpack-dev-server/client?http://localhost:8080',
     'webpack/hot/only-dev-server',
@@ -40,7 +40,7 @@ module.exports = {
             exclude: /node_modules/,
             loader: require.resolve('babel-loader'),
             options: {
-              cacheDirectory: true,
+              cacheDirectory: true
             }
           },
           // CSS Loaders
@@ -54,7 +54,8 @@ module.exports = {
                 options: {
                   importLoaders: 1
                 }
-              }, {
+              },
+              {
                 loader: require.resolve('postcss-loader'),
                 options: {
                   ident: 'postcss',
@@ -100,14 +101,14 @@ module.exports = {
           // Font Loaders
           {
             test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
-            loader: require.resolve('url-loader'),
+            loader: require.resolve('url-loader')
           },
           // Other
           {
             exclude: [/\.js$/, /\.html$/, /\.json$/],
             loader: require.resolve('file-loader'),
             options: {
-              name: '[name].[hash:8].[ext]',
+              name: '[name].[hash:8].[ext]'
             }
           }
         ]
@@ -135,8 +136,9 @@ module.exports = {
     new CaseSensitivePathsPlugin(),
     new WatchMissingNodeModulesPlugin('./node_modules'),
     new webpack.ProvidePlugin({
-      'Promise': 'exports-loader?global.Promise!es6-promise',
-      'fetch': 'imports-loader?this=>global!exports-loader?global.fetch!whatwg-fetch'
+      Promise: 'exports-loader?global.Promise!es6-promise',
+      fetch:
+        'imports-loader?this=>global!exports-loader?global.fetch!whatwg-fetch'
     }),
     // new webpack.NoEmitOnErrorsPlugin(),
     // new webpack.optimize.ModuleConcatenationPlugin(),
@@ -146,16 +148,13 @@ module.exports = {
   devServer: {
     compress: true,
     inline: true,
-    watchContentBase: true,
     hot: true,
     watchOptions: {
-      aggregateTimeout: 300,
-      poll: true,
       ignored: /node_modules/
     },
     overlay: false,
     historyApiFallback: {
-      disableDotRule: true,
+      disableDotRule: true
     },
     proxy: {
       '*': 'http://127.0.0.1:' + (process.env.PORT || 3000)
@@ -166,6 +165,6 @@ module.exports = {
     }
   },
   performance: {
-    hints: false,
+    hints: false
   }
 };

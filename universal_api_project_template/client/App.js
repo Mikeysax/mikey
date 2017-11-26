@@ -3,7 +3,7 @@ import React from 'react';
 import { hydrate } from 'react-dom';
 
 // Import CSS/SCSS
-const requireAll = (r) => r.keys().forEach(r);
+const requireAll = r => r.keys().forEach(r);
 requireAll(require.context('../shared/css/', true, /\.scss$/));
 
 // Router Dependencies
@@ -18,14 +18,20 @@ import configureStore from './store';
 const store = configureStore(window.__INITIAL_STATE__);
 const history = syncHistoryWithStore(browserHistory, store);
 
-// Router
-const router = (
+hydrate(
   <Provider store={store} key="provider">
-    <Router render={(props) => <ReduxAsyncConnect {...props}/>} history={history}>
+    <Router
+      render={props => <ReduxAsyncConnect {...props} />}
+      history={history}
+    >
       {routes}
     </Router>
-  </Provider>
+  </Provider>,
+  document.getElementById('app')
 );
 
-// Render
-hydrate(router, document.getElementById('app'));
+// Webpack Hot Module Replacement API
+if (module.hot) {
+  module.hot.accept();
+  requireAll(require.context('../shared/css/', true, /\.scss$/));
+}
