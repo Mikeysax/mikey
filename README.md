@@ -306,7 +306,7 @@ appreciated.</strong>
 
 </strong>
 
-<strong>3.10.2</strong>: Updated Universal API Templates to use latest React and
+<strong>3.10.3</strong>: Updated Universal API Templates to use latest React and
 updated server side rendering setup with Hydrate and NodeStream. Improved
 Webpack config as well. Refactored pieces of mikey and implemented use of yarn
 to install project dependencies.

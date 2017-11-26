@@ -18,20 +18,20 @@ import configureStore from './store';
 const store = configureStore(window.__INITIAL_STATE__);
 const history = syncHistoryWithStore(browserHistory, store);
 
-hydrate(
+const app = components => (
   <Provider store={store} key="provider">
     <Router
       render={props => <ReduxAsyncConnect {...props} />}
       history={history}
     >
-      {routes}
+      {components}
     </Router>
-  </Provider>,
-  document.getElementById('app')
+  </Provider>
 );
 
-// Webpack Hot Module Replacement API
+hydrate(app(routes), document.getElementById('app'));
+
+// Webpack Hot Module Replacement API for SCSS
 if (module.hot) {
-  module.hot.accept();
   requireAll(require.context('../shared/css/', true, /\.scss$/));
 }

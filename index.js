@@ -23,7 +23,7 @@ function collect(val, memo) {
 }
 
 program
-  .version('3.10.2')
+  .version('3.10.3')
   .option(
     'new <projectName>',
     'Generate New Mikey Project: react/redux/universal',
